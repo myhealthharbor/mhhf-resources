@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Histrionic Personality Disorder Care Plan Care Plan — My Health Harbor Foundation</title>
+<title>Paranoid Personality Disorder Care Plan Care Plan — My Health Harbor Foundation</title>
 <style>
 :root{
   --green:#1a7a4a;--green-lt:#e8f5ee;--green-bd:#a8d9b8;
@@ -16,7 +16,7 @@
   --ink:#1a1a2e;--ink2:#3a3a5a;--ink3:#7a7a9a;
   --paper:#fafaf8;--paper2:#f0f0ec;--paper3:#e0e0da;
   --white:#ffffff;
-  --accent:#db2777;--accent-lt:#fce7f3;--accent-bd:#f9a8d4;
+  --accent:#a16207;--accent-lt:#fef3c7;--accent-bd:#fcd34d;
   --font-body:Georgia,'Times New Roman',serif;
   --font-ui:'Helvetica Neue',Arial,sans-serif;
   --font-mono:'Courier New',Courier,monospace;
@@ -35,10 +35,237 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent)}
 table{width:100%;border-collapse:collapse}
 th{background:var(--accent);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500}
 td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
-@media print{
-  .no-print{display:none!important}
-  body{background:white}
-  [style*="display:none"]{display:block!important}
+@media print {
+  /* ===== PAGE SETUP ===== */
+  @page {
+    size: letter;
+    margin: 0.6in 0.5in 0.7in 0.5in;
+  }
+  @page :first {
+    margin-top: 0.4in;
+  }
+
+  /* ===== HIDE INTERACTIVE ELEMENTS ===== */
+  .no-print,
+  .no-print *,
+  button:not(.print-keep),
+  .print-button,
+  nav,
+  .top-bar,
+  .footer-cta,
+  .scroll-top,
+  .checkbox,
+  input[type="checkbox"] {
+    display: none !important;
+  }
+
+  /* ===== BASE BODY ===== */
+  body {
+    background: white !important;
+    color: #1a1a1a !important;
+    font-size: 10.5pt;
+    line-height: 1.45;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  /* Reveal any hidden expanded content */
+  [style*="display:none"],
+  [style*="display: none"],
+  details {
+    display: block !important;
+  }
+  details > summary {
+    display: block !important;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  details[open] > * {
+    display: block !important;
+  }
+
+  /* ===== TYPOGRAPHY ===== */
+  h1 { font-size: 22pt; margin: 0 0 6pt; page-break-after: avoid; }
+  h2 { font-size: 14pt; margin: 14pt 0 6pt; page-break-after: avoid; }
+  h3 { font-size: 12pt; margin: 10pt 0 4pt; page-break-after: avoid; }
+  h4 { font-size: 11pt; margin: 8pt 0 3pt; page-break-after: avoid; }
+  p { margin: 0 0 6pt; orphans: 3; widows: 3; }
+  ul, ol { margin: 0 0 6pt; padding-left: 18pt; }
+  li { margin-bottom: 3pt; orphans: 2; widows: 2; }
+
+  /* ===== HERO BAND ===== */
+  /* Keep the colorful hero, but compact for print */
+  .hero, [class*="hero"] {
+    padding: 18pt 12pt !important;
+    margin-bottom: 10pt !important;
+    page-break-inside: avoid;
+    page-break-after: avoid;
+  }
+
+  /* ===== CRISIS BANNER — ALWAYS PRINTS RED ===== */
+  /* The crisis info MUST be visually distinct on paper */
+  [class*="crisis"],
+  [class*="sos"],
+  .crisis-banner,
+  .sos-banner {
+    background: #991b1b !important;
+    color: white !important;
+    border: 2pt solid #7f1d1d !important;
+    padding: 10pt !important;
+    margin: 8pt 0 !important;
+    page-break-inside: avoid;
+    page-break-after: avoid;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  [class*="crisis"] *,
+  [class*="sos"] * {
+    color: white !important;
+  }
+
+  /* ===== ZONES (green/amber/red/blue/purple) ===== */
+  /* Keep section together on a page when possible */
+  .zone,
+  [class*="zone-"],
+  .section-card,
+  .care-section {
+    page-break-inside: avoid;
+    margin-bottom: 10pt !important;
+    border: 1pt solid #ddd !important;
+    padding: 8pt !important;
+    box-shadow: none !important;
+  }
+
+  /* Force zone color borders to print */
+  .zone-green, [class*="zone-green"] { border-left: 4pt solid #16a34a !important; }
+  .zone-amber, .zone-yellow, [class*="zone-amber"], [class*="zone-yellow"] { border-left: 4pt solid #d97706 !important; }
+  .zone-red, [class*="zone-red"] { border-left: 4pt solid #dc2626 !important; }
+  .zone-blue, [class*="zone-blue"] { border-left: 4pt solid #2563eb !important; }
+  .zone-purple, [class*="zone-purple"] { border-left: 4pt solid #7c3aed !important; }
+
+  /* ===== TRACKING TABLES ===== */
+  /* Tables must repeat headers on each page */
+  table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    page-break-inside: auto;
+    margin: 6pt 0 !important;
+    font-size: 9pt;
+  }
+  thead { display: table-header-group; }
+  tfoot { display: table-footer-group; }
+  tr { page-break-inside: avoid; page-break-after: auto; }
+  th, td {
+    border: 0.5pt solid #999 !important;
+    padding: 3pt 5pt !important;
+    text-align: left;
+  }
+  th {
+    background: #f3f4f6 !important;
+    font-weight: bold;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* ===== CARDS ===== */
+  .card, [class*="card"] {
+    page-break-inside: avoid;
+    box-shadow: none !important;
+    border: 0.5pt solid #ddd !important;
+    margin-bottom: 8pt !important;
+    padding: 8pt !important;
+  }
+
+  /* ===== BADGES & PILLS ===== */
+  .badge, .pill, [class*="badge"], [class*="pill"] {
+    border: 0.5pt solid #999 !important;
+    padding: 2pt 6pt !important;
+    border-radius: 3pt !important;
+    font-size: 8.5pt !important;
+    background: #f9fafb !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* ===== SHOW URLs FOR EXTERNAL LINKS ===== */
+  /* Helpful when reading on paper — people can type the URL later */
+  a[href^="http"]:not([href*="mailto"]):not([href*="tel"]):after {
+    content: " (" attr(href) ")";
+    font-size: 8.5pt;
+    color: #555;
+    word-break: break-all;
+  }
+
+  /* But don't show URL after phone numbers and crisis lines */
+  a[href^="tel:"]:after,
+  a[href^="sms:"]:after,
+  .crisis-banner a:after,
+  [class*="crisis"] a:after {
+    content: "" !important;
+  }
+
+  /* ===== CITATIONS ===== */
+  .citation, [class*="citation"], .references li {
+    font-size: 9pt;
+    page-break-inside: avoid;
+    margin-bottom: 4pt;
+  }
+
+  /* ===== DISCLAIMER ===== */
+  .disclaimer, [class*="disclaimer"] {
+    font-size: 8.5pt;
+    color: #555;
+    border-top: 0.5pt solid #ccc;
+    padding-top: 6pt;
+    margin-top: 12pt;
+    page-break-before: auto;
+  }
+
+  /* ===== PAGE BREAKS BETWEEN MAJOR SECTIONS ===== */
+  .page-break-before { page-break-before: always; }
+  .page-break-after { page-break-after: always; }
+
+  /* Force break before tracking tables section if it's long */
+  h2:contains("Tracking"),
+  [id*="tracking"] {
+    page-break-before: auto;
+  }
+
+  /* ===== PRINT-ONLY HEADER ===== */
+  /* Tiny branded header at top of every printed page */
+  body::before {
+    content: "MY HEALTH HARBOR FOUNDATION  ·  myhealthharborfoundation.org";
+    display: block;
+    position: running(header);
+    font-size: 8pt;
+    color: #777;
+    text-align: center;
+    border-bottom: 0.25pt solid #ccc;
+    padding-bottom: 4pt;
+    margin-bottom: 8pt;
+    letter-spacing: 0.5pt;
+  }
+
+  /* ===== IMAGES ===== */
+  img {
+    max-width: 100% !important;
+    page-break-inside: avoid;
+  }
+
+  /* ===== PREVENT WIDOWED HEADINGS ===== */
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  /* ===== KEEP IMPORTANT INFO TOGETHER ===== */
+  .keep-together,
+  .crisis-banner,
+  .resources,
+  [class*="resource"] {
+    page-break-inside: avoid !important;
+  }
 }
 @media(min-width:700px){
   .grid-2{grid-template-columns:1fr 1fr!important}
@@ -52,10 +279,10 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
   <button onclick="window.print()" style="background:none;border:1px solid rgba(255,255,255,0.3);color:white;padding:6px 14px;border-radius:7px;font-size:.76rem;cursor:pointer">🖨 Print / Save PDF</button>
 </div>
 
-<div style="background:linear-gradient(135deg,#db2777 0%,#db2777cc 100%);padding:32px 22px 24px;text-align:center">
+<div style="background:linear-gradient(135deg,#a16207 0%,#a16207cc 100%);padding:32px 22px 24px;text-align:center">
   <div style="font-size:.72rem;font-family:var(--font-mono);color:rgba(255,255,255,0.7);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px">Mental Health Care Plan · My Health Harbor Foundation</div>
-  <div style="font-size:clamp(1.6rem,4vw,2.2rem);font-weight:700;color:white;line-height:1.2;font-family:var(--font-body)">Histrionic Personality Disorder Care Plan</div>
-  <div style="font-size:.88rem;color:rgba(255,255,255,0.75);margin-top:8px">Recovery from excessive emotionality and attention-seeking — for individuals and families</div>
+  <div style="font-size:clamp(1.6rem,4vw,2.2rem);font-weight:700;color:white;line-height:1.2;font-family:var(--font-body)">Paranoid Personality Disorder Care Plan</div>
+  <div style="font-size:.88rem;color:rgba(255,255,255,0.75);margin-top:8px">Living with pervasive distrust and suspicion — for individuals and families</div>
 </div>
 
 <div style="max-width:860px;margin:0 auto;padding:24px 18px">
@@ -66,7 +293,7 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
     <span style="font-size:1.5rem">🆘</span>
     <span style="font-size:1.05rem;font-weight:700">If you or someone you love is in crisis right now</span>
   </div>
-  <div style="font-size:.9rem;line-height:1.7;margin-bottom:14px">HPD carries elevated suicide risk, often with parasuicidal behavior (gestures rather than completed attempts). All threats must be taken seriously. The chronic distress of unmet emotional needs can lead to genuine crisis. Please reach out — treatment helps.</div>
+  <div style="font-size:.9rem;line-height:1.7;margin-bottom:14px">PPD carries elevated suicide risk, particularly when isolated. The chronic stress of constant vigilance can lead to depression. If you are in crisis, please reach out — even though trusting feels impossible, someone trustworthy exists.</div>
   <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px">
     <div style="background:rgba(255,255,255,0.15);padding:10px 12px;border-radius:8px"><div style="font-size:.7rem;opacity:.85">USA — Suicide & Crisis</div><div style="font-size:1rem;font-weight:700">988 (call or text)</div></div>
     <div style="background:rgba(255,255,255,0.15);padding:10px 12px;border-radius:8px"><div style="font-size:.7rem;opacity:.85">USA — Crisis Text Line</div><div style="font-size:1rem;font-weight:700">Text HOME to 741741</div></div>
@@ -75,9 +302,9 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
   </div>
 </div>
   <div style="display:inline-flex;align-items:center;gap:8px;background:#e8f5ee;border:1.5px solid #1a7a4a33;color:#1a7a4a;padding:7px 16px;border-radius:30px;font-size:.8rem;font-weight:600;margin-bottom:16px">🙋👐 For Patient & Caregiver</div>
-  <div style="background:#fce7f3;border:1.5px solid #f9a8d4;border-radius:var(--radius);padding:18px 20px;margin-bottom:20px">
-  <div style="font-size:.72rem;font-family:var(--font-mono);color:#db2777;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px">WHO IS THIS FOR?</div>
-  <div style="font-size:.88rem;color:var(--ink);line-height:1.6">This care plan is for <strong>people living with histrionic personality disorder (HPD)</strong> and their <strong>family members</strong>. HPD affects approximately 1.8% of the population. It involves a pervasive pattern of excessive emotionality and attention-seeking — uncomfortable when not center of attention, sexually provocative, rapidly shifting emotions, exaggerated emotional expression, suggestibility, considering relationships more intimate than they are. <strong>HPD is NOT vanity, manipulation, or character flaw</strong> — it is a recognized personality disorder, often rooted in early experiences where attention was conditional. <strong>Treatment is challenging but possible</strong>. Many people with HPD have suffered through misdiagnosis and stigma. With validating, consistent therapy, significant improvement is possible.</div>
+  <div style="background:#fef3c7;border:1.5px solid #fcd34d;border-radius:var(--radius);padding:18px 20px;margin-bottom:20px">
+  <div style="font-size:.72rem;font-family:var(--font-mono);color:#a16207;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px">WHO IS THIS FOR?</div>
+  <div style="font-size:.88rem;color:var(--ink);line-height:1.6">This care plan is for <strong>people living with paranoid personality disorder (PPD)</strong> and their <strong>family members</strong>. PPD affects approximately 2.3-4.4% of the population. It involves a pervasive pattern of distrust and suspiciousness — interpreting others' motives as malevolent, doubting loyalty of friends, reluctance to confide, reading hidden meanings into benign remarks, holding grudges. <strong>PPD is NOT psychotic paranoia, NOT antisocial behavior</strong> — it is a recognized personality disorder. People with PPD have insight that others see things differently, but feel unable to lower their guard. <strong>Treatment is challenging because trust is the obstacle</strong>, but possible with patient, consistent providers. Many with PPD have experienced real betrayal that informs their stance.</div>
 </div>
   <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px">
   <div style="display:flex;align-items:center;gap:6px;background:var(--green-lt);border:1px solid var(--green-bd);color:var(--green);padding:5px 12px;border-radius:20px;font-size:.74rem;font-weight:600">🟢 Daily Wellness</div>
@@ -95,10 +322,10 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
   
 <div style="background:var(--white);border-radius:var(--radius);margin-bottom:14px;box-shadow:var(--shadow);border:1px solid var(--paper3);overflow:hidden">
   <div onclick="toggleZone('zone0')" style="display:flex;align-items:center;gap:14px;padding:18px 20px;cursor:pointer;border-left:4px solid var(--green);background:var(--white)">
-    <div style="width:44px;height:44px;border-radius:10px;background:var(--green-lt);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">💖</div>
+    <div style="width:44px;height:44px;border-radius:10px;background:var(--green-lt);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">🟡</div>
     <div style="flex:1">
-      <div style="font-size:1rem;font-weight:700;color:var(--green);font-family:var(--font-body)">Daily Wellness — Building Inner Stability</div>
-      <div style="font-size:.78rem;color:var(--ink3);margin-top:2px">Daily practices for HPD</div>
+      <div style="font-size:1rem;font-weight:700;color:var(--green);font-family:var(--font-body)">Daily Wellness — Living With Vigilance</div>
+      <div style="font-size:.78rem;color:var(--ink3);margin-top:2px">Daily practices for PPD</div>
     </div>
     <span id="arrzone0" style="font-size:.8rem;color:var(--ink3);transition:transform .3s">▼</span>
   </div>
@@ -106,32 +333,32 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
     
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--green);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Take medication if prescribed</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">SSRIs for co-occurring depression/anxiety. No specific HPD medication.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Take medication if prescribed</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">SSRIs for co-occurring conditions. Low-dose antipsychotics rarely.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--green-lt);color:var(--green);white-space:nowrap;align-self:flex-start;margin-top:2px">Daily</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--green);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Practice tolerating non-attention</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Build capacity to be okay without constant external validation.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Find ONE trusted person</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Even one person to test "what if I'm wrong about this?" provides reality check.</div></div>
+  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--green-lt);color:var(--green);white-space:nowrap;align-self:flex-start;margin-top:2px">Ongoing</span>
+</div>
+<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
+  <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--green);flex-shrink:0;margin-top:2px;cursor:pointer">
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Practice "checking out" interpretations</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">When suspicious — ask directly rather than assuming. Often hard but valuable.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--green-lt);color:var(--green);white-space:nowrap;align-self:flex-start;margin-top:2px">Daily</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--green);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Develop solitary interests</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Activities that fulfill you without audience.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Maintain consistent daily routine</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Predictability reduces overall vigilance.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--green-lt);color:var(--green);white-space:nowrap;align-self:flex-start;margin-top:2px">Daily</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--green);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Identify and name emotions accurately</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">HPD often involves shallow emotional experience despite expression.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Maintain consistent sleep schedule</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Sleep deprivation worsens paranoia significantly.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--green-lt);color:var(--green);white-space:nowrap;align-self:flex-start;margin-top:2px">Daily</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--green);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Maintain consistent sleep schedule</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Sleep deprivation worsens emotional dysregulation.</div></div>
-  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--green-lt);color:var(--green);white-space:nowrap;align-self:flex-start;margin-top:2px">Daily</span>
-</div>
-<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
-  <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--green);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Move your body daily</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">30 minutes daily of moderate exercise.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Move body daily — exercise reduces vigilance</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">30 minutes daily.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--green-lt);color:var(--green);white-space:nowrap;align-self:flex-start;margin-top:2px">Daily</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
@@ -141,17 +368,17 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--green);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Limit alcohol — disinhibits and worsens emotional intensity</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Common HPD pattern.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Limit caffeine — increases vigilance</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Watch your tolerance.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--green-lt);color:var(--green);white-space:nowrap;align-self:flex-start;margin-top:2px">Daily</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--green);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Practice mindfulness — observing emotions without acting</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Builds capacity for stability.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Limit alcohol — affects judgment</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Worsens paranoia.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--green-lt);color:var(--green);white-space:nowrap;align-self:flex-start;margin-top:2px">Daily</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--green);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Build deeper relationships gradually</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Quality over quantity. Substance over performance.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">AVOID stimulants and cannabis</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Can worsen paranoia significantly.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--green-lt);color:var(--green);white-space:nowrap;align-self:flex-start;margin-top:2px">Daily</span>
 </div>
   </div>
@@ -160,7 +387,7 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
   <div onclick="toggleZone('zone1')" style="display:flex;align-items:center;gap:14px;padding:18px 20px;cursor:pointer;border-left:4px solid var(--amber);background:var(--white)">
     <div style="width:44px;height:44px;border-radius:10px;background:var(--amber-lt);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">🟡</div>
     <div style="flex:1">
-      <div style="font-size:1rem;font-weight:700;color:var(--amber);font-family:var(--font-body)">Watch & Monitor — Signs HPD Is Worsening</div>
+      <div style="font-size:1rem;font-weight:700;color:var(--amber);font-family:var(--font-body)">Watch & Monitor — Signs PPD Is Worsening</div>
       <div style="font-size:.78rem;color:var(--ink3);margin-top:2px">Patterns to discuss with treatment team</div>
     </div>
     <span id="arrzone1" style="font-size:.8rem;color:var(--ink3);transition:transform .3s">▼</span>
@@ -169,52 +396,52 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
     
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Attention-seeking escalating</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">More dramatic, more risky.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Suspicions intensifying</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">More frequent, more constant.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--amber-lt);color:var(--amber);white-space:nowrap;align-self:flex-start;margin-top:2px">Tell therapist</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Emotional dysregulation increasing</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Bigger reactions, faster shifts.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Holding more grudges</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Old conflicts feeling current.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--amber-lt);color:var(--amber);white-space:nowrap;align-self:flex-start;margin-top:2px">Tell therapist</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Multiple new "intimate" relationships</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Often shallow despite intensity.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Increasing isolation</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Pulling away from even trusted contacts.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--amber-lt);color:var(--amber);white-space:nowrap;align-self:flex-start;margin-top:2px">Tell therapist</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Sexual behavior risky</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Provocation in unsafe contexts.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">New interpretations of old events</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">"I now realize what they were really doing."</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--amber-lt);color:var(--amber);white-space:nowrap;align-self:flex-start;margin-top:2px">Tell therapist</span>
-</div>
-<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
-  <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Co-occurring depression worsening</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Common comorbidity.</div></div>
-  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--amber-lt);color:var(--amber);white-space:nowrap;align-self:flex-start;margin-top:2px">Tell doctor</span>
-</div>
-<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
-  <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Substance use emerging</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Often alcohol or stimulants.</div></div>
-  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--amber-lt);color:var(--amber);white-space:nowrap;align-self:flex-start;margin-top:2px">Tell therapist</span>
-</div>
-<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
-  <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Self-harm or parasuicidal behavior</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Gestures, threats — must be taken seriously.</div></div>
-  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--amber-lt);color:var(--amber);white-space:nowrap;align-self:flex-start;margin-top:2px">Tell therapist same day</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--amber);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Sleep severely disrupted</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Worsens dysregulation.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Sleep severely disrupted</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Worsens paranoia significantly.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--amber-lt);color:var(--amber);white-space:nowrap;align-self:flex-start;margin-top:2px">Tell doctor</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Job/relationship instability</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Dramatic patterns.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Substance use emerging</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Self-medication risky.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--amber-lt);color:var(--amber);white-space:nowrap;align-self:flex-start;margin-top:2px">Tell therapist</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Suicidal thoughts</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">HPD elevates suicide risk.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Co-occurring depression worsening</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Common with chronic vigilance.</div></div>
+  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--amber-lt);color:var(--amber);white-space:nowrap;align-self:flex-start;margin-top:2px">Tell doctor</span>
+</div>
+<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
+  <div style="width:18px;height:18px;flex-shrink:0"></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Workplace conflicts increasing</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Often presenting issue.</div></div>
+  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--amber-lt);color:var(--amber);white-space:nowrap;align-self:flex-start;margin-top:2px">Tell therapist</span>
+</div>
+<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
+  <div style="width:18px;height:18px;flex-shrink:0"></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Family/relationship conflicts increasing</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Marriages especially affected.</div></div>
+  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--amber-lt);color:var(--amber);white-space:nowrap;align-self:flex-start;margin-top:2px">Tell therapist</span>
+</div>
+<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
+  <div style="width:18px;height:18px;flex-shrink:0"></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Suicidal thoughts</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">PPD elevates suicide risk.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--amber-lt);color:var(--amber);white-space:nowrap;align-self:flex-start;margin-top:2px">CALL 988</span>
 </div>
   </div>
@@ -224,7 +451,7 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
     <div style="width:44px;height:44px;border-radius:10px;background:var(--red-lt);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">🚨</div>
     <div style="flex:1">
       <div style="font-size:1rem;font-weight:700;color:var(--red);font-family:var(--font-body)">Crisis Signs</div>
-      <div style="font-size:.78rem;color:var(--ink3);margin-top:2px">When HPD needs urgent care</div>
+      <div style="font-size:.78rem;color:var(--ink3);margin-top:2px">When PPD needs urgent care</div>
     </div>
     <span id="arrzone2" style="font-size:.8rem;color:var(--ink3);transition:transform .3s">▼</span>
   </div>
@@ -232,27 +459,27 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
     
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Suicidal threats or attempts — even if "gesture"</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">ALL threats taken seriously. Call 988.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Suicidal thoughts</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">PPD elevated suicide risk. Call 988.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--red-lt);color:var(--red);white-space:nowrap;align-self:flex-start;margin-top:2px">CALL 988</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Self-harm</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Tell therapist or call 988.</div></div>
-  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--red-lt);color:var(--red);white-space:nowrap;align-self:flex-start;margin-top:2px">CALL 988</span>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Crossing into delusional paranoia</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Persistent fixed beliefs, hearing things. Need psychiatric eval.</div></div>
+  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--red-lt);color:var(--red);white-space:nowrap;align-self:flex-start;margin-top:2px">CALL doctor</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Risky behavior with safety implications</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Sexual safety, financial recklessness.</div></div>
-  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--red-lt);color:var(--red);white-space:nowrap;align-self:flex-start;margin-top:2px">Tell therapist</span>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Threats to others or self based on paranoid beliefs</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Safety planning needed urgently.</div></div>
+  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--red-lt);color:var(--red);white-space:nowrap;align-self:flex-start;margin-top:2px">CALL 988 or 911</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Substance use crisis</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">SAMHSA: 1-800-662-4357.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Severe substance use</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">SAMHSA: 1-800-662-4357.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--red-lt);color:var(--red);white-space:nowrap;align-self:flex-start;margin-top:2px">CALL SAMHSA</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Severe relationship crisis</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Often dramatic but real distress.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Severe relationship/work crisis</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">From paranoid behaviors.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--red-lt);color:var(--red);white-space:nowrap;align-self:flex-start;margin-top:2px">Same-day call</span>
 </div>
   </div>
@@ -262,7 +489,7 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
     <div style="width:44px;height:44px;border-radius:10px;background:var(--blue-lt);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">💊</div>
     <div style="flex:1">
       <div style="font-size:1rem;font-weight:700;color:var(--blue);font-family:var(--font-body)">Treatments</div>
-      <div style="font-size:.78rem;color:var(--ink3);margin-top:2px">HPD treatment</div>
+      <div style="font-size:.78rem;color:var(--ink3);margin-top:2px">PPD treatment</div>
     </div>
     <span id="arrzone3" style="font-size:.8rem;color:var(--ink3);transition:transform .3s">▼</span>
   </div>
@@ -270,23 +497,18 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
     
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Cognitive Behavioral Therapy (CBT) — adapted for HPD</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Targets attention-seeking patterns and emotional regulation.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Cognitive Behavioral Therapy (CBT) — adapted for PPD</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Targets interpretation patterns. Long-term work.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);white-space:nowrap;align-self:flex-start;margin-top:2px">Therapy</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Schema Therapy</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Addresses underlying needs for attention/love.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Therapeutic relationship building — gradual</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Trust is the WORK of therapy. May take months.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);white-space:nowrap;align-self:flex-start;margin-top:2px">Therapy</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Psychodynamic therapy</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Explores origins of attention-seeking patterns.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Schema Therapy</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Addresses underlying schemas about trust and safety.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);white-space:nowrap;align-self:flex-start;margin-top:2px">Therapy</span>
-</div>
-<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
-  <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Group therapy — can be powerful for HPD</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Limits attention-monopolizing while building skills.</div></div>
-  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);white-space:nowrap;align-self:flex-start;margin-top:2px">Group</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <div style="width:18px;height:18px;flex-shrink:0"></div>
@@ -295,28 +517,28 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">AVOID benzodiazepines</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Disinhibit, worsen patterns. Addictive.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Low-dose antipsychotics — rarely</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Only when paranoia significantly impairs function.</div></div>
+  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);white-space:nowrap;align-self:flex-start;margin-top:2px">Rare</span>
+</div>
+<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
+  <div style="width:18px;height:18px;flex-shrink:0"></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">AVOID confrontation in therapy</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Triggers defenses. Slow, validating approach.</div></div>
+  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);white-space:nowrap;align-self:flex-start;margin-top:2px">Important</span>
+</div>
+<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
+  <div style="width:18px;height:18px;flex-shrink:0"></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">AVOID stimulants and cannabis</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Worsen paranoia significantly.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);white-space:nowrap;align-self:flex-start;margin-top:2px">Avoid</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">AVOID stimulants without specialist</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Can worsen patterns.</div></div>
-  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);white-space:nowrap;align-self:flex-start;margin-top:2px">Caution</span>
-</div>
-<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
-  <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">DBT skills can help</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Emotional regulation skills useful.</div></div>
-  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);white-space:nowrap;align-self:flex-start;margin-top:2px">Therapy</span>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Couples therapy when relationship affected</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Specialized PD-aware therapist.</div></div>
+  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);white-space:nowrap;align-self:flex-start;margin-top:2px">As needed</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <div style="width:18px;height:18px;flex-shrink:0"></div>
   <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Address co-occurring conditions</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Depression, anxiety, substance use common.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);white-space:nowrap;align-self:flex-start;margin-top:2px">Ongoing</span>
-</div>
-<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
-  <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Couples therapy if relationship affected</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Often essential.</div></div>
-  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);white-space:nowrap;align-self:flex-start;margin-top:2px">As needed</span>
 </div>
   </div>
 </div>
@@ -325,7 +547,7 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
     <div style="width:44px;height:44px;border-radius:10px;background:var(--purple-lt);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">📅</div>
     <div style="flex:1">
       <div style="font-size:1rem;font-weight:700;color:var(--purple);font-family:var(--font-body)">Therapy & Care Plan</div>
-      <div style="font-size:.78rem;color:var(--ink3);margin-top:2px">Validating, consistent care</div>
+      <div style="font-size:.78rem;color:var(--ink3);margin-top:2px">Patient, consistent care</div>
     </div>
     <span id="arrzone4" style="font-size:.8rem;color:var(--ink3);transition:transform .3s">▼</span>
   </div>
@@ -333,12 +555,12 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
     
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--purple);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Find HPD-knowledgeable therapist</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Critical. Many therapists react to HPD presentation rather than help.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Find PPD-knowledgeable therapist</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Critical. Patience and consistency matter most.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--purple-lt);color:var(--purple);white-space:nowrap;align-self:flex-start;margin-top:2px">First step</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--purple);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Same therapist long-term</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Switching common in HPD — work to stay.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Same therapist long-term</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Trust building takes time. Avoid switching.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--purple-lt);color:var(--purple);white-space:nowrap;align-self:flex-start;margin-top:2px">Long-term</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
@@ -348,13 +570,13 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--purple);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Psychiatrist if medications used</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">For co-occurring conditions.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Psychiatrist if medications used</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Same provider when possible.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--purple-lt);color:var(--purple);white-space:nowrap;align-self:flex-start;margin-top:2px">Every 3-6 mo</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--purple);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Group therapy adjunct</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Powerful for HPD when ready.</div></div>
-  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--purple-lt);color:var(--purple);white-space:nowrap;align-self:flex-start;margin-top:2px">Weekly</span>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Same primary care doctor</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Trust extends to medical care.</div></div>
+  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--purple-lt);color:var(--purple);white-space:nowrap;align-self:flex-start;margin-top:2px">Annual</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--purple);flex-shrink:0;margin-top:2px;cursor:pointer">
@@ -363,7 +585,7 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--purple);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Couples therapy when needed</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Often essential.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Family/couples therapy when needed</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Often essential.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--purple-lt);color:var(--purple);white-space:nowrap;align-self:flex-start;margin-top:2px">As needed</span>
 </div>
   </div>
@@ -383,19 +605,27 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
     <div style="padding:16px">
 <div style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:var(--white);border:1px solid var(--paper3);border-left:4px solid var(--amber);border-radius:var(--radius-sm);margin-bottom:6px">
   <input type="checkbox" style="width:18px;height:18px;accent-color:var(--amber);flex-shrink:0;margin-top:2px">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Attention-seeking escalating</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">More dramatic.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Suspicions intensifying</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">More frequent.</div></div>
 </div>
 <div style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:var(--white);border:1px solid var(--paper3);border-left:4px solid var(--amber);border-radius:var(--radius-sm);margin-bottom:6px">
   <input type="checkbox" style="width:18px;height:18px;accent-color:var(--amber);flex-shrink:0;margin-top:2px">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Emotional dysregulation</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Bigger reactions.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Holding more grudges</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Old conflicts current.</div></div>
 </div>
 <div style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:var(--white);border:1px solid var(--paper3);border-left:4px solid var(--amber);border-radius:var(--radius-sm);margin-bottom:6px">
   <input type="checkbox" style="width:18px;height:18px;accent-color:var(--amber);flex-shrink:0;margin-top:2px">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">New "intimate" relationships</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Often shallow.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Increasing isolation</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Pulling away.</div></div>
 </div>
 <div style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:var(--white);border:1px solid var(--paper3);border-left:4px solid var(--amber);border-radius:var(--radius-sm);margin-bottom:6px">
   <input type="checkbox" style="width:18px;height:18px;accent-color:var(--amber);flex-shrink:0;margin-top:2px">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Risky sexual behavior</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Provocation in unsafe contexts.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">New interpretations of old events</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Reframing past.</div></div>
+</div>
+<div style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:var(--white);border:1px solid var(--paper3);border-left:4px solid var(--amber);border-radius:var(--radius-sm);margin-bottom:6px">
+  <input type="checkbox" style="width:18px;height:18px;accent-color:var(--amber);flex-shrink:0;margin-top:2px">
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Sleep severely disrupted</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Worsens paranoia.</div></div>
+</div>
+<div style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:var(--white);border:1px solid var(--paper3);border-left:4px solid var(--amber);border-radius:var(--radius-sm);margin-bottom:6px">
+  <input type="checkbox" style="width:18px;height:18px;accent-color:var(--amber);flex-shrink:0;margin-top:2px">
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Substance use</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Self-medication.</div></div>
 </div>
 <div style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:var(--white);border:1px solid var(--paper3);border-left:4px solid var(--amber);border-radius:var(--radius-sm);margin-bottom:6px">
   <input type="checkbox" style="width:18px;height:18px;accent-color:var(--amber);flex-shrink:0;margin-top:2px">
@@ -403,19 +633,11 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
 </div>
 <div style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:var(--white);border:1px solid var(--paper3);border-left:4px solid var(--amber);border-radius:var(--radius-sm);margin-bottom:6px">
   <input type="checkbox" style="width:18px;height:18px;accent-color:var(--amber);flex-shrink:0;margin-top:2px">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Substance use emerging</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Self-medication.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Workplace conflicts</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Common warning.</div></div>
 </div>
 <div style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:var(--white);border:1px solid var(--paper3);border-left:4px solid var(--amber);border-radius:var(--radius-sm);margin-bottom:6px">
   <input type="checkbox" style="width:18px;height:18px;accent-color:var(--amber);flex-shrink:0;margin-top:2px">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Self-harm or threats</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Take seriously.</div></div>
-</div>
-<div style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:var(--white);border:1px solid var(--paper3);border-left:4px solid var(--amber);border-radius:var(--radius-sm);margin-bottom:6px">
-  <input type="checkbox" style="width:18px;height:18px;accent-color:var(--amber);flex-shrink:0;margin-top:2px">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Sleep severely disrupted</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Worsens dysregulation.</div></div>
-</div>
-<div style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:var(--white);border:1px solid var(--paper3);border-left:4px solid var(--amber);border-radius:var(--radius-sm);margin-bottom:6px">
-  <input type="checkbox" style="width:18px;height:18px;accent-color:var(--amber);flex-shrink:0;margin-top:2px">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Job/relationship instability</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Dramatic patterns.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Relationship conflicts</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Marriages affected.</div></div>
 </div>
 <div style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:var(--white);border:1px solid var(--paper3);border-left:4px solid var(--amber);border-radius:var(--radius-sm);margin-bottom:6px">
   <input type="checkbox" style="width:18px;height:18px;accent-color:var(--amber);flex-shrink:0;margin-top:2px">
@@ -435,7 +657,7 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
 </div>
 <div style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:var(--white);border:1px solid var(--paper3);border-left:4px solid var(--red);border-radius:var(--radius-sm);margin-bottom:6px">
   <input type="checkbox" style="width:18px;height:18px;accent-color:var(--red);flex-shrink:0;margin-top:2px">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">"I don't need them anymore"</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Discuss with doctor.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">"They're trying to control me with these"</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Common PPD thought. Discuss with provider.</div></div>
 </div>
 <div style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:var(--white);border:1px solid var(--paper3);border-left:4px solid var(--red);border-radius:var(--radius-sm);margin-bottom:6px">
   <input type="checkbox" style="width:18px;height:18px;accent-color:var(--red);flex-shrink:0;margin-top:2px">
@@ -455,7 +677,7 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
 </div>
 <div style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:var(--white);border:1px solid var(--paper3);border-left:4px solid var(--red);border-radius:var(--radius-sm);margin-bottom:6px">
   <input type="checkbox" style="width:18px;height:18px;accent-color:var(--red);flex-shrink:0;margin-top:2px">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Hiding pills</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Common.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Hiding pills</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Common in PPD.</div></div>
 </div></div>
   </div>
 </div>
@@ -471,7 +693,7 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
     <div style="font-size:.74rem;color:var(--ink3);margin-top:3px">Fill this out NOW — when you are well — so it is ready when you need it. Based on the Stanley-Brown Safety Planning Intervention.</div>
   </div>
   <div style="padding:18px">
-    <div style="font-size:.82rem;color:var(--ink2);margin-bottom:14px;line-height:1.6">HPD safety planning addresses suicide risk (including parasuicidal behavior), self-harm, and substance use. All threats taken seriously. Plan made when stable.</div>
+    <div style="font-size:.82rem;color:var(--ink2);margin-bottom:14px;line-height:1.6">PPD safety planning addresses suicide risk, paranoid escalation, and relationship crises. Plan made with one trusted person.</div>
     
     <div style="margin-bottom:14px">
       <div style="font-size:.78rem;font-weight:700;color:var(--ink);margin-bottom:5px">Step 1 — My personal warning signs (thoughts, feelings, situations that come BEFORE a crisis)</div>
@@ -523,51 +745,51 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
   </div>
   
 <div style="background:var(--white);border-radius:var(--radius);margin-bottom:14px;box-shadow:var(--shadow);border:1px solid var(--paper3);overflow:hidden">
-  <div style="padding:14px 18px;background:#fce7f3;border-bottom:1px solid var(--paper3);border-left:4px solid #be185d">
-    <div style="font-size:.9rem;font-weight:700;color:#be185d">Daily Wellbeing Tracker</div>
+  <div style="padding:14px 18px;background:var(--amber-lt);border-bottom:1px solid var(--paper3);border-left:4px solid var(--amber)">
+    <div style="font-size:.9rem;font-weight:700;color:var(--amber)">Daily Suspiciousness Tracker</div>
   </div>
   <div style="padding:16px 18px;overflow-x:auto">
     <table style="width:100%;border-collapse:collapse;min-width:400px">
-      <thead><tr><th style="background:#be185d;color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Date</th><th style="background:#be185d;color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Mood (0-10)</th><th style="background:#be185d;color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Emotional intensity (0-10)</th><th style="background:#be185d;color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Attention-seeking urges</th><th style="background:#be185d;color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">How I tolerated</th><th style="background:#be185d;color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Sleep</th><th style="background:#be185d;color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Notes</th></tr></thead>
+      <thead><tr><th style="background:var(--amber);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Date</th><th style="background:var(--amber);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Suspiciousness (0-10)</th><th style="background:var(--amber);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Specific concerns</th><th style="background:var(--amber);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Did I check out interpretations?</th><th style="background:var(--amber);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">What I learned</th><th style="background:var(--amber);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Mood</th></tr></thead>
       <tbody><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr></tbody>
     </table>
-    <div style="font-size:.74rem;color:var(--ink3);margin-top:8px;font-style:italic;padding:0 4px">Track patterns. Recovery = building tolerance for non-attention.</div>
-  </div>
-</div>
-<div style="background:var(--white);border-radius:var(--radius);margin-bottom:14px;box-shadow:var(--shadow);border:1px solid var(--paper3);overflow:hidden">
-  <div style="padding:14px 18px;background:var(--amber-lt);border-bottom:1px solid var(--paper3);border-left:4px solid var(--amber)">
-    <div style="font-size:.9rem;font-weight:700;color:var(--amber)">Trigger & Pattern Log</div>
-  </div>
-  <div style="padding:16px 18px;overflow-x:auto">
-    <table style="width:100%;border-collapse:collapse;min-width:400px">
-      <thead><tr><th style="background:var(--amber);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Date</th><th style="background:var(--amber);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Trigger</th><th style="background:var(--amber);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">My response</th><th style="background:var(--amber);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">What I wanted</th><th style="background:var(--amber);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">What I needed</th><th style="background:var(--amber);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Healthier alternative</th></tr></thead>
-      <tbody><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr></tbody>
-    </table>
-    <div style="font-size:.74rem;color:var(--ink3);margin-top:8px;font-style:italic;padding:0 4px">Identify YOUR triggers. Practice meeting needs in healthier ways.</div>
-  </div>
-</div>
-<div style="background:var(--white);border-radius:var(--radius);margin-bottom:14px;box-shadow:var(--shadow);border:1px solid var(--paper3);overflow:hidden">
-  <div style="padding:14px 18px;background:var(--green-lt);border-bottom:1px solid var(--paper3);border-left:4px solid var(--green)">
-    <div style="font-size:.9rem;font-weight:700;color:var(--green)">Connection Quality Log</div>
-  </div>
-  <div style="padding:16px 18px;overflow-x:auto">
-    <table style="width:100%;border-collapse:collapse;min-width:400px">
-      <thead><tr><th style="background:var(--green);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Date</th><th style="background:var(--green);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Person</th><th style="background:var(--green);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Type of interaction</th><th style="background:var(--green);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Depth (1-10)</th><th style="background:var(--green);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">My contribution</th><th style="background:var(--green);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">What I learned</th></tr></thead>
-      <tbody><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr></tbody>
-    </table>
-    <div style="font-size:.74rem;color:var(--ink3);margin-top:8px;font-style:italic;padding:0 4px">Build evidence of deeper connection. Quality over quantity.</div>
+    <div style="font-size:.74rem;color:var(--ink3);margin-top:8px;font-style:italic;padding:0 4px">Track patterns. Reality testing reduces paranoia over time.</div>
   </div>
 </div>
 <div style="background:var(--white);border-radius:var(--radius);margin-bottom:14px;box-shadow:var(--shadow);border:1px solid var(--paper3);overflow:hidden">
   <div style="padding:14px 18px;background:var(--purple-lt);border-bottom:1px solid var(--paper3);border-left:4px solid var(--purple)">
-    <div style="font-size:.9rem;font-weight:700;color:var(--purple)">Family Observation</div>
+    <div style="font-size:.9rem;font-weight:700;color:var(--purple)">Interpretation Log</div>
   </div>
   <div style="padding:16px 18px;overflow-x:auto">
     <table style="width:100%;border-collapse:collapse;min-width:400px">
-      <thead><tr><th style="background:var(--purple);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Date</th><th style="background:var(--purple);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Their emotional state</th><th style="background:var(--purple);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Behavior I noticed</th><th style="background:var(--purple);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">How I responded (calmly)</th><th style="background:var(--purple);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Boundaries needed</th><th style="background:var(--purple);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">My own wellbeing</th></tr></thead>
+      <thead><tr><th style="background:var(--purple);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Date</th><th style="background:var(--purple);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Event</th><th style="background:var(--purple);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">My initial interpretation</th><th style="background:var(--purple);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Alternative interpretation</th><th style="background:var(--purple);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">What's actually true</th><th style="background:var(--purple);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Lesson learned</th></tr></thead>
+      <tbody><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr></tbody>
+    </table>
+    <div style="font-size:.74rem;color:var(--ink3);margin-top:8px;font-style:italic;padding:0 4px">Cognitive restructuring core to PPD treatment. Practice alternative interpretations.</div>
+  </div>
+</div>
+<div style="background:var(--white);border-radius:var(--radius);margin-bottom:14px;box-shadow:var(--shadow);border:1px solid var(--paper3);overflow:hidden">
+  <div style="padding:14px 18px;background:var(--green-lt);border-bottom:1px solid var(--paper3);border-left:4px solid var(--green)">
+    <div style="font-size:.9rem;font-weight:700;color:var(--green)">Trust & Connection Log</div>
+  </div>
+  <div style="padding:16px 18px;overflow-x:auto">
+    <table style="width:100%;border-collapse:collapse;min-width:400px">
+      <thead><tr><th style="background:var(--green);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Date</th><th style="background:var(--green);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Person</th><th style="background:var(--green);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Interaction</th><th style="background:var(--green);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Trust felt (0-10)</th><th style="background:var(--green);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Was suspicion warranted?</th><th style="background:var(--green);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Outcome</th></tr></thead>
+      <tbody><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr></tbody>
+    </table>
+    <div style="font-size:.74rem;color:var(--ink3);margin-top:8px;font-style:italic;padding:0 4px">Build evidence about who is actually trustworthy. Most people aren't enemies.</div>
+  </div>
+</div>
+<div style="background:var(--white);border-radius:var(--radius);margin-bottom:14px;box-shadow:var(--shadow);border:1px solid var(--paper3);overflow:hidden">
+  <div style="padding:14px 18px;background:#fce7f3;border-bottom:1px solid var(--paper3);border-left:4px solid #be185d">
+    <div style="font-size:.9rem;font-weight:700;color:#be185d">Family Observation</div>
+  </div>
+  <div style="padding:16px 18px;overflow-x:auto">
+    <table style="width:100%;border-collapse:collapse;min-width:400px">
+      <thead><tr><th style="background:#be185d;color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Date</th><th style="background:#be185d;color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Their suspicious thoughts</th><th style="background:#be185d;color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">How I responded (without arguing)</th><th style="background:#be185d;color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">My own emotional state</th><th style="background:#be185d;color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Boundaries needed</th><th style="background:#be185d;color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Wellbeing</th></tr></thead>
       <tbody><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr></tbody>
     </table>
-    <div style="font-size:.74rem;color:var(--ink3);margin-top:8px;font-style:italic;padding:0 4px">Don't reward dramatic behavior with attention. Don't punish either. Calm, consistent presence.</div>
+    <div style="font-size:.74rem;color:var(--ink3);margin-top:8px;font-style:italic;padding:0 4px">Living with PPD partner is hard. Don't argue paranoid thoughts but don't collude either. Get your own support.</div>
   </div>
 </div>
 
@@ -678,7 +900,7 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
     </div>
     <span id="arrspecsleep" style="font-size:.8rem;color:var(--ink3);transition:transform .3s">▼</span>
   </div>
-  <div id="specsleep" style="display:none;padding:18px;font-size:.82rem;color:var(--ink2);line-height:1.7"><strong>Sleep deprivation worsens emotional dysregulation.</strong><br><br>• 7-9 hours nightly<br>• Same bedtime and wake time<br>• Cool, dark bedroom<br>• Limit screens before bed<br>• AVOID alcohol — common HPD pattern<br>• If insomnia: CBT-I<br>• Trazodone safe non-addictive option</div>
+  <div id="specsleep" style="display:none;padding:18px;font-size:.82rem;color:var(--ink2);line-height:1.7"><strong>Sleep deprivation worsens paranoia significantly.</strong><br><br>• 7-9 hours nightly<br>• Same bedtime and wake time<br>• Cool, dark bedroom<br>• Safe-feeling sleep environment (locks, position)<br>• Limit screens before bed<br>• If insomnia: CBT-I<br>• Trazodone safe non-addictive option</div>
 </div>
 <div style="background:var(--white);border-radius:var(--radius);margin-bottom:14px;box-shadow:var(--shadow);border:1px solid var(--paper3);overflow:hidden">
   <div onclick="toggleZone('specgut')" style="padding:14px 18px;background:#dcfce7;border-left:4px solid #16a34a;cursor:pointer;display:flex;align-items:center;justify-content:space-between">
@@ -688,7 +910,7 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
     </div>
     <span id="arrspecgut" style="font-size:.8rem;color:var(--ink3);transition:transform .3s">▼</span>
   </div>
-  <div id="specgut" style="display:none;padding:18px;font-size:.82rem;color:var(--ink2);line-height:1.7"><strong>Diet affects emotional stability.</strong><br><br>• Mediterranean diet supports overall mental health<br>• Limit alcohol — disinhibits and worsens patterns<br>• Limit caffeine if increases reactivity<br>• Eat regular meals — affects mood<br>• Omega-3 fatty acids<br>• Vitamin D — often deficient<br>• B vitamins<br>• Stay hydrated<br>• Avoid extreme dieting — can be appearance-focused HPD pattern</div>
+  <div id="specgut" style="display:none;padding:18px;font-size:.82rem;color:var(--ink2);line-height:1.7"><strong>Diet affects baseline vigilance.</strong><br><br>• Mediterranean diet supports overall mental health<br>• Limit caffeine — increases vigilance<br>• Limit alcohol — affects judgment<br>• AVOID stimulants and cannabis<br>• Eat regular meals<br>• Omega-3 fatty acids<br>• Vitamin D — often deficient<br>• B vitamins<br>• Stay hydrated</div>
 </div>
 <div style="background:var(--white);border-radius:var(--radius);margin-bottom:14px;box-shadow:var(--shadow);border:1px solid var(--paper3);overflow:hidden">
   <div onclick="toggleZone('specpeer')" style="padding:14px 18px;background:#fae8ff;border-left:4px solid #9333ea;cursor:pointer;display:flex;align-items:center;justify-content:space-between">
@@ -842,23 +1064,23 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
   </div>
   <div style="font-size:.78rem;color:var(--ink3);margin-bottom:12px">The following peer-reviewed studies support the guidance in this care plan. Each includes a plain-English summary.</div>
   <div style="padding:12px 14px;background:var(--paper);border:1px solid var(--paper3);border-radius:var(--radius-sm);margin-bottom:8px">
-  <div style="font-size:.78rem;color:var(--ink2);line-height:1.5"><strong>1. Bornstein RF (1999).</strong> Histrionic personality disorder. <em>Personality Disorders: Toward the DSM-V</em>.</div>
-  <div style="font-size:.74rem;color:var(--ink3);margin-top:4px;padding:6px 10px;background:var(--white);border-radius:6px;border-left:3px solid #db2777"><strong>What this means for you:</strong> Comprehensive HPD review. Distinct from BPD despite overlap.</div>
+  <div style="font-size:.78rem;color:var(--ink2);line-height:1.5"><strong>1. Triebwasser J, et al. (2013).</strong> Paranoid personality disorder. <em>Journal of Personality Disorders</em>.</div>
+  <div style="font-size:.74rem;color:var(--ink3);margin-top:4px;padding:6px 10px;background:var(--white);border-radius:6px;border-left:3px solid #a16207"><strong>What this means for you:</strong> Comprehensive PPD review. Distinct from psychotic paranoia.</div>
 </div><div style="padding:12px 14px;background:var(--paper);border:1px solid var(--paper3);border-radius:var(--radius-sm);margin-bottom:8px">
-  <div style="font-size:.78rem;color:var(--ink2);line-height:1.5"><strong>2. Beck AT, et al. (2014).</strong> Cognitive Therapy of Personality Disorders, 3rd edition. <em>Guilford Press</em>.</div>
-  <div style="font-size:.74rem;color:var(--ink3);margin-top:4px;padding:6px 10px;background:var(--white);border-radius:6px;border-left:3px solid #db2777"><strong>What this means for you:</strong> Adapted CBT including HPD applications.</div>
+  <div style="font-size:.78rem;color:var(--ink2);line-height:1.5"><strong>2. Lee RJ (2017).</strong> Mistrustful and misunderstood: a review of paranoid personality disorder. <em>Current Behavioral Neuroscience Reports</em>.</div>
+  <div style="font-size:.74rem;color:var(--ink3);margin-top:4px;padding:6px 10px;background:var(--white);border-radius:6px;border-left:3px solid #a16207"><strong>What this means for you:</strong> Treatment review. Therapeutic alliance is the work.</div>
 </div><div style="padding:12px 14px;background:var(--paper);border:1px solid var(--paper3);border-radius:var(--radius-sm);margin-bottom:8px">
-  <div style="font-size:.78rem;color:var(--ink2);line-height:1.5"><strong>3. Young JE, et al. (2003).</strong> Schema Therapy: A Practitioner's Guide. <em>Guilford Press</em>.</div>
-  <div style="font-size:.74rem;color:var(--ink3);margin-top:4px;padding:6px 10px;background:var(--white);border-radius:6px;border-left:3px solid #db2777"><strong>What this means for you:</strong> Schema therapy approach for personality disorders including HPD.</div>
+  <div style="font-size:.78rem;color:var(--ink2);line-height:1.5"><strong>3. Beck AT, et al. (2014).</strong> Cognitive Therapy of Personality Disorders, 3rd edition. <em>Guilford Press</em>.</div>
+  <div style="font-size:.74rem;color:var(--ink3);margin-top:4px;padding:6px 10px;background:var(--white);border-radius:6px;border-left:3px solid #a16207"><strong>What this means for you:</strong> Adapted CBT including PPD applications.</div>
 </div><div style="padding:12px 14px;background:var(--paper);border:1px solid var(--paper3);border-radius:var(--radius-sm);margin-bottom:8px">
-  <div style="font-size:.78rem;color:var(--ink2);line-height:1.5"><strong>4. Horowitz MJ (1991).</strong> Histrionic personality and the histrionic style. <em>Hillsdale Analytic Press</em>.</div>
-  <div style="font-size:.74rem;color:var(--ink3);margin-top:4px;padding:6px 10px;background:var(--white);border-radius:6px;border-left:3px solid #db2777"><strong>What this means for you:</strong> Psychodynamic understanding of HPD patterns.</div>
+  <div style="font-size:.78rem;color:var(--ink2);line-height:1.5"><strong>4. Salvatore G, et al. (2007).</strong> Personality disorders: psychotherapy interventions. <em>Italian Journal of Psychopathology</em>.</div>
+  <div style="font-size:.74rem;color:var(--ink3);margin-top:4px;padding:6px 10px;background:var(--white);border-radius:6px;border-left:3px solid #a16207"><strong>What this means for you:</strong> Psychotherapy approaches for PPD. Patient consistent care.</div>
 </div><div style="padding:12px 14px;background:var(--paper);border:1px solid var(--paper3);border-radius:var(--radius-sm);margin-bottom:8px">
-  <div style="font-size:.78rem;color:var(--ink2);line-height:1.5"><strong>5. Blagov PS, Westen D (2008).</strong> Questioning the coherence of histrionic personality disorder. <em>Journal of Nervous and Mental Disease</em>.</div>
-  <div style="font-size:.74rem;color:var(--ink3);margin-top:4px;padding:6px 10px;background:var(--white);border-radius:6px;border-left:3px solid #db2777"><strong>What this means for you:</strong> HPD construct considerations. Heterogeneous presentations.</div>
+  <div style="font-size:.78rem;color:var(--ink2);line-height:1.5"><strong>5. Birkeland SF (2013).</strong> Paranoid personality disorder. <em>International Journal of Psychiatry in Clinical Practice</em>.</div>
+  <div style="font-size:.74rem;color:var(--ink3);margin-top:4px;padding:6px 10px;background:var(--white);border-radius:6px;border-left:3px solid #a16207"><strong>What this means for you:</strong> PPD may go underdiagnosed. Often presents as workplace or relationship problems.</div>
 </div><div style="padding:12px 14px;background:var(--paper);border:1px solid var(--paper3);border-radius:var(--radius-sm);margin-bottom:8px">
-  <div style="font-size:.78rem;color:var(--ink2);line-height:1.5"><strong>6. Stone MH (1993).</strong> Long-term outcome in personality disorders. <em>British Journal of Psychiatry</em>.</div>
-  <div style="font-size:.74rem;color:var(--ink3);margin-top:4px;padding:6px 10px;background:var(--white);border-radius:6px;border-left:3px solid #db2777"><strong>What this means for you:</strong> Many personality disorders improve over time with treatment.</div>
+  <div style="font-size:.78rem;color:var(--ink2);line-height:1.5"><strong>6. Bernstein DP, Useda JD (2007).</strong> Paranoid personality disorder. <em>Personality Disorders: Toward the DSM-V</em>.</div>
+  <div style="font-size:.74rem;color:var(--ink3);margin-top:4px;padding:6px 10px;background:var(--white);border-radius:6px;border-left:3px solid #a16207"><strong>What this means for you:</strong> Distinct construct. Trauma history common.</div>
 </div>
 
   <div style="background:#fff8e6;border:2px solid #f0cc80;border-radius:var(--radius);padding:20px 22px;margin-top:32px">
@@ -868,14 +1090,14 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
     <strong>If you are in crisis: Call or text 988 (USA Suicide & Crisis Lifeline) immediately.</strong> If you have an immediate safety emergency, call 911 (USA), 999 (UK), 000 (Australia), or 112 (Europe). You can also go to any hospital emergency room.<br><br>
     <strong>Mental health conditions are real medical conditions</strong> — not character flaws or weaknesses. Seeking help is a sign of strength. Recovery is possible. Most people with mental illness lead full, meaningful lives with proper treatment and support.<br><br>
     My Health Harbor Foundation is a nonprofit educational organization. We do not provide direct mental health care, prescribe medications, or replace your treatment team. <br><br>
-    <strong>Date of this care plan:</strong> <span id="cpdate_histrionic_pd_mhcp"></span> &nbsp;|&nbsp; <strong>Review with your treatment team every:</strong> 3–6 months
+    <strong>Date of this care plan:</strong> <span id="cpdate_paranoid_pd_mhcp"></span> &nbsp;|&nbsp; <strong>Review with your treatment team every:</strong> 3–6 months
   </div>
 </div>
 
 </div>
 
 <script>
-document.getElementById('cpdate_histrionic_pd_mhcp').textContent=new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+document.getElementById('cpdate_paranoid_pd_mhcp').textContent=new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
 function toggleZone(id){
   var el=document.getElementById(id);
   var arr=document.getElementById('arr'+id);

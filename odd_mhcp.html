@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Tourette Syndrome Care Plan Care Plan — My Health Harbor Foundation</title>
+<title>Oppositional Defiant Disorder (ODD) Care Plan Care Plan — My Health Harbor Foundation</title>
 <style>
 :root{
   --green:#1a7a4a;--green-lt:#e8f5ee;--green-bd:#a8d9b8;
@@ -16,7 +16,7 @@
   --ink:#1a1a2e;--ink2:#3a3a5a;--ink3:#7a7a9a;
   --paper:#fafaf8;--paper2:#f0f0ec;--paper3:#e0e0da;
   --white:#ffffff;
-  --accent:#0e7490;--accent-lt:#cffafe;--accent-bd:#67e8f9;
+  --accent:#ea580c;--accent-lt:#ffedd5;--accent-bd:#fdba74;
   --font-body:Georgia,'Times New Roman',serif;
   --font-ui:'Helvetica Neue',Arial,sans-serif;
   --font-mono:'Courier New',Courier,monospace;
@@ -35,10 +35,237 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent)}
 table{width:100%;border-collapse:collapse}
 th{background:var(--accent);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500}
 td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
-@media print{
-  .no-print{display:none!important}
-  body{background:white}
-  [style*="display:none"]{display:block!important}
+@media print {
+  /* ===== PAGE SETUP ===== */
+  @page {
+    size: letter;
+    margin: 0.6in 0.5in 0.7in 0.5in;
+  }
+  @page :first {
+    margin-top: 0.4in;
+  }
+
+  /* ===== HIDE INTERACTIVE ELEMENTS ===== */
+  .no-print,
+  .no-print *,
+  button:not(.print-keep),
+  .print-button,
+  nav,
+  .top-bar,
+  .footer-cta,
+  .scroll-top,
+  .checkbox,
+  input[type="checkbox"] {
+    display: none !important;
+  }
+
+  /* ===== BASE BODY ===== */
+  body {
+    background: white !important;
+    color: #1a1a1a !important;
+    font-size: 10.5pt;
+    line-height: 1.45;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  /* Reveal any hidden expanded content */
+  [style*="display:none"],
+  [style*="display: none"],
+  details {
+    display: block !important;
+  }
+  details > summary {
+    display: block !important;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  details[open] > * {
+    display: block !important;
+  }
+
+  /* ===== TYPOGRAPHY ===== */
+  h1 { font-size: 22pt; margin: 0 0 6pt; page-break-after: avoid; }
+  h2 { font-size: 14pt; margin: 14pt 0 6pt; page-break-after: avoid; }
+  h3 { font-size: 12pt; margin: 10pt 0 4pt; page-break-after: avoid; }
+  h4 { font-size: 11pt; margin: 8pt 0 3pt; page-break-after: avoid; }
+  p { margin: 0 0 6pt; orphans: 3; widows: 3; }
+  ul, ol { margin: 0 0 6pt; padding-left: 18pt; }
+  li { margin-bottom: 3pt; orphans: 2; widows: 2; }
+
+  /* ===== HERO BAND ===== */
+  /* Keep the colorful hero, but compact for print */
+  .hero, [class*="hero"] {
+    padding: 18pt 12pt !important;
+    margin-bottom: 10pt !important;
+    page-break-inside: avoid;
+    page-break-after: avoid;
+  }
+
+  /* ===== CRISIS BANNER — ALWAYS PRINTS RED ===== */
+  /* The crisis info MUST be visually distinct on paper */
+  [class*="crisis"],
+  [class*="sos"],
+  .crisis-banner,
+  .sos-banner {
+    background: #991b1b !important;
+    color: white !important;
+    border: 2pt solid #7f1d1d !important;
+    padding: 10pt !important;
+    margin: 8pt 0 !important;
+    page-break-inside: avoid;
+    page-break-after: avoid;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  [class*="crisis"] *,
+  [class*="sos"] * {
+    color: white !important;
+  }
+
+  /* ===== ZONES (green/amber/red/blue/purple) ===== */
+  /* Keep section together on a page when possible */
+  .zone,
+  [class*="zone-"],
+  .section-card,
+  .care-section {
+    page-break-inside: avoid;
+    margin-bottom: 10pt !important;
+    border: 1pt solid #ddd !important;
+    padding: 8pt !important;
+    box-shadow: none !important;
+  }
+
+  /* Force zone color borders to print */
+  .zone-green, [class*="zone-green"] { border-left: 4pt solid #16a34a !important; }
+  .zone-amber, .zone-yellow, [class*="zone-amber"], [class*="zone-yellow"] { border-left: 4pt solid #d97706 !important; }
+  .zone-red, [class*="zone-red"] { border-left: 4pt solid #dc2626 !important; }
+  .zone-blue, [class*="zone-blue"] { border-left: 4pt solid #2563eb !important; }
+  .zone-purple, [class*="zone-purple"] { border-left: 4pt solid #7c3aed !important; }
+
+  /* ===== TRACKING TABLES ===== */
+  /* Tables must repeat headers on each page */
+  table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    page-break-inside: auto;
+    margin: 6pt 0 !important;
+    font-size: 9pt;
+  }
+  thead { display: table-header-group; }
+  tfoot { display: table-footer-group; }
+  tr { page-break-inside: avoid; page-break-after: auto; }
+  th, td {
+    border: 0.5pt solid #999 !important;
+    padding: 3pt 5pt !important;
+    text-align: left;
+  }
+  th {
+    background: #f3f4f6 !important;
+    font-weight: bold;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* ===== CARDS ===== */
+  .card, [class*="card"] {
+    page-break-inside: avoid;
+    box-shadow: none !important;
+    border: 0.5pt solid #ddd !important;
+    margin-bottom: 8pt !important;
+    padding: 8pt !important;
+  }
+
+  /* ===== BADGES & PILLS ===== */
+  .badge, .pill, [class*="badge"], [class*="pill"] {
+    border: 0.5pt solid #999 !important;
+    padding: 2pt 6pt !important;
+    border-radius: 3pt !important;
+    font-size: 8.5pt !important;
+    background: #f9fafb !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* ===== SHOW URLs FOR EXTERNAL LINKS ===== */
+  /* Helpful when reading on paper — people can type the URL later */
+  a[href^="http"]:not([href*="mailto"]):not([href*="tel"]):after {
+    content: " (" attr(href) ")";
+    font-size: 8.5pt;
+    color: #555;
+    word-break: break-all;
+  }
+
+  /* But don't show URL after phone numbers and crisis lines */
+  a[href^="tel:"]:after,
+  a[href^="sms:"]:after,
+  .crisis-banner a:after,
+  [class*="crisis"] a:after {
+    content: "" !important;
+  }
+
+  /* ===== CITATIONS ===== */
+  .citation, [class*="citation"], .references li {
+    font-size: 9pt;
+    page-break-inside: avoid;
+    margin-bottom: 4pt;
+  }
+
+  /* ===== DISCLAIMER ===== */
+  .disclaimer, [class*="disclaimer"] {
+    font-size: 8.5pt;
+    color: #555;
+    border-top: 0.5pt solid #ccc;
+    padding-top: 6pt;
+    margin-top: 12pt;
+    page-break-before: auto;
+  }
+
+  /* ===== PAGE BREAKS BETWEEN MAJOR SECTIONS ===== */
+  .page-break-before { page-break-before: always; }
+  .page-break-after { page-break-after: always; }
+
+  /* Force break before tracking tables section if it's long */
+  h2:contains("Tracking"),
+  [id*="tracking"] {
+    page-break-before: auto;
+  }
+
+  /* ===== PRINT-ONLY HEADER ===== */
+  /* Tiny branded header at top of every printed page */
+  body::before {
+    content: "MY HEALTH HARBOR FOUNDATION  ·  myhealthharborfoundation.org";
+    display: block;
+    position: running(header);
+    font-size: 8pt;
+    color: #777;
+    text-align: center;
+    border-bottom: 0.25pt solid #ccc;
+    padding-bottom: 4pt;
+    margin-bottom: 8pt;
+    letter-spacing: 0.5pt;
+  }
+
+  /* ===== IMAGES ===== */
+  img {
+    max-width: 100% !important;
+    page-break-inside: avoid;
+  }
+
+  /* ===== PREVENT WIDOWED HEADINGS ===== */
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  /* ===== KEEP IMPORTANT INFO TOGETHER ===== */
+  .keep-together,
+  .crisis-banner,
+  .resources,
+  [class*="resource"] {
+    page-break-inside: avoid !important;
+  }
 }
 @media(min-width:700px){
   .grid-2{grid-template-columns:1fr 1fr!important}
@@ -52,10 +279,10 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
   <button onclick="window.print()" style="background:none;border:1px solid rgba(255,255,255,0.3);color:white;padding:6px 14px;border-radius:7px;font-size:.76rem;cursor:pointer">🖨 Print / Save PDF</button>
 </div>
 
-<div style="background:linear-gradient(135deg,#0e7490 0%,#0e7490cc 100%);padding:32px 22px 24px;text-align:center">
+<div style="background:linear-gradient(135deg,#ea580c 0%,#ea580ccc 100%);padding:32px 22px 24px;text-align:center">
   <div style="font-size:.72rem;font-family:var(--font-mono);color:rgba(255,255,255,0.7);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px">Mental Health Care Plan · My Health Harbor Foundation</div>
-  <div style="font-size:clamp(1.6rem,4vw,2.2rem);font-weight:700;color:white;line-height:1.2;font-family:var(--font-body)">Tourette Syndrome Care Plan</div>
-  <div style="font-size:.88rem;color:rgba(255,255,255,0.75);margin-top:8px">Living with motor and vocal tics — for children, adults, and families</div>
+  <div style="font-size:clamp(1.6rem,4vw,2.2rem);font-weight:700;color:white;line-height:1.2;font-family:var(--font-body)">Oppositional Defiant Disorder (ODD) Care Plan</div>
+  <div style="font-size:.88rem;color:rgba(255,255,255,0.75);margin-top:8px">Recovery from chronic defiance and irritability — for children and families</div>
 </div>
 
 <div style="max-width:860px;margin:0 auto;padding:24px 18px">
@@ -66,7 +293,7 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
     <span style="font-size:1.5rem">🆘</span>
     <span style="font-size:1.05rem;font-weight:700">If you or someone you love is in crisis right now</span>
   </div>
-  <div style="font-size:.9rem;line-height:1.7;margin-bottom:14px">TS itself is not typically dangerous, but co-occurring conditions (ADHD, OCD, anxiety, depression) and severe self-injurious tics (rare) can require urgent care. Bullying and stigma can lead to depression. If your child or you are in crisis, please reach out — TS is well-understood and supportive resources exist.</div>
+  <div style="font-size:.9rem;line-height:1.7;margin-bottom:14px">ODD itself is not typically a safety crisis, but co-occurring conditions can be. Caregiver burnout is real and significant. If your family is in crisis, please reach out — early intervention dramatically improves outcomes.</div>
   <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px">
     <div style="background:rgba(255,255,255,0.15);padding:10px 12px;border-radius:8px"><div style="font-size:.7rem;opacity:.85">USA — Suicide & Crisis</div><div style="font-size:1rem;font-weight:700">988 (call or text)</div></div>
     <div style="background:rgba(255,255,255,0.15);padding:10px 12px;border-radius:8px"><div style="font-size:.7rem;opacity:.85">USA — Crisis Text Line</div><div style="font-size:1rem;font-weight:700">Text HOME to 741741</div></div>
@@ -75,9 +302,9 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
   </div>
 </div>
   <div style="display:inline-flex;align-items:center;gap:8px;background:#e8f5ee;border:1.5px solid #1a7a4a33;color:#1a7a4a;padding:7px 16px;border-radius:30px;font-size:.8rem;font-weight:600;margin-bottom:16px">🙋👐 For Patient & Caregiver</div>
-  <div style="background:#cffafe;border:1.5px solid #67e8f9;border-radius:var(--radius);padding:18px 20px;margin-bottom:20px">
-  <div style="font-size:.72rem;font-family:var(--font-mono);color:#0e7490;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px">WHO IS THIS FOR?</div>
-  <div style="font-size:.88rem;color:var(--ink);line-height:1.6">This care plan is for <strong>people living with Tourette syndrome (TS)</strong> and their <strong>family members</strong>. TS affects approximately 1 in 160 children, with about 1 in 333 adults still meeting criteria. TS involves both multiple motor tics AND at least one vocal tic, present for over a year, with onset before age 18. Common tics include eye blinking, throat clearing, head jerking, sniffing, grunting. Coprolalia (involuntary cursing) is rare — only 10-15% of TS cases. <strong>TS is NOT psychiatric, NOT behavioral problem, NOT contagious</strong> — it is a neurological condition. Tics often peak in early adolescence and improve in adulthood. <strong>Treatment helps significantly</strong> — Comprehensive Behavioral Intervention for Tics (CBIT) and medications can reduce tic severity and improve quality of life. Most people with TS have co-occurring conditions (ADHD, OCD, anxiety) that need attention too.</div>
+  <div style="background:#ffedd5;border:1.5px solid #fdba74;border-radius:var(--radius);padding:18px 20px;margin-bottom:20px">
+  <div style="font-size:.72rem;font-family:var(--font-mono);color:#ea580c;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px">WHO IS THIS FOR?</div>
+  <div style="font-size:.88rem;color:var(--ink);line-height:1.6">This care plan is for <strong>children with oppositional defiant disorder (ODD)</strong> and their <strong>families and caregivers</strong>. ODD affects approximately 3.3% of children. It involves a recurrent pattern of angry/irritable mood, argumentative/defiant behavior, and vindictiveness lasting at least 6 months — beyond typical developmental defiance. ODD often emerges before age 8. <strong>ODD is NOT just "willful child" or bad parenting</strong> — it is a recognized mental health condition. About 30% of children with ODD develop conduct disorder; many develop depression, anxiety, or substance use as adults. <strong>Treatment works very well with early intervention</strong>. Parent-Child Interaction Therapy and Parent Management Training have strong evidence. Family approach is essential.</div>
 </div>
   <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px">
   <div style="display:flex;align-items:center;gap:6px;background:var(--green-lt);border:1px solid var(--green-bd);color:var(--green);padding:5px 12px;border-radius:20px;font-size:.74rem;font-weight:600">🟢 Daily Wellness</div>
@@ -95,10 +322,10 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
   
 <div style="background:var(--white);border-radius:var(--radius);margin-bottom:14px;box-shadow:var(--shadow);border:1px solid var(--paper3);overflow:hidden">
   <div onclick="toggleZone('zone0')" style="display:flex;align-items:center;gap:14px;padding:18px 20px;cursor:pointer;border-left:4px solid var(--green);background:var(--white)">
-    <div style="width:44px;height:44px;border-radius:10px;background:var(--green-lt);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">💙</div>
+    <div style="width:44px;height:44px;border-radius:10px;background:var(--green-lt);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">🟠</div>
     <div style="flex:1">
-      <div style="font-size:1rem;font-weight:700;color:var(--green);font-family:var(--font-body)">Daily Wellness — Living Well With TS</div>
-      <div style="font-size:.78rem;color:var(--ink3);margin-top:2px">Daily practices for TS</div>
+      <div style="font-size:1rem;font-weight:700;color:var(--green);font-family:var(--font-body)">Daily Wellness — Building Connection</div>
+      <div style="font-size:.78rem;color:var(--ink3);margin-top:2px">Daily practices for ODD</div>
     </div>
     <span id="arrzone0" style="font-size:.8rem;color:var(--ink3);transition:transform .3s">▼</span>
   </div>
@@ -106,53 +333,53 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
     
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--green);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Take medication if prescribed</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Alpha-2 agonists (clonidine, guanfacine), antipsychotics for severe cases.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Use Parent Management Training (PMT) techniques daily</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Evidence-based parenting approach. Most powerful intervention.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--green-lt);color:var(--green);white-space:nowrap;align-self:flex-start;margin-top:2px">Daily</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--green);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Practice CBIT techniques daily</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Habit reversal, competing responses. Most evidence-based behavioral treatment.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Catch positive behaviors — 5:1 ratio</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">For every correction, 5 positive interactions. Builds connection.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--green-lt);color:var(--green);white-space:nowrap;align-self:flex-start;margin-top:2px">Daily</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--green);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Identify YOUR specific tic triggers</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Stress, fatigue, certain foods, anxiety, excitement. Patterns matter.</div></div>
-  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--green-lt);color:var(--green);white-space:nowrap;align-self:flex-start;margin-top:2px">Ongoing</span>
-</div>
-<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
-  <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--green);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Get adequate sleep — 8-10 hours children, 7-9 adults</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Sleep deprivation worsens tics significantly.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Maintain consistent rules and consequences</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Predictability essential. Avoid lecturing.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--green-lt);color:var(--green);white-space:nowrap;align-self:flex-start;margin-top:2px">Daily</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--green);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Move your body daily — exercise reduces tic frequency</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">30 minutes daily.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Take medication if prescribed</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">For co-occurring ADHD, anxiety, depression. No specific ODD med.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--green-lt);color:var(--green);white-space:nowrap;align-self:flex-start;margin-top:2px">Daily</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--green);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Maintain low-stress lifestyle when possible</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Stress is THE biggest tic trigger.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Maintain regular sleep — 9-11 hours</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Sleep deprivation worsens irritability and defiance significantly.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--green-lt);color:var(--green);white-space:nowrap;align-self:flex-start;margin-top:2px">Daily</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--green);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Eat regular meals — Mediterranean diet</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Some find sugar, caffeine worsen tics.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Provide regular meals</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Stable blood sugar reduces meltdowns. Snacks available.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--green-lt);color:var(--green);white-space:nowrap;align-self:flex-start;margin-top:2px">Daily</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--green);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Limit caffeine — common tic trigger</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Watch personal tolerance.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Move body daily — physical activity essential</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Aggressive energy needs outlet.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--green-lt);color:var(--green);white-space:nowrap;align-self:flex-start;margin-top:2px">Daily</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--green);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Educate close contacts about TS</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Reduces shame. Helps environment be supportive.</div></div>
-  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--green-lt);color:var(--green);white-space:nowrap;align-self:flex-start;margin-top:2px">Ongoing</span>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Pick battles — not every issue is the hill to die on</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Save authority for what truly matters.</div></div>
+  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--green-lt);color:var(--green);white-space:nowrap;align-self:flex-start;margin-top:2px">Daily</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--green);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Connect with TS community — powerful for kids and adults</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Other people understand. Reduces isolation.</div></div>
-  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--green-lt);color:var(--green);white-space:nowrap;align-self:flex-start;margin-top:2px">Weekly</span>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Use "When-Then" instructions, not threats</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">"When you finish homework, then video games."</div></div>
+  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--green-lt);color:var(--green);white-space:nowrap;align-self:flex-start;margin-top:2px">Daily</span>
+</div>
+<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
+  <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--green);flex-shrink:0;margin-top:2px;cursor:pointer">
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Maintain caregiver self-care</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">You cannot pour from empty cup. Respite essential.</div></div>
+  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--green-lt);color:var(--green);white-space:nowrap;align-self:flex-start;margin-top:2px">Daily</span>
 </div>
   </div>
 </div>
@@ -160,7 +387,7 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
   <div onclick="toggleZone('zone1')" style="display:flex;align-items:center;gap:14px;padding:18px 20px;cursor:pointer;border-left:4px solid var(--amber);background:var(--white)">
     <div style="width:44px;height:44px;border-radius:10px;background:var(--amber-lt);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">🟡</div>
     <div style="flex:1">
-      <div style="font-size:1rem;font-weight:700;color:var(--amber);font-family:var(--font-body)">Watch & Monitor — Signs TS Issues Need Attention</div>
+      <div style="font-size:1rem;font-weight:700;color:var(--amber);font-family:var(--font-body)">Watch & Monitor — Signs ODD Is Worsening</div>
       <div style="font-size:.78rem;color:var(--ink3);margin-top:2px">Patterns to discuss with treatment team</div>
     </div>
     <span id="arrzone1" style="font-size:.8rem;color:var(--ink3);transition:transform .3s">▼</span>
@@ -169,53 +396,53 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
     
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Tic severity increasing</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">New, more disruptive tics.</div></div>
-  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--amber-lt);color:var(--amber);white-space:nowrap;align-self:flex-start;margin-top:2px">Tell doctor</span>
-</div>
-<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
-  <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Tics causing physical injury</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Self-injurious tics need urgent attention.</div></div>
-  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--amber-lt);color:var(--amber);white-space:nowrap;align-self:flex-start;margin-top:2px">Tell doctor</span>
-</div>
-<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
-  <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Tics affecting school/work significantly</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Functional impairment.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Defiance escalating</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">More frequent, more intense.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--amber-lt);color:var(--amber);white-space:nowrap;align-self:flex-start;margin-top:2px">Tell therapist</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Co-occurring ADHD worsening</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Common comorbidity, often more impactful than tics.</div></div>
-  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--amber-lt);color:var(--amber);white-space:nowrap;align-self:flex-start;margin-top:2px">Tell doctor</span>
-</div>
-<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
-  <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Co-occurring OCD worsening</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Very common with TS.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Aggression emerging</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Hitting, throwing, property destruction.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--amber-lt);color:var(--amber);white-space:nowrap;align-self:flex-start;margin-top:2px">Tell therapist</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Co-occurring anxiety/depression worsening</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Chronic stigma takes toll.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Behaviors generalizing</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Was just home, now at school too.</div></div>
+  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--amber-lt);color:var(--amber);white-space:nowrap;align-self:flex-start;margin-top:2px">Tell therapist</span>
+</div>
+<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
+  <div style="width:18px;height:18px;flex-shrink:0"></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Co-occurring ADHD worsening</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Common comorbidity, often more impactful.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--amber-lt);color:var(--amber);white-space:nowrap;align-self:flex-start;margin-top:2px">Tell doctor</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Bullying or social problems</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Get school involvement.</div></div>
-  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--amber-lt);color:var(--amber);white-space:nowrap;align-self:flex-start;margin-top:2px">Tell therapist</span>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Co-occurring anxiety/depression worsening</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Common in ODD.</div></div>
+  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--amber-lt);color:var(--amber);white-space:nowrap;align-self:flex-start;margin-top:2px">Tell doctor</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--amber);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Sleep severely disrupted</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Worsens tics.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Sleep severely disrupted</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Worsens behaviors.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--amber-lt);color:var(--amber);white-space:nowrap;align-self:flex-start;margin-top:2px">Tell doctor</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Substance use to manage tics</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Cannabis particularly common — risky.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">School problems escalating</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Suspensions, calls home.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--amber-lt);color:var(--amber);white-space:nowrap;align-self:flex-start;margin-top:2px">Tell therapist</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Suicidal thoughts</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">TS + co-occurring conditions can elevate risk.</div></div>
-  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--amber-lt);color:var(--amber);white-space:nowrap;align-self:flex-start;margin-top:2px">CALL 988</span>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Caregiver burnout severe</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Critical to address. You need support.</div></div>
+  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--amber-lt);color:var(--amber);white-space:nowrap;align-self:flex-start;margin-top:2px">Get respite</span>
+</div>
+<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
+  <div style="width:18px;height:18px;flex-shrink:0"></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Sibling distress</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Other children affected by atmosphere.</div></div>
+  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--amber-lt);color:var(--amber);white-space:nowrap;align-self:flex-start;margin-top:2px">Tell therapist</span>
+</div>
+<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
+  <div style="width:18px;height:18px;flex-shrink:0"></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Suspected progression to conduct disorder</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Aggression toward people/animals, theft, fire-setting.</div></div>
+  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--amber-lt);color:var(--amber);white-space:nowrap;align-self:flex-start;margin-top:2px">Tell therapist</span>
 </div>
   </div>
 </div>
@@ -224,7 +451,7 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
     <div style="width:44px;height:44px;border-radius:10px;background:var(--red-lt);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">🚨</div>
     <div style="flex:1">
       <div style="font-size:1rem;font-weight:700;color:var(--red);font-family:var(--font-body)">Crisis Signs</div>
-      <div style="font-size:.78rem;color:var(--ink3);margin-top:2px">When TS-related issues need urgent care</div>
+      <div style="font-size:.78rem;color:var(--ink3);margin-top:2px">When ODD needs urgent care</div>
     </div>
     <span id="arrzone2" style="font-size:.8rem;color:var(--ink3);transition:transform .3s">▼</span>
   </div>
@@ -232,28 +459,28 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
     
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Suicidal thoughts</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Co-occurring conditions can elevate risk. Call 988.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Severe aggression toward family</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Safety planning needed.</div></div>
+  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--red-lt);color:var(--red);white-space:nowrap;align-self:flex-start;margin-top:2px">Same-day call</span>
+</div>
+<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
+  <div style="width:18px;height:18px;flex-shrink:0"></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Self-harm or suicidality</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Less common in pure ODD but possible. Call 988.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--red-lt);color:var(--red);white-space:nowrap;align-self:flex-start;margin-top:2px">CALL 988</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Severe self-injurious tics</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Head banging, eye-injuring tics. Need urgent treatment.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Caregiver in crisis — at end of rope</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Get respite, support immediately.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--red-lt);color:var(--red);white-space:nowrap;align-self:flex-start;margin-top:2px">Same-day call</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Severe depression developing</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Need treatment.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Severe family conflict — domestic violence emerging</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Prevention services exist.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--red-lt);color:var(--red);white-space:nowrap;align-self:flex-start;margin-top:2px">Same-day call</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Substance use crisis</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">SAMHSA: 1-800-662-4357.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Substance use (older children)</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">SAMHSA: 1-800-662-4357.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--red-lt);color:var(--red);white-space:nowrap;align-self:flex-start;margin-top:2px">CALL SAMHSA</span>
-</div>
-<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
-  <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">School refusal from bullying</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Need intervention.</div></div>
-  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--red-lt);color:var(--red);white-space:nowrap;align-self:flex-start;margin-top:2px">Same-day call</span>
 </div>
   </div>
 </div>
@@ -262,7 +489,7 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
     <div style="width:44px;height:44px;border-radius:10px;background:var(--blue-lt);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">💊</div>
     <div style="flex:1">
       <div style="font-size:1rem;font-weight:700;color:var(--blue);font-family:var(--font-body)">Treatments</div>
-      <div style="font-size:.78rem;color:var(--ink3);margin-top:2px">TS treatment</div>
+      <div style="font-size:.78rem;color:var(--ink3);margin-top:2px">ODD treatment</div>
     </div>
     <span id="arrzone3" style="font-size:.8rem;color:var(--ink3);transition:transform .3s">▼</span>
   </div>
@@ -270,53 +497,53 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
     
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Comprehensive Behavioral Intervention for Tics (CBIT)</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">First-line evidence-based behavioral treatment. Effective for many.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Parent Management Training (PMT) — first-line</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Evidence-based parenting intervention. Most powerful for ODD.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);white-space:nowrap;align-self:flex-start;margin-top:2px">Therapy</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Habit Reversal Training (HRT)</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Core component of CBIT.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Parent-Child Interaction Therapy (PCIT)</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">For younger children (ages 2-7). Coaches parents in real-time.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);white-space:nowrap;align-self:flex-start;margin-top:2px">Therapy</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Alpha-2 agonists — clonidine, guanfacine</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">First-line medications. Particularly helpful for tics + ADHD.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Helping the Noncompliant Child</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Evidence-based parent training program.</div></div>
+  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);white-space:nowrap;align-self:flex-start;margin-top:2px">Therapy</span>
+</div>
+<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
+  <div style="width:18px;height:18px;flex-shrink:0"></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Collaborative Problem Solving (CPS) — Ross Greene's approach</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Particularly for ODD with strong inflexibility component.</div></div>
+  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);white-space:nowrap;align-self:flex-start;margin-top:2px">Therapy</span>
+</div>
+<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
+  <div style="width:18px;height:18px;flex-shrink:0"></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Individual CBT for older children</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Targets cognitive distortions, skill deficits.</div></div>
+  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);white-space:nowrap;align-self:flex-start;margin-top:2px">Therapy</span>
+</div>
+<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
+  <div style="width:18px;height:18px;flex-shrink:0"></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Treatment of co-occurring ADHD</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Stimulants often dramatically improve ODD when ADHD treated.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);white-space:nowrap;align-self:flex-start;margin-top:2px">Daily</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Antipsychotics — for severe tics</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Risperidone, aripiprazole, haloperidol. Effective but side effects.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">SSRIs for co-occurring depression/anxiety</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Common comorbidities.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);white-space:nowrap;align-self:flex-start;margin-top:2px">Daily</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">VMAT2 inhibitors (tetrabenazine, deutetrabenazine)</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">For severe tics.</div></div>
-  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);white-space:nowrap;align-self:flex-start;margin-top:2px">Daily</span>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">AVOID power struggles in treatment</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Therapy approach matters. Connection before correction.</div></div>
+  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);white-space:nowrap;align-self:flex-start;margin-top:2px">Important</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Botulinum toxin injections — for focal tics</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Effective for specific severe focal tics.</div></div>
-  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);white-space:nowrap;align-self:flex-start;margin-top:2px">Specialized</span>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Family therapy</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Often essential.</div></div>
+  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);white-space:nowrap;align-self:flex-start;margin-top:2px">Therapy</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Treatment of co-occurring ADHD</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Stimulants generally safe in TS. Particularly methylphenidate.</div></div>
-  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);white-space:nowrap;align-self:flex-start;margin-top:2px">Daily</span>
-</div>
-<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
-  <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Treatment of co-occurring OCD</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">SSRIs, ERP therapy.</div></div>
-  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);white-space:nowrap;align-self:flex-start;margin-top:2px">As needed</span>
-</div>
-<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
-  <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">AVOID benzodiazepines</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Don't treat tics. Addictive.</div></div>
-  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);white-space:nowrap;align-self:flex-start;margin-top:2px">Avoid</span>
-</div>
-<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
-  <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Address co-occurring conditions — often more impactful than tics</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Most TS patients have ADHD, OCD, anxiety.</div></div>
-  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);white-space:nowrap;align-self:flex-start;margin-top:2px">Ongoing</span>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">School-based interventions</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Behavior plans, 504 plans.</div></div>
+  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);white-space:nowrap;align-self:flex-start;margin-top:2px">Educational</span>
 </div>
   </div>
 </div>
@@ -325,7 +552,7 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
     <div style="width:44px;height:44px;border-radius:10px;background:var(--purple-lt);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">📅</div>
     <div style="flex:1">
       <div style="font-size:1rem;font-weight:700;color:var(--purple);font-family:var(--font-body)">Therapy & Care Plan</div>
-      <div style="font-size:.78rem;color:var(--ink3);margin-top:2px">Multidisciplinary care matters</div>
+      <div style="font-size:.78rem;color:var(--ink3);margin-top:2px">Family-focused multidisciplinary care</div>
     </div>
     <span id="arrzone4" style="font-size:.8rem;color:var(--ink3);transition:transform .3s">▼</span>
   </div>
@@ -333,43 +560,43 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
     
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--purple);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Find TS-knowledgeable neurologist or psychiatrist</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">TAA Centers of Excellence ideal.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Find PMT/PCIT-trained therapist</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Critical. Look for evidence-based parent training.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--purple-lt);color:var(--purple);white-space:nowrap;align-self:flex-start;margin-top:2px">First step</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--purple);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">CBIT-trained therapist</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">TAA has therapist directory.</div></div>
-  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--purple-lt);color:var(--purple);white-space:nowrap;align-self:flex-start;margin-top:2px">First step</span>
-</div>
-<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
-  <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--purple);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Therapy weekly during active CBIT</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Typically 8-12 sessions.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Therapy weekly during active treatment</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">PMT typically 12-16 weekly sessions.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--purple-lt);color:var(--purple);white-space:nowrap;align-self:flex-start;margin-top:2px">Weekly</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--purple);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Doctor follow-ups every 3-6 months</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">For medication management.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Family therapy involvement</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Whole family system.</div></div>
+  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--purple-lt);color:var(--purple);white-space:nowrap;align-self:flex-start;margin-top:2px">Weekly</span>
+</div>
+<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
+  <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--purple);flex-shrink:0;margin-top:2px;cursor:pointer">
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Psychiatrist if medications needed</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">For co-occurring conditions.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--purple-lt);color:var(--purple);white-space:nowrap;align-self:flex-start;margin-top:2px">Every 3-6 mo</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--purple);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">School coordination critical for children</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">504 plan or IEP. Teacher education.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">School coordination</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">504 plan or IEP. Behavior plan.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--purple-lt);color:var(--purple);white-space:nowrap;align-self:flex-start;margin-top:2px">School</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--purple);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Address co-occurring conditions</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Often more impactful than tics themselves.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Pediatrician for medical aspects</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Annual checkups.</div></div>
+  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--purple-lt);color:var(--purple);white-space:nowrap;align-self:flex-start;margin-top:2px">Annual</span>
+</div>
+<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
+  <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--purple);flex-shrink:0;margin-top:2px;cursor:pointer">
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Caregiver support and respite</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Critical for sustainability.</div></div>
+  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--purple-lt);color:var(--purple);white-space:nowrap;align-self:flex-start;margin-top:2px">Regular</span>
+</div>
+<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
+  <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--purple);flex-shrink:0;margin-top:2px;cursor:pointer">
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Address co-occurring conditions</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">ADHD, anxiety, depression common.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--purple-lt);color:var(--purple);white-space:nowrap;align-self:flex-start;margin-top:2px">Ongoing</span>
-</div>
-<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
-  <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--purple);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Family education</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Family understanding crucial.</div></div>
-  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--purple-lt);color:var(--purple);white-space:nowrap;align-self:flex-start;margin-top:2px">As needed</span>
-</div>
-<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
-  <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--purple);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">TS support groups — powerful</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Tourette Association of America has chapters.</div></div>
-  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--purple-lt);color:var(--purple);white-space:nowrap;align-self:flex-start;margin-top:2px">Monthly</span>
 </div>
   </div>
 </div>
@@ -388,15 +615,15 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
     <div style="padding:16px">
 <div style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:var(--white);border:1px solid var(--paper3);border-left:4px solid var(--amber);border-radius:var(--radius-sm);margin-bottom:6px">
   <input type="checkbox" style="width:18px;height:18px;accent-color:var(--amber);flex-shrink:0;margin-top:2px">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Tic severity increasing</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">New or more disruptive.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Defiance escalating</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">More frequent.</div></div>
 </div>
 <div style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:var(--white);border:1px solid var(--paper3);border-left:4px solid var(--amber);border-radius:var(--radius-sm);margin-bottom:6px">
   <input type="checkbox" style="width:18px;height:18px;accent-color:var(--amber);flex-shrink:0;margin-top:2px">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Tics causing injury</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Self-injurious.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Aggression emerging</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Physical.</div></div>
 </div>
 <div style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:var(--white);border:1px solid var(--paper3);border-left:4px solid var(--amber);border-radius:var(--radius-sm);margin-bottom:6px">
   <input type="checkbox" style="width:18px;height:18px;accent-color:var(--amber);flex-shrink:0;margin-top:2px">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Function affected</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Major warning.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Behaviors generalizing</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">New settings.</div></div>
 </div>
 <div style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:var(--white);border:1px solid var(--paper3);border-left:4px solid var(--amber);border-radius:var(--radius-sm);margin-bottom:6px">
   <input type="checkbox" style="width:18px;height:18px;accent-color:var(--amber);flex-shrink:0;margin-top:2px">
@@ -404,27 +631,27 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
 </div>
 <div style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:var(--white);border:1px solid var(--paper3);border-left:4px solid var(--amber);border-radius:var(--radius-sm);margin-bottom:6px">
   <input type="checkbox" style="width:18px;height:18px;accent-color:var(--amber);flex-shrink:0;margin-top:2px">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Co-occurring OCD worsening</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Very common.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Anxiety/depression worsening</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Common.</div></div>
 </div>
 <div style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:var(--white);border:1px solid var(--paper3);border-left:4px solid var(--amber);border-radius:var(--radius-sm);margin-bottom:6px">
   <input type="checkbox" style="width:18px;height:18px;accent-color:var(--amber);flex-shrink:0;margin-top:2px">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Anxiety/depression worsening</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">From stigma.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Sleep severely disrupted</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Worsens behaviors.</div></div>
 </div>
 <div style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:var(--white);border:1px solid var(--paper3);border-left:4px solid var(--amber);border-radius:var(--radius-sm);margin-bottom:6px">
   <input type="checkbox" style="width:18px;height:18px;accent-color:var(--amber);flex-shrink:0;margin-top:2px">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Bullying</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Get school help.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">School problems</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Escalating.</div></div>
 </div>
 <div style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:var(--white);border:1px solid var(--paper3);border-left:4px solid var(--amber);border-radius:var(--radius-sm);margin-bottom:6px">
   <input type="checkbox" style="width:18px;height:18px;accent-color:var(--amber);flex-shrink:0;margin-top:2px">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Sleep severely disrupted</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Worsens tics.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Caregiver burnout</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Critical.</div></div>
 </div>
 <div style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:var(--white);border:1px solid var(--paper3);border-left:4px solid var(--amber);border-radius:var(--radius-sm);margin-bottom:6px">
   <input type="checkbox" style="width:18px;height:18px;accent-color:var(--amber);flex-shrink:0;margin-top:2px">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Substance use</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Self-medication risky.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Sibling distress</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Family affected.</div></div>
 </div>
 <div style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:var(--white);border:1px solid var(--paper3);border-left:4px solid var(--amber);border-radius:var(--radius-sm);margin-bottom:6px">
   <input type="checkbox" style="width:18px;height:18px;accent-color:var(--amber);flex-shrink:0;margin-top:2px">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Suicidal thoughts</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Major warning.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Progression to CD signs</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Theft, animal cruelty, fire.</div></div>
 </div></div>
   </div>
   
@@ -440,27 +667,23 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
 </div>
 <div style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:var(--white);border:1px solid var(--paper3);border-left:4px solid var(--red);border-radius:var(--radius-sm);margin-bottom:6px">
   <input type="checkbox" style="width:18px;height:18px;accent-color:var(--red);flex-shrink:0;margin-top:2px">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">"My tics are better, I don't need them"</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Tics may return.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Behavioral changes after stopping</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Watch carefully.</div></div>
 </div>
 <div style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:var(--white);border:1px solid var(--paper3);border-left:4px solid var(--red);border-radius:var(--radius-sm);margin-bottom:6px">
   <input type="checkbox" style="width:18px;height:18px;accent-color:var(--red);flex-shrink:0;margin-top:2px">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Withdrawal symptoms</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Some TS medications need taper.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">"My child seems fine"</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Discuss with psychiatrist.</div></div>
 </div>
 <div style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:var(--white);border:1px solid var(--paper3);border-left:4px solid var(--red);border-radius:var(--radius-sm);margin-bottom:6px">
   <input type="checkbox" style="width:18px;height:18px;accent-color:var(--red);flex-shrink:0;margin-top:2px">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Tic rebound after stopping</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Common with antipsychotics.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Withdrawal symptoms</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">SSRI discontinuation.</div></div>
 </div>
 <div style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:var(--white);border:1px solid var(--paper3);border-left:4px solid var(--red);border-radius:var(--radius-sm);margin-bottom:6px">
   <input type="checkbox" style="width:18px;height:18px;accent-color:var(--red);flex-shrink:0;margin-top:2px">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Side effects causing secret stopping</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Doctor can adjust.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Co-occurring ADHD returning</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Major risk if treated.</div></div>
 </div>
 <div style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:var(--white);border:1px solid var(--paper3);border-left:4px solid var(--red);border-radius:var(--radius-sm);margin-bottom:6px">
   <input type="checkbox" style="width:18px;height:18px;accent-color:var(--red);flex-shrink:0;margin-top:2px">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Substance use replacing medication</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Risk.</div></div>
-</div>
-<div style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:var(--white);border:1px solid var(--paper3);border-left:4px solid var(--red);border-radius:var(--radius-sm);margin-bottom:6px">
-  <input type="checkbox" style="width:18px;height:18px;accent-color:var(--red);flex-shrink:0;margin-top:2px">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Hiding pills</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Common.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Behavioral worsening 2-8 weeks after</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Often delayed.</div></div>
 </div></div>
   </div>
 </div>
@@ -476,7 +699,7 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
     <div style="font-size:.74rem;color:var(--ink3);margin-top:3px">Fill this out NOW — when you are well — so it is ready when you need it. Based on the Stanley-Brown Safety Planning Intervention.</div>
   </div>
   <div style="padding:18px">
-    <div style="font-size:.82rem;color:var(--ink2);margin-bottom:14px;line-height:1.6">TS safety planning addresses suicide risk from co-occurring conditions, bullying response, and severe self-injurious tics.</div>
+    <div style="font-size:.82rem;color:var(--ink2);margin-bottom:14px;line-height:1.6">ODD safety planning addresses aggression escalation, caregiver wellbeing, and access to crisis services.</div>
     
     <div style="margin-bottom:14px">
       <div style="font-size:.78rem;font-weight:700;color:var(--ink);margin-bottom:5px">Step 1 — My personal warning signs (thoughts, feelings, situations that come BEFORE a crisis)</div>
@@ -528,51 +751,51 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
   </div>
   
 <div style="background:var(--white);border-radius:var(--radius);margin-bottom:14px;box-shadow:var(--shadow);border:1px solid var(--paper3);overflow:hidden">
-  <div style="padding:14px 18px;background:var(--teal-lt);border-bottom:1px solid var(--paper3);border-left:4px solid var(--teal)">
-    <div style="font-size:.9rem;font-weight:700;color:var(--teal)">Daily Tic Tracker</div>
+  <div style="padding:14px 18px;background:var(--orange-lt);border-bottom:1px solid var(--paper3);border-left:4px solid var(--orange)">
+    <div style="font-size:.9rem;font-weight:700;color:var(--orange)">Daily Behavior Tracker</div>
   </div>
   <div style="padding:16px 18px;overflow-x:auto">
     <table style="width:100%;border-collapse:collapse;min-width:400px">
-      <thead><tr><th style="background:var(--teal);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Date</th><th style="background:var(--teal);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Tic types</th><th style="background:var(--teal);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Frequency (0-10)</th><th style="background:var(--teal);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Severity (0-10)</th><th style="background:var(--teal);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Triggers</th><th style="background:var(--teal);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Sleep</th><th style="background:var(--teal);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Stress level (0-10)</th><th style="background:var(--teal);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Took meds</th></tr></thead>
-      <tbody><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr></tbody>
+      <thead><tr><th style="background:var(--orange);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Date</th><th style="background:var(--orange);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Defiance episodes</th><th style="background:var(--orange);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Severity (0-10)</th><th style="background:var(--orange);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Triggers</th><th style="background:var(--orange);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">How resolved</th><th style="background:var(--orange);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Sleep</th><th style="background:var(--orange);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Took medication</th></tr></thead>
+      <tbody><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr></tbody>
     </table>
-    <div style="font-size:.74rem;color:var(--ink3);margin-top:8px;font-style:italic;padding:0 4px">Track patterns. Identify triggers. Measure treatment response.</div>
+    <div style="font-size:.74rem;color:var(--ink3);margin-top:8px;font-style:italic;padding:0 4px">Track patterns. Identify triggers and effective responses.</div>
   </div>
 </div>
 <div style="background:var(--white);border-radius:var(--radius);margin-bottom:14px;box-shadow:var(--shadow);border:1px solid var(--paper3);overflow:hidden">
   <div style="padding:14px 18px;background:var(--amber-lt);border-bottom:1px solid var(--paper3);border-left:4px solid var(--amber)">
-    <div style="font-size:.9rem;font-weight:700;color:var(--amber)">Trigger Log</div>
+    <div style="font-size:.9rem;font-weight:700;color:var(--amber)">Trigger & Response Log</div>
   </div>
   <div style="padding:16px 18px;overflow-x:auto">
     <table style="width:100%;border-collapse:collapse;min-width:400px">
-      <thead><tr><th style="background:var(--amber);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Date</th><th style="background:var(--amber);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Trigger</th><th style="background:var(--amber);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Tic response</th><th style="background:var(--amber);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Coping used</th><th style="background:var(--amber);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">What helped</th><th style="background:var(--amber);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">What worsened</th></tr></thead>
-      <tbody><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr></tbody>
+      <thead><tr><th style="background:var(--amber);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Date</th><th style="background:var(--amber);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Trigger</th><th style="background:var(--amber);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Behavior</th><th style="background:var(--amber);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">My response</th><th style="background:var(--amber);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">What worked</th><th style="background:var(--amber);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">What didn't</th><th style="background:var(--amber);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Lesson</th></tr></thead>
+      <tbody><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr></tbody>
     </table>
-    <div style="font-size:.74rem;color:var(--ink3);margin-top:8px;font-style:italic;padding:0 4px">Identify YOUR triggers. Stress, fatigue, certain foods common.</div>
+    <div style="font-size:.74rem;color:var(--ink3);margin-top:8px;font-style:italic;padding:0 4px">Identify YOUR child's triggers. Build database of effective responses.</div>
   </div>
 </div>
 <div style="background:var(--white);border-radius:var(--radius);margin-bottom:14px;box-shadow:var(--shadow);border:1px solid var(--paper3);overflow:hidden">
   <div style="padding:14px 18px;background:var(--green-lt);border-bottom:1px solid var(--paper3);border-left:4px solid var(--green)">
-    <div style="font-size:.9rem;font-weight:700;color:var(--green)">CBIT Practice Tracker</div>
+    <div style="font-size:.9rem;font-weight:700;color:var(--green)">Caregiver Wellbeing Tracker</div>
   </div>
   <div style="padding:16px 18px;overflow-x:auto">
     <table style="width:100%;border-collapse:collapse;min-width:400px">
-      <thead><tr><th style="background:var(--green);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Date</th><th style="background:var(--green);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Tic worked on</th><th style="background:var(--green);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Competing response</th><th style="background:var(--green);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Setting</th><th style="background:var(--green);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Worked? (Y/N)</th><th style="background:var(--green);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Notes for therapist</th></tr></thead>
-      <tbody><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr></tbody>
+      <thead><tr><th style="background:var(--green);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Date</th><th style="background:var(--green);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Emotional state (0-10)</th><th style="background:var(--green);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Sleep</th><th style="background:var(--green);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Self-care done</th><th style="background:var(--green);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Respite received</th><th style="background:var(--green);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Support reached out</th><th style="background:var(--green);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Burnout signs</th></tr></thead>
+      <tbody><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr></tbody>
     </table>
-    <div style="font-size:.74rem;color:var(--ink3);margin-top:8px;font-style:italic;padding:0 4px">CBIT requires daily practice. Track to stay consistent.</div>
+    <div style="font-size:.74rem;color:var(--ink3);margin-top:8px;font-style:italic;padding:0 4px">Caregiver wellbeing IS treatment. You matter.</div>
   </div>
 </div>
 <div style="background:var(--white);border-radius:var(--radius);margin-bottom:14px;box-shadow:var(--shadow);border:1px solid var(--paper3);overflow:hidden">
   <div style="padding:14px 18px;background:#fce7f3;border-bottom:1px solid var(--paper3);border-left:4px solid #be185d">
-    <div style="font-size:.9rem;font-weight:700;color:#be185d">Caregiver Observation</div>
+    <div style="font-size:.9rem;font-weight:700;color:#be185d">Caregiver Observation Log</div>
   </div>
   <div style="padding:16px 18px;overflow-x:auto">
     <table style="width:100%;border-collapse:collapse;min-width:400px">
-      <thead><tr><th style="background:#be185d;color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Date</th><th style="background:#be185d;color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Tics observed</th><th style="background:#be185d;color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Triggers I noticed</th><th style="background:#be185d;color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">How I supported (without focus)</th><th style="background:#be185d;color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Wellbeing</th><th style="background:#be185d;color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Concerning signs</th></tr></thead>
-      <tbody><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr></tbody>
+      <thead><tr><th style="background:#be185d;color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Date</th><th style="background:#be185d;color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Connection moments</th><th style="background:#be185d;color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Defiance moments</th><th style="background:#be185d;color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Patterns I noticed</th><th style="background:#be185d;color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">My response</th><th style="background:#be185d;color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">What I learned</th></tr></thead>
+      <tbody><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr></tbody>
     </table>
-    <div style="font-size:.74rem;color:var(--ink3);margin-top:8px;font-style:italic;padding:0 4px">Don't draw attention to tics. Calm environment helps. Focus on the whole person.</div>
+    <div style="font-size:.74rem;color:var(--ink3);margin-top:8px;font-style:italic;padding:0 4px">Track positive moments too. 5:1 ratio of positive to corrective.</div>
   </div>
 </div>
 
@@ -683,7 +906,7 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
     </div>
     <span id="arrspecsleep" style="font-size:.8rem;color:var(--ink3);transition:transform .3s">▼</span>
   </div>
-  <div id="specsleep" style="display:none;padding:18px;font-size:.82rem;color:var(--ink2);line-height:1.7"><strong>Sleep deprivation worsens tics significantly.</strong><br><br>• 8-10 hours children, 7-9 adults<br>• Same bedtime and wake time<br>• Cool, dark bedroom<br>• Limit screens before bed<br>• Calming bedtime routine<br>• If insomnia: CBT-I<br>• Trazodone safe non-addictive option<br>• Address sleep apnea if snoring<br>• Some TS medications can affect sleep — discuss with doctor</div>
+  <div id="specsleep" style="display:none;padding:18px;font-size:.82rem;color:var(--ink2);line-height:1.7"><strong>Sleep deprivation worsens ODD significantly.</strong><br><br>• 9-11 hours for children, 8-10 for teens<br>• Same bedtime and wake time<br>• Calming bedtime routine<br>• Cool, dark bedroom<br>• No screens 1 hour before bed<br>• Address sleep apnea if snoring<br>• If insomnia: pediatric sleep specialist<br>• Sleep matters more than almost anything for ODD</div>
 </div>
 <div style="background:var(--white);border-radius:var(--radius);margin-bottom:14px;box-shadow:var(--shadow);border:1px solid var(--paper3);overflow:hidden">
   <div onclick="toggleZone('specgut')" style="padding:14px 18px;background:#dcfce7;border-left:4px solid #16a34a;cursor:pointer;display:flex;align-items:center;justify-content:space-between">
@@ -693,7 +916,7 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
     </div>
     <span id="arrspecgut" style="font-size:.8rem;color:var(--ink3);transition:transform .3s">▼</span>
   </div>
-  <div id="specgut" style="display:none;padding:18px;font-size:.82rem;color:var(--ink2);line-height:1.7"><strong>Diet affects tics for some people.</strong><br><br>• Mediterranean diet supports overall mental health<br>• Limit caffeine — common tic trigger<br>• Some find sugar, food dyes worsen tics<br>• Limit alcohol — adolescents/adults<br>• Eat regular meals<br>• Magnesium glycinate — some find helpful<br>• Omega-3 fatty acids<br>• Vitamin D — often deficient<br>• B vitamins<br>• Stay hydrated<br>• Cardiometabolic awareness if on antipsychotics</div>
+  <div id="specgut" style="display:none;padding:18px;font-size:.82rem;color:var(--ink2);line-height:1.7"><strong>Stable blood sugar reduces meltdowns.</strong><br><br>• Regular meals and snacks — hangry meltdowns common<br>• Mediterranean diet supports overall health<br>• Limit excess sugar — blood sugar swings<br>• Limit caffeine in older children<br>• Omega-3 fatty acids — supports mood<br>• Vitamin D — often deficient<br>• Iron deficiency can worsen irritability<br>• Stay hydrated</div>
 </div>
 <div style="background:var(--white);border-radius:var(--radius);margin-bottom:14px;box-shadow:var(--shadow);border:1px solid var(--paper3);overflow:hidden">
   <div onclick="toggleZone('specpeer')" style="padding:14px 18px;background:#fae8ff;border-left:4px solid #9333ea;cursor:pointer;display:flex;align-items:center;justify-content:space-between">
@@ -779,21 +1002,21 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
   <div style="font-size:.76rem;color:var(--ink3);margin-top:2px;line-height:1.4">24/7 crisis support.</div>
   <div style="font-size:.76rem;color:var(--ink3);margin-top:3px">📞 988</div><a href="https://988lifeline.org" target="_blank" style="font-size:.74rem;color:#b91c1c;text-decoration:none;margin-top:3px;display:block">🔗 https://988lifeline.org</a>
 </div><div style="background:var(--paper);border:1px solid var(--paper3);border-radius:var(--radius-sm);padding:12px 14px">
-  <div style="font-size:.84rem;font-weight:600;color:var(--ink)">Tourette Association of America</div>
-  <div style="font-size:.76rem;color:var(--ink3);margin-top:2px;line-height:1.4">THE TS organization. Centers of Excellence, education, advocacy.</div>
-  <div style="font-size:.76rem;color:var(--ink3);margin-top:3px">📞 —</div><a href="https://tourette.org" target="_blank" style="font-size:.74rem;color:#b91c1c;text-decoration:none;margin-top:3px;display:block">🔗 https://tourette.org</a>
-</div><div style="background:var(--paper);border:1px solid var(--paper3);border-radius:var(--radius-sm);padding:12px 14px">
-  <div style="font-size:.84rem;font-weight:600;color:var(--ink)">International Tourette Syndrome Association</div>
-  <div style="font-size:.76rem;color:var(--ink3);margin-top:2px;line-height:1.4">International TS resources.</div>
-  <div style="font-size:.76rem;color:var(--ink3);margin-top:3px">📞 —</div><a href="https://www.ts-i.org" target="_blank" style="font-size:.74rem;color:#b91c1c;text-decoration:none;margin-top:3px;display:block">🔗 https://www.ts-i.org</a>
-</div><div style="background:var(--paper);border:1px solid var(--paper3);border-radius:var(--radius-sm);padding:12px 14px">
   <div style="font-size:.84rem;font-weight:600;color:var(--ink)">Child Mind Institute</div>
   <div style="font-size:.76rem;color:var(--ink3);margin-top:2px;line-height:1.4">Excellent free pediatric mental health resources.</div>
   <div style="font-size:.76rem;color:var(--ink3);margin-top:3px">📞 —</div><a href="https://childmind.org" target="_blank" style="font-size:.74rem;color:#b91c1c;text-decoration:none;margin-top:3px;display:block">🔗 https://childmind.org</a>
 </div><div style="background:var(--paper);border:1px solid var(--paper3);border-radius:var(--radius-sm);padding:12px 14px">
-  <div style="font-size:.84rem;font-weight:600;color:var(--ink)">American Academy of Neurology</div>
-  <div style="font-size:.76rem;color:var(--ink3);margin-top:2px;line-height:1.4">Find movement disorder neurologists.</div>
-  <div style="font-size:.76rem;color:var(--ink3);margin-top:3px">📞 —</div><a href="https://www.aan.com" target="_blank" style="font-size:.74rem;color:#b91c1c;text-decoration:none;margin-top:3px;display:block">🔗 https://www.aan.com</a>
+  <div style="font-size:.84rem;font-weight:600;color:var(--ink)">American Academy of Child & Adolescent Psychiatry</div>
+  <div style="font-size:.76rem;color:var(--ink3);margin-top:2px;line-height:1.4">Professional resources.</div>
+  <div style="font-size:.76rem;color:var(--ink3);margin-top:3px">📞 —</div><a href="https://www.aacap.org" target="_blank" style="font-size:.74rem;color:#b91c1c;text-decoration:none;margin-top:3px;display:block">🔗 https://www.aacap.org</a>
+</div><div style="background:var(--paper);border:1px solid var(--paper3);border-radius:var(--radius-sm);padding:12px 14px">
+  <div style="font-size:.84rem;font-weight:600;color:var(--ink)">PCIT International</div>
+  <div style="font-size:.76rem;color:var(--ink3);margin-top:2px;line-height:1.4">Find PCIT providers.</div>
+  <div style="font-size:.76rem;color:var(--ink3);margin-top:3px">📞 —</div><a href="http://www.pcit.org" target="_blank" style="font-size:.74rem;color:#b91c1c;text-decoration:none;margin-top:3px;display:block">🔗 http://www.pcit.org</a>
+</div><div style="background:var(--paper);border:1px solid var(--paper3);border-radius:var(--radius-sm);padding:12px 14px">
+  <div style="font-size:.84rem;font-weight:600;color:var(--ink)">Lives in the Balance (Ross Greene's CPS)</div>
+  <div style="font-size:.76rem;color:var(--ink3);margin-top:2px;line-height:1.4">Collaborative Problem Solving resources.</div>
+  <div style="font-size:.76rem;color:var(--ink3);margin-top:3px">📞 —</div><a href="https://www.livesinthebalance.org" target="_blank" style="font-size:.74rem;color:#b91c1c;text-decoration:none;margin-top:3px;display:block">🔗 https://www.livesinthebalance.org</a>
 </div><div style="background:var(--paper);border:1px solid var(--paper3);border-radius:var(--radius-sm);padding:12px 14px">
   <div style="font-size:.84rem;font-weight:600;color:var(--ink)">NAMI Helpline</div>
   <div style="font-size:.76rem;color:var(--ink3);margin-top:2px;line-height:1.4">Mental health support.</div>
@@ -807,45 +1030,41 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
   <div style="font-size:.76rem;color:var(--ink3);margin-top:2px;line-height:1.4">Treatment referral.</div>
   <div style="font-size:.76rem;color:var(--ink3);margin-top:3px">📞 1-800-662-4357</div><a href="https://www.samhsa.gov" target="_blank" style="font-size:.74rem;color:#b91c1c;text-decoration:none;margin-top:3px;display:block">🔗 https://www.samhsa.gov</a>
 </div><div style="background:var(--paper);border:1px solid var(--paper3);border-radius:var(--radius-sm);padding:12px 14px">
-  <div style="font-size:.84rem;font-weight:600;color:var(--ink)">International OCD Foundation</div>
-  <div style="font-size:.76rem;color:var(--ink3);margin-top:2px;line-height:1.4">For co-occurring OCD.</div>
-  <div style="font-size:.76rem;color:var(--ink3);margin-top:3px">📞 617-973-5801</div><a href="https://iocdf.org" target="_blank" style="font-size:.74rem;color:#b91c1c;text-decoration:none;margin-top:3px;display:block">🔗 https://iocdf.org</a>
-</div><div style="background:var(--paper);border:1px solid var(--paper3);border-radius:var(--radius-sm);padding:12px 14px">
-  <div style="font-size:.84rem;font-weight:600;color:var(--ink)">CHADD</div>
-  <div style="font-size:.76rem;color:var(--ink3);margin-top:2px;line-height:1.4">For co-occurring ADHD.</div>
-  <div style="font-size:.76rem;color:var(--ink3);margin-top:3px">📞 —</div><a href="https://chadd.org" target="_blank" style="font-size:.74rem;color:#b91c1c;text-decoration:none;margin-top:3px;display:block">🔗 https://chadd.org</a>
+  <div style="font-size:.84rem;font-weight:600;color:var(--ink)">National Federation of Families</div>
+  <div style="font-size:.76rem;color:var(--ink3);margin-top:2px;line-height:1.4">Family support for child mental health.</div>
+  <div style="font-size:.76rem;color:var(--ink3);margin-top:3px">📞 —</div><a href="https://www.ffcmh.org" target="_blank" style="font-size:.74rem;color:#b91c1c;text-decoration:none;margin-top:3px;display:block">🔗 https://www.ffcmh.org</a>
 </div></div>
 </div>
 <div style="margin-bottom:20px">
   <div style="display:inline-block;background:#1e40af;color:white;font-size:.72rem;font-family:var(--font-mono);padding:3px 12px;border-radius:20px;margin-bottom:10px;letter-spacing:.06em">UK</div>
   <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px"><div style="background:var(--paper);border:1px solid var(--paper3);border-radius:var(--radius-sm);padding:12px 14px">
-  <div style="font-size:.84rem;font-weight:600;color:var(--ink)">Tourettes Action</div>
-  <div style="font-size:.76rem;color:var(--ink3);margin-top:2px;line-height:1.4">UK TS-specific.</div>
-  <div style="font-size:.76rem;color:var(--ink3);margin-top:3px">📞 0300 777 8427</div><a href="https://www.tourettes-action.org.uk" target="_blank" style="font-size:.74rem;color:#1e40af;text-decoration:none;margin-top:3px;display:block">🔗 https://www.tourettes-action.org.uk</a>
+  <div style="font-size:.84rem;font-weight:600;color:var(--ink)">YoungMinds</div>
+  <div style="font-size:.76rem;color:var(--ink3);margin-top:2px;line-height:1.4">UK child/teen mental health.</div>
+  <div style="font-size:.76rem;color:var(--ink3);margin-top:3px">📞 0808 802 5544</div><a href="https://youngminds.org.uk" target="_blank" style="font-size:.74rem;color:#1e40af;text-decoration:none;margin-top:3px;display:block">🔗 https://youngminds.org.uk</a>
 </div></div>
 </div>
 <div style="margin-bottom:20px">
   <div style="display:inline-block;background:#b45309;color:white;font-size:.72rem;font-family:var(--font-mono);padding:3px 12px;border-radius:20px;margin-bottom:10px;letter-spacing:.06em">Canada</div>
   <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px"><div style="background:var(--paper);border:1px solid var(--paper3);border-radius:var(--radius-sm);padding:12px 14px">
-  <div style="font-size:.84rem;font-weight:600;color:var(--ink)">Tourette Canada</div>
-  <div style="font-size:.76rem;color:var(--ink3);margin-top:2px;line-height:1.4">Canadian TS resources.</div>
-  <div style="font-size:.76rem;color:var(--ink3);margin-top:3px">📞 1-800-361-3120</div><a href="https://tourette.ca" target="_blank" style="font-size:.74rem;color:#b45309;text-decoration:none;margin-top:3px;display:block">🔗 https://tourette.ca</a>
+  <div style="font-size:.84rem;font-weight:600;color:var(--ink)">Kids Help Phone</div>
+  <div style="font-size:.76rem;color:var(--ink3);margin-top:2px;line-height:1.4">Canadian child support.</div>
+  <div style="font-size:.76rem;color:var(--ink3);margin-top:3px">📞 1-800-668-6868</div><a href="https://kidshelpphone.ca" target="_blank" style="font-size:.74rem;color:#b45309;text-decoration:none;margin-top:3px;display:block">🔗 https://kidshelpphone.ca</a>
 </div></div>
 </div>
 <div style="margin-bottom:20px">
   <div style="display:inline-block;background:#047857;color:white;font-size:.72rem;font-family:var(--font-mono);padding:3px 12px;border-radius:20px;margin-bottom:10px;letter-spacing:.06em">Australia</div>
   <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px"><div style="background:var(--paper);border:1px solid var(--paper3);border-radius:var(--radius-sm);padding:12px 14px">
-  <div style="font-size:.84rem;font-weight:600;color:var(--ink)">Tourette Syndrome Association of Australia</div>
-  <div style="font-size:.76rem;color:var(--ink3);margin-top:2px;line-height:1.4">Australian TS resources.</div>
-  <div style="font-size:.76rem;color:var(--ink3);margin-top:3px">📞 —</div><a href="https://tourette.org.au" target="_blank" style="font-size:.74rem;color:#047857;text-decoration:none;margin-top:3px;display:block">🔗 https://tourette.org.au</a>
+  <div style="font-size:.84rem;font-weight:600;color:var(--ink)">Kids Helpline</div>
+  <div style="font-size:.76rem;color:var(--ink3);margin-top:2px;line-height:1.4">Australian child support.</div>
+  <div style="font-size:.76rem;color:var(--ink3);margin-top:3px">📞 1800 55 1800</div><a href="https://kidshelpline.com.au" target="_blank" style="font-size:.74rem;color:#047857;text-decoration:none;margin-top:3px;display:block">🔗 https://kidshelpline.com.au</a>
 </div></div>
 </div>
 <div style="margin-bottom:20px">
   <div style="display:inline-block;background:#6b21a8;color:white;font-size:.72rem;font-family:var(--font-mono);padding:3px 12px;border-radius:20px;margin-bottom:10px;letter-spacing:.06em">International</div>
   <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px"><div style="background:var(--paper);border:1px solid var(--paper3);border-radius:var(--radius-sm);padding:12px 14px">
-  <div style="font-size:.84rem;font-weight:600;color:var(--ink)">Tourette Association of America</div>
-  <div style="font-size:.76rem;color:var(--ink3);margin-top:2px;line-height:1.4">Global TS community.</div>
-  <div style="font-size:.76rem;color:var(--ink3);margin-top:3px">📞 —</div><a href="https://tourette.org" target="_blank" style="font-size:.74rem;color:#6b21a8;text-decoration:none;margin-top:3px;display:block">🔗 https://tourette.org</a>
+  <div style="font-size:.84rem;font-weight:600;color:var(--ink)">International Association for Child and Adolescent Psychiatry</div>
+  <div style="font-size:.76rem;color:var(--ink3);margin-top:2px;line-height:1.4">Global child mental health.</div>
+  <div style="font-size:.76rem;color:var(--ink3);margin-top:3px">📞 —</div><a href="https://iacapap.org" target="_blank" style="font-size:.74rem;color:#6b21a8;text-decoration:none;margin-top:3px;display:block">🔗 https://iacapap.org</a>
 </div></div>
 </div>
 
@@ -855,23 +1074,23 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
   </div>
   <div style="font-size:.78rem;color:var(--ink3);margin-bottom:12px">The following peer-reviewed studies support the guidance in this care plan. Each includes a plain-English summary.</div>
   <div style="padding:12px 14px;background:var(--paper);border:1px solid var(--paper3);border-radius:var(--radius-sm);margin-bottom:8px">
-  <div style="font-size:.78rem;color:var(--ink2);line-height:1.5"><strong>1. Pringsheim T, et al. (2019).</strong> Practice guideline recommendations summary: Treatment of tics in people with Tourette syndrome and chronic tic disorders. <em>Neurology</em>.</div>
-  <div style="font-size:.74rem;color:var(--ink3);margin-top:4px;padding:6px 10px;background:var(--white);border-radius:6px;border-left:3px solid #0e7490"><strong>What this means for you:</strong> AAN treatment guidelines. CBIT first-line. Multiple medication options.</div>
+  <div style="font-size:.78rem;color:var(--ink2);line-height:1.5"><strong>1. Eyberg SM, et al. (2008).</strong> Evidence-based psychosocial treatments for children and adolescents with disruptive behavior. <em>Journal of Clinical Child & Adolescent Psychology</em>.</div>
+  <div style="font-size:.74rem;color:var(--ink3);margin-top:4px;padding:6px 10px;background:var(--white);border-radius:6px;border-left:3px solid #ea580c"><strong>What this means for you:</strong> PCIT, PMT well-established for ODD. Multiple evidence-based options.</div>
 </div><div style="padding:12px 14px;background:var(--paper);border:1px solid var(--paper3);border-radius:var(--radius-sm);margin-bottom:8px">
-  <div style="font-size:.78rem;color:var(--ink2);line-height:1.5"><strong>2. Piacentini J, et al. (2010).</strong> Behavior therapy for children with Tourette disorder: a randomized controlled trial. <em>JAMA</em>.</div>
-  <div style="font-size:.74rem;color:var(--ink3);margin-top:4px;padding:6px 10px;background:var(--white);border-radius:6px;border-left:3px solid #0e7490"><strong>What this means for you:</strong> CBIT effective for childhood TS. Significant tic reduction sustained.</div>
+  <div style="font-size:.78rem;color:var(--ink2);line-height:1.5"><strong>2. Kazdin AE (2017).</strong> Parent management training and problem-solving skills training for child and adolescent conduct problems. <em>Evidence-Based Psychotherapies for Children and Adolescents</em>.</div>
+  <div style="font-size:.74rem;color:var(--ink3);margin-top:4px;padding:6px 10px;background:var(--white);border-radius:6px;border-left:3px solid #ea580c"><strong>What this means for you:</strong> PMT comprehensive review. First-line for ODD.</div>
 </div><div style="padding:12px 14px;background:var(--paper);border:1px solid var(--paper3);border-radius:var(--radius-sm);margin-bottom:8px">
-  <div style="font-size:.78rem;color:var(--ink2);line-height:1.5"><strong>3. Wilhelm S, et al. (2012).</strong> Randomized trial of behavior therapy for adults with Tourette syndrome. <em>Archives of General Psychiatry</em>.</div>
-  <div style="font-size:.74rem;color:var(--ink3);margin-top:4px;padding:6px 10px;background:var(--white);border-radius:6px;border-left:3px solid #0e7490"><strong>What this means for you:</strong> CBIT effective for adult TS too. First-line behavioral treatment.</div>
+  <div style="font-size:.78rem;color:var(--ink2);line-height:1.5"><strong>3. Greene RW, et al. (2004).</strong> Effectiveness of collaborative problem solving in affectively dysregulated children with oppositional-defiant disorder. <em>Journal of Consulting and Clinical Psychology</em>.</div>
+  <div style="font-size:.74rem;color:var(--ink3);margin-top:4px;padding:6px 10px;background:var(--white);border-radius:6px;border-left:3px solid #ea580c"><strong>What this means for you:</strong> CPS effective for ODD with inflexibility.</div>
 </div><div style="padding:12px 14px;background:var(--paper);border:1px solid var(--paper3);border-radius:var(--radius-sm);margin-bottom:8px">
-  <div style="font-size:.78rem;color:var(--ink2);line-height:1.5"><strong>4. Murphy TK, et al. (2013).</strong> Practice parameter for the assessment and treatment of children and adolescents with tic disorders. <em>Journal of the American Academy of Child & Adolescent Psychiatry</em>.</div>
-  <div style="font-size:.74rem;color:var(--ink3);margin-top:4px;padding:6px 10px;background:var(--white);border-radius:6px;border-left:3px solid #0e7490"><strong>What this means for you:</strong> AACAP comprehensive practice parameter.</div>
+  <div style="font-size:.78rem;color:var(--ink2);line-height:1.5"><strong>4. Comer JS, et al. (2013).</strong> A meta-analysis of attention-deficit/hyperactivity disorder treatments and behavioral parent training. <em>Journal of the American Academy of Child & Adolescent Psychiatry</em>.</div>
+  <div style="font-size:.74rem;color:var(--ink3);margin-top:4px;padding:6px 10px;background:var(--white);border-radius:6px;border-left:3px solid #ea580c"><strong>What this means for you:</strong> Treating co-occurring ADHD significantly improves ODD.</div>
 </div><div style="padding:12px 14px;background:var(--paper);border:1px solid var(--paper3);border-radius:var(--radius-sm);margin-bottom:8px">
-  <div style="font-size:.78rem;color:var(--ink2);line-height:1.5"><strong>5. Hartmann A, Worbe Y (2018).</strong> Tourette syndrome: clinical spectrum, mechanisms and personalized treatments. <em>Current Opinion in Neurology</em>.</div>
-  <div style="font-size:.74rem;color:var(--ink3);margin-top:4px;padding:6px 10px;background:var(--white);border-radius:6px;border-left:3px solid #0e7490"><strong>What this means for you:</strong> Updated treatment review including newer medications.</div>
+  <div style="font-size:.78rem;color:var(--ink2);line-height:1.5"><strong>5. Burke JD, et al. (2002).</strong> Oppositional defiant disorder and conduct disorder: a review of the past 10 years, part II. <em>Journal of the American Academy of Child & Adolescent Psychiatry</em>.</div>
+  <div style="font-size:.74rem;color:var(--ink3);margin-top:4px;padding:6px 10px;background:var(--white);border-radius:6px;border-left:3px solid #ea580c"><strong>What this means for you:</strong> ODD comprehensive review. About 30% progress to CD without treatment.</div>
 </div><div style="padding:12px 14px;background:var(--paper);border:1px solid var(--paper3);border-radius:var(--radius-sm);margin-bottom:8px">
-  <div style="font-size:.78rem;color:var(--ink2);line-height:1.5"><strong>6. Conelea CA, et al. (2011).</strong> Patterns and predictors of tic suppressibility in youth with tic disorders. <em>Journal of Behavior Therapy and Experimental Psychiatry</em>.</div>
-  <div style="font-size:.74rem;color:var(--ink3);margin-top:4px;padding:6px 10px;background:var(--white);border-radius:6px;border-left:3px solid #0e7490"><strong>What this means for you:</strong> Tic suppression possible. CBIT builds on this.</div>
+  <div style="font-size:.78rem;color:var(--ink2);line-height:1.5"><strong>6. Webster-Stratton C, et al. (2004).</strong> Treating children with early-onset conduct problems: intervention outcomes for parent, child, and teacher training. <em>Journal of Clinical Child & Adolescent Psychology</em>.</div>
+  <div style="font-size:.74rem;color:var(--ink3);margin-top:4px;padding:6px 10px;background:var(--white);border-radius:6px;border-left:3px solid #ea580c"><strong>What this means for you:</strong> Combined parent + child + teacher training most effective.</div>
 </div>
 
   <div style="background:#fff8e6;border:2px solid #f0cc80;border-radius:var(--radius);padding:20px 22px;margin-top:32px">
@@ -881,14 +1100,14 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
     <strong>If you are in crisis: Call or text 988 (USA Suicide & Crisis Lifeline) immediately.</strong> If you have an immediate safety emergency, call 911 (USA), 999 (UK), 000 (Australia), or 112 (Europe). You can also go to any hospital emergency room.<br><br>
     <strong>Mental health conditions are real medical conditions</strong> — not character flaws or weaknesses. Seeking help is a sign of strength. Recovery is possible. Most people with mental illness lead full, meaningful lives with proper treatment and support.<br><br>
     My Health Harbor Foundation is a nonprofit educational organization. We do not provide direct mental health care, prescribe medications, or replace your treatment team. <br><br>
-    <strong>Date of this care plan:</strong> <span id="cpdate_tourette_mhcp"></span> &nbsp;|&nbsp; <strong>Review with your treatment team every:</strong> 3–6 months
+    <strong>Date of this care plan:</strong> <span id="cpdate_odd_mhcp"></span> &nbsp;|&nbsp; <strong>Review with your treatment team every:</strong> 3–6 months
   </div>
 </div>
 
 </div>
 
 <script>
-document.getElementById('cpdate_tourette_mhcp').textContent=new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+document.getElementById('cpdate_odd_mhcp').textContent=new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
 function toggleZone(id){
   var el=document.getElementById(id);
   var arr=document.getElementById('arr'+id);

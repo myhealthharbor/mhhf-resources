@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Hypersomnia Care Plan Care Plan — My Health Harbor Foundation</title>
+<title>Selective Mutism Care Plan Care Plan — My Health Harbor Foundation</title>
 <style>
 :root{
   --green:#1a7a4a;--green-lt:#e8f5ee;--green-bd:#a8d9b8;
@@ -16,7 +16,7 @@
   --ink:#1a1a2e;--ink2:#3a3a5a;--ink3:#7a7a9a;
   --paper:#fafaf8;--paper2:#f0f0ec;--paper3:#e0e0da;
   --white:#ffffff;
-  --accent:#5b21b6;--accent-lt:#ede9fe;--accent-bd:#c4b5fd;
+  --accent:#0891b2;--accent-lt:#cffafe;--accent-bd:#67e8f9;
   --font-body:Georgia,'Times New Roman',serif;
   --font-ui:'Helvetica Neue',Arial,sans-serif;
   --font-mono:'Courier New',Courier,monospace;
@@ -35,10 +35,237 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent)}
 table{width:100%;border-collapse:collapse}
 th{background:var(--accent);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500}
 td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
-@media print{
-  .no-print{display:none!important}
-  body{background:white}
-  [style*="display:none"]{display:block!important}
+@media print {
+  /* ===== PAGE SETUP ===== */
+  @page {
+    size: letter;
+    margin: 0.6in 0.5in 0.7in 0.5in;
+  }
+  @page :first {
+    margin-top: 0.4in;
+  }
+
+  /* ===== HIDE INTERACTIVE ELEMENTS ===== */
+  .no-print,
+  .no-print *,
+  button:not(.print-keep),
+  .print-button,
+  nav,
+  .top-bar,
+  .footer-cta,
+  .scroll-top,
+  .checkbox,
+  input[type="checkbox"] {
+    display: none !important;
+  }
+
+  /* ===== BASE BODY ===== */
+  body {
+    background: white !important;
+    color: #1a1a1a !important;
+    font-size: 10.5pt;
+    line-height: 1.45;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  /* Reveal any hidden expanded content */
+  [style*="display:none"],
+  [style*="display: none"],
+  details {
+    display: block !important;
+  }
+  details > summary {
+    display: block !important;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  details[open] > * {
+    display: block !important;
+  }
+
+  /* ===== TYPOGRAPHY ===== */
+  h1 { font-size: 22pt; margin: 0 0 6pt; page-break-after: avoid; }
+  h2 { font-size: 14pt; margin: 14pt 0 6pt; page-break-after: avoid; }
+  h3 { font-size: 12pt; margin: 10pt 0 4pt; page-break-after: avoid; }
+  h4 { font-size: 11pt; margin: 8pt 0 3pt; page-break-after: avoid; }
+  p { margin: 0 0 6pt; orphans: 3; widows: 3; }
+  ul, ol { margin: 0 0 6pt; padding-left: 18pt; }
+  li { margin-bottom: 3pt; orphans: 2; widows: 2; }
+
+  /* ===== HERO BAND ===== */
+  /* Keep the colorful hero, but compact for print */
+  .hero, [class*="hero"] {
+    padding: 18pt 12pt !important;
+    margin-bottom: 10pt !important;
+    page-break-inside: avoid;
+    page-break-after: avoid;
+  }
+
+  /* ===== CRISIS BANNER — ALWAYS PRINTS RED ===== */
+  /* The crisis info MUST be visually distinct on paper */
+  [class*="crisis"],
+  [class*="sos"],
+  .crisis-banner,
+  .sos-banner {
+    background: #991b1b !important;
+    color: white !important;
+    border: 2pt solid #7f1d1d !important;
+    padding: 10pt !important;
+    margin: 8pt 0 !important;
+    page-break-inside: avoid;
+    page-break-after: avoid;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  [class*="crisis"] *,
+  [class*="sos"] * {
+    color: white !important;
+  }
+
+  /* ===== ZONES (green/amber/red/blue/purple) ===== */
+  /* Keep section together on a page when possible */
+  .zone,
+  [class*="zone-"],
+  .section-card,
+  .care-section {
+    page-break-inside: avoid;
+    margin-bottom: 10pt !important;
+    border: 1pt solid #ddd !important;
+    padding: 8pt !important;
+    box-shadow: none !important;
+  }
+
+  /* Force zone color borders to print */
+  .zone-green, [class*="zone-green"] { border-left: 4pt solid #16a34a !important; }
+  .zone-amber, .zone-yellow, [class*="zone-amber"], [class*="zone-yellow"] { border-left: 4pt solid #d97706 !important; }
+  .zone-red, [class*="zone-red"] { border-left: 4pt solid #dc2626 !important; }
+  .zone-blue, [class*="zone-blue"] { border-left: 4pt solid #2563eb !important; }
+  .zone-purple, [class*="zone-purple"] { border-left: 4pt solid #7c3aed !important; }
+
+  /* ===== TRACKING TABLES ===== */
+  /* Tables must repeat headers on each page */
+  table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    page-break-inside: auto;
+    margin: 6pt 0 !important;
+    font-size: 9pt;
+  }
+  thead { display: table-header-group; }
+  tfoot { display: table-footer-group; }
+  tr { page-break-inside: avoid; page-break-after: auto; }
+  th, td {
+    border: 0.5pt solid #999 !important;
+    padding: 3pt 5pt !important;
+    text-align: left;
+  }
+  th {
+    background: #f3f4f6 !important;
+    font-weight: bold;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* ===== CARDS ===== */
+  .card, [class*="card"] {
+    page-break-inside: avoid;
+    box-shadow: none !important;
+    border: 0.5pt solid #ddd !important;
+    margin-bottom: 8pt !important;
+    padding: 8pt !important;
+  }
+
+  /* ===== BADGES & PILLS ===== */
+  .badge, .pill, [class*="badge"], [class*="pill"] {
+    border: 0.5pt solid #999 !important;
+    padding: 2pt 6pt !important;
+    border-radius: 3pt !important;
+    font-size: 8.5pt !important;
+    background: #f9fafb !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* ===== SHOW URLs FOR EXTERNAL LINKS ===== */
+  /* Helpful when reading on paper — people can type the URL later */
+  a[href^="http"]:not([href*="mailto"]):not([href*="tel"]):after {
+    content: " (" attr(href) ")";
+    font-size: 8.5pt;
+    color: #555;
+    word-break: break-all;
+  }
+
+  /* But don't show URL after phone numbers and crisis lines */
+  a[href^="tel:"]:after,
+  a[href^="sms:"]:after,
+  .crisis-banner a:after,
+  [class*="crisis"] a:after {
+    content: "" !important;
+  }
+
+  /* ===== CITATIONS ===== */
+  .citation, [class*="citation"], .references li {
+    font-size: 9pt;
+    page-break-inside: avoid;
+    margin-bottom: 4pt;
+  }
+
+  /* ===== DISCLAIMER ===== */
+  .disclaimer, [class*="disclaimer"] {
+    font-size: 8.5pt;
+    color: #555;
+    border-top: 0.5pt solid #ccc;
+    padding-top: 6pt;
+    margin-top: 12pt;
+    page-break-before: auto;
+  }
+
+  /* ===== PAGE BREAKS BETWEEN MAJOR SECTIONS ===== */
+  .page-break-before { page-break-before: always; }
+  .page-break-after { page-break-after: always; }
+
+  /* Force break before tracking tables section if it's long */
+  h2:contains("Tracking"),
+  [id*="tracking"] {
+    page-break-before: auto;
+  }
+
+  /* ===== PRINT-ONLY HEADER ===== */
+  /* Tiny branded header at top of every printed page */
+  body::before {
+    content: "MY HEALTH HARBOR FOUNDATION  ·  myhealthharborfoundation.org";
+    display: block;
+    position: running(header);
+    font-size: 8pt;
+    color: #777;
+    text-align: center;
+    border-bottom: 0.25pt solid #ccc;
+    padding-bottom: 4pt;
+    margin-bottom: 8pt;
+    letter-spacing: 0.5pt;
+  }
+
+  /* ===== IMAGES ===== */
+  img {
+    max-width: 100% !important;
+    page-break-inside: avoid;
+  }
+
+  /* ===== PREVENT WIDOWED HEADINGS ===== */
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  /* ===== KEEP IMPORTANT INFO TOGETHER ===== */
+  .keep-together,
+  .crisis-banner,
+  .resources,
+  [class*="resource"] {
+    page-break-inside: avoid !important;
+  }
 }
 @media(min-width:700px){
   .grid-2{grid-template-columns:1fr 1fr!important}
@@ -52,10 +279,10 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
   <button onclick="window.print()" style="background:none;border:1px solid rgba(255,255,255,0.3);color:white;padding:6px 14px;border-radius:7px;font-size:.76rem;cursor:pointer">🖨 Print / Save PDF</button>
 </div>
 
-<div style="background:linear-gradient(135deg,#5b21b6 0%,#5b21b6cc 100%);padding:32px 22px 24px;text-align:center">
+<div style="background:linear-gradient(135deg,#0891b2 0%,#0891b2cc 100%);padding:32px 22px 24px;text-align:center">
   <div style="font-size:.72rem;font-family:var(--font-mono);color:rgba(255,255,255,0.7);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px">Mental Health Care Plan · My Health Harbor Foundation</div>
-  <div style="font-size:clamp(1.6rem,4vw,2.2rem);font-weight:700;color:white;line-height:1.2;font-family:var(--font-body)">Hypersomnia Care Plan</div>
-  <div style="font-size:.88rem;color:rgba(255,255,255,0.75);margin-top:8px">Recovery from excessive sleepiness despite adequate sleep — for patients and families</div>
+  <div style="font-size:clamp(1.6rem,4vw,2.2rem);font-weight:700;color:white;line-height:1.2;font-family:var(--font-body)">Selective Mutism Care Plan</div>
+  <div style="font-size:.88rem;color:rgba(255,255,255,0.75);margin-top:8px">Recovery from inability to speak in specific social situations — for children, adults, and families</div>
 </div>
 
 <div style="max-width:860px;margin:0 auto;padding:24px 18px">
@@ -66,7 +293,7 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
     <span style="font-size:1.5rem">🆘</span>
     <span style="font-size:1.05rem;font-weight:700">If you or someone you love is in crisis right now</span>
   </div>
-  <div style="font-size:.9rem;line-height:1.7;margin-bottom:14px">Hypersomnia carries elevated risk for accidents (drowsy driving), depression, and suicide. The chronic exhaustion and life impairment can lead to hopelessness. If you are in crisis, please reach out — treatments help and you are not alone.</div>
+  <div style="font-size:.9rem;line-height:1.7;margin-bottom:14px">Selective mutism can severely impact education, employment, healthcare access, and emergency situations. If unable to communicate in emergencies, written communication and pre-prepared cards can save lives. Treatment dramatically improves quality of life.</div>
   <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px">
     <div style="background:rgba(255,255,255,0.15);padding:10px 12px;border-radius:8px"><div style="font-size:.7rem;opacity:.85">USA — Suicide & Crisis</div><div style="font-size:1rem;font-weight:700">988 (call or text)</div></div>
     <div style="background:rgba(255,255,255,0.15);padding:10px 12px;border-radius:8px"><div style="font-size:.7rem;opacity:.85">USA — Crisis Text Line</div><div style="font-size:1rem;font-weight:700">Text HOME to 741741</div></div>
@@ -75,9 +302,9 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
   </div>
 </div>
   <div style="display:inline-flex;align-items:center;gap:8px;background:#e8f5ee;border:1.5px solid #1a7a4a33;color:#1a7a4a;padding:7px 16px;border-radius:30px;font-size:.8rem;font-weight:600;margin-bottom:16px">🙋👐 For Patient & Caregiver</div>
-  <div style="background:#ede9fe;border:1.5px solid #c4b5fd;border-radius:var(--radius);padding:18px 20px;margin-bottom:20px">
-  <div style="font-size:.72rem;font-family:var(--font-mono);color:#5b21b6;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px">WHO IS THIS FOR?</div>
-  <div style="font-size:.88rem;color:var(--ink);line-height:1.6">This care plan is for <strong>people living with hypersomnia disorders</strong> (idiopathic hypersomnia, hypersomnolence) and their <strong>family members</strong>. Idiopathic hypersomnia affects approximately 0.01-0.05% of the population, but hypersomnolence symptoms affect 4-6% to varying degrees. It involves excessive sleepiness despite adequate or extended sleep — long sleep periods (10+ hours), severe sleep inertia (difficulty waking), unrefreshing sleep, and persistent daytime sleepiness. <strong>Hypersomnia is NOT laziness, depression, or sleep apnea</strong> — it is a recognized neurological sleep disorder. Many cases are misdiagnosed as depression or sleep apnea for years. <strong>Treatment helps but rarely fully resolves symptoms</strong>. Quality of life can significantly improve with proper management.</div>
+  <div style="background:#cffafe;border:1.5px solid #67e8f9;border-radius:var(--radius);padding:18px 20px;margin-bottom:20px">
+  <div style="font-size:.72rem;font-family:var(--font-mono);color:#0891b2;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px">WHO IS THIS FOR?</div>
+  <div style="font-size:.88rem;color:var(--ink);line-height:1.6">This care plan is for <strong>people living with selective mutism</strong> (children AND adults) and their <strong>family members</strong>. Selective mutism affects approximately 1% of children — and many continue into adulthood without recognition. It involves consistent failure to speak in specific social situations (school, public, with strangers) despite speaking normally in other settings (typically at home with immediate family). <strong>Selective mutism is NOT willful refusal, defiance, shyness, autism, or trauma response (usually)</strong> — it is an anxiety disorder. The person WANTS to speak but cannot. <strong>Treatment works</strong>, especially with early intervention. Adult selective mutism also responds to treatment.</div>
 </div>
   <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px">
   <div style="display:flex;align-items:center;gap:6px;background:var(--green-lt);border:1px solid var(--green-bd);color:var(--green);padding:5px 12px;border-radius:20px;font-size:.74rem;font-weight:600">🟢 Daily Wellness</div>
@@ -95,10 +322,10 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
   
 <div style="background:var(--white);border-radius:var(--radius);margin-bottom:14px;box-shadow:var(--shadow);border:1px solid var(--paper3);overflow:hidden">
   <div onclick="toggleZone('zone0')" style="display:flex;align-items:center;gap:14px;padding:18px 20px;cursor:pointer;border-left:4px solid var(--green);background:var(--white)">
-    <div style="width:44px;height:44px;border-radius:10px;background:var(--green-lt);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">🌙</div>
+    <div style="width:44px;height:44px;border-radius:10px;background:var(--green-lt);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">💙</div>
     <div style="flex:1">
-      <div style="font-size:1rem;font-weight:700;color:var(--green);font-family:var(--font-body)">Daily Wellness — Managing Sleepiness</div>
-      <div style="font-size:.78rem;color:var(--ink3);margin-top:2px">Daily practices for hypersomnia</div>
+      <div style="font-size:1rem;font-weight:700;color:var(--green);font-family:var(--font-body)">Daily Wellness — Building Speaking Capacity</div>
+      <div style="font-size:.78rem;color:var(--ink3);margin-top:2px">Daily practices for selective mutism recovery</div>
     </div>
     <span id="arrzone0" style="font-size:.8rem;color:var(--ink3);transition:transform .3s">▼</span>
   </div>
@@ -106,53 +333,53 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
     
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--green);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Take medications consistently</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Modafinil, armodafinil, methylphenidate, sodium oxybate. Same time daily.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Take medication if prescribed</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">SSRIs (sertraline, fluoxetine) effective for selective mutism. 4-6 weeks for full effect.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--green-lt);color:var(--green);white-space:nowrap;align-self:flex-start;margin-top:2px">Daily</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--green);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Maintain consistent sleep schedule — same wake time</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Anchors circadian rhythm. Don't sleep in trying to "catch up."</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Practice "stimulus fading" exposure</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Gradually introduce new people/places where speaking already happens. Per therapist guidance.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--green-lt);color:var(--green);white-space:nowrap;align-self:flex-start;margin-top:2px">Daily</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--green);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Strategic short naps if helpful</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">15-20 min nap can help some. Longer naps worsen sleep inertia.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Use non-verbal communication confidently</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Pointing, writing, gesturing, AAC apps. Reduces pressure while building capacity.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--green-lt);color:var(--green);white-space:nowrap;align-self:flex-start;margin-top:2px">As needed</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--green);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Get morning bright light immediately upon waking</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Helps sleep inertia. Light therapy box can help.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Reduce pressure to speak</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Pressure increases anxiety and freezes speech. Patience essential.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--green-lt);color:var(--green);white-space:nowrap;align-self:flex-start;margin-top:2px">Daily</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--green);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Move body gently after waking</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Movement helps with sleep inertia.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Reward attempts at communication</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Any communication — written, gestural, whispered. Build positive associations.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--green-lt);color:var(--green);white-space:nowrap;align-self:flex-start;margin-top:2px">Daily</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--green);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Use stimulant strategies — caffeine if helpful</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Time strategically. Most people with hypersomnia use morning coffee.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Practice "brave talking" exercises</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Per therapist. Small steps increasingly visible/audible.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--green-lt);color:var(--green);white-space:nowrap;align-self:flex-start;margin-top:2px">Daily</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--green);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Eat regular meals — stable blood sugar helps energy</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Avoid large meals that worsen sleepiness.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Maintain regular school attendance (children)</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">School avoidance maintains selective mutism. Accommodations essential.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--green-lt);color:var(--green);white-space:nowrap;align-self:flex-start;margin-top:2px">Daily</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--green);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Don't drive when sleepy — plan around medication timing</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Drowsy driving as dangerous as drunk driving.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Limit caffeine — increases anxiety</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Particularly important on exposure days.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--green-lt);color:var(--green);white-space:nowrap;align-self:flex-start;margin-top:2px">Daily</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--green);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Move body daily — exercise helps energy</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Even when exhausted. Builds energy long-term.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Get adequate sleep</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Sleep deprivation worsens all anxiety significantly.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--green-lt);color:var(--green);white-space:nowrap;align-self:flex-start;margin-top:2px">Daily</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--green);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Connect with hypersomnia community</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Other patients understand. Reduces isolation.</div></div>
-  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--green-lt);color:var(--green);white-space:nowrap;align-self:flex-start;margin-top:2px">Weekly</span>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Connect through other means — texts, video games, written notes</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Reduces isolation while working on speech.</div></div>
+  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--green-lt);color:var(--green);white-space:nowrap;align-self:flex-start;margin-top:2px">Daily</span>
 </div>
   </div>
 </div>
@@ -160,7 +387,7 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
   <div onclick="toggleZone('zone1')" style="display:flex;align-items:center;gap:14px;padding:18px 20px;cursor:pointer;border-left:4px solid var(--amber);background:var(--white)">
     <div style="width:44px;height:44px;border-radius:10px;background:var(--amber-lt);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">🟡</div>
     <div style="flex:1">
-      <div style="font-size:1rem;font-weight:700;color:var(--amber);font-family:var(--font-body)">Watch & Monitor — Signs Hypersomnia Is Worsening</div>
+      <div style="font-size:1rem;font-weight:700;color:var(--amber);font-family:var(--font-body)">Watch & Monitor — Signs Selective Mutism Is Worsening</div>
       <div style="font-size:.78rem;color:var(--ink3);margin-top:2px">Patterns to discuss with treatment team</div>
     </div>
     <span id="arrzone1" style="font-size:.8rem;color:var(--ink3);transition:transform .3s">▼</span>
@@ -169,52 +396,52 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
     
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Daytime sleepiness increasing</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Falling asleep more often, harder to stay awake.</div></div>
-  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--amber-lt);color:var(--amber);white-space:nowrap;align-self:flex-start;margin-top:2px">Tell doctor</span>
-</div>
-<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
-  <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Sleep inertia worsening</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Taking longer to wake up, more confused.</div></div>
-  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--amber-lt);color:var(--amber);white-space:nowrap;align-self:flex-start;margin-top:2px">Tell doctor</span>
-</div>
-<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
-  <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Naps becoming longer</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Going from 20 min to hours.</div></div>
-  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--amber-lt);color:var(--amber);white-space:nowrap;align-self:flex-start;margin-top:2px">Tell doctor</span>
-</div>
-<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
-  <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Medication seeming less effective</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">May need adjustment.</div></div>
-  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--amber-lt);color:var(--amber);white-space:nowrap;align-self:flex-start;margin-top:2px">Tell doctor</span>
-</div>
-<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
-  <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Co-occurring depression worsening</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Common with chronic hypersomnia.</div></div>
-  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--amber-lt);color:var(--amber);white-space:nowrap;align-self:flex-start;margin-top:2px">Tell doctor</span>
-</div>
-<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
-  <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Drowsy driving incidents</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Major safety concern.</div></div>
-  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--amber-lt);color:var(--amber);white-space:nowrap;align-self:flex-start;margin-top:2px">Tell doctor</span>
-</div>
-<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
-  <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Job/school problems from sleepiness</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Functional impairment serious.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Speaking situations narrowing</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Even safe people now silent with.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--amber-lt);color:var(--amber);white-space:nowrap;align-self:flex-start;margin-top:2px">Tell therapist</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Substance use to stay awake</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Dangerous self-medication.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">School/work refusal increasing</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Avoiding speaking situations entirely.</div></div>
+  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--amber-lt);color:var(--amber);white-space:nowrap;align-self:flex-start;margin-top:2px">Tell therapist</span>
+</div>
+<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
+  <div style="width:18px;height:18px;flex-shrink:0"></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Increased anxiety symptoms</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Sweating, shaking, frozen feeling worsening.</div></div>
+  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--amber-lt);color:var(--amber);white-space:nowrap;align-self:flex-start;margin-top:2px">Tell therapist</span>
+</div>
+<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
+  <div style="width:18px;height:18px;flex-shrink:0"></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Avoidance of healthcare due to inability to speak</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Can be dangerous.</div></div>
+  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--amber-lt);color:var(--amber);white-space:nowrap;align-self:flex-start;margin-top:2px">Tell therapist</span>
+</div>
+<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
+  <div style="width:18px;height:18px;flex-shrink:0"></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Comorbid social anxiety worsening</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Often co-occurs with selective mutism.</div></div>
+  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--amber-lt);color:var(--amber);white-space:nowrap;align-self:flex-start;margin-top:2px">Tell therapist</span>
+</div>
+<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
+  <div style="width:18px;height:18px;flex-shrink:0"></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Depression emerging</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Common with chronic selective mutism.</div></div>
+  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--amber-lt);color:var(--amber);white-space:nowrap;align-self:flex-start;margin-top:2px">Tell doctor</span>
+</div>
+<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
+  <div style="width:18px;height:18px;flex-shrink:0"></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Family conflict over communication</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Family becoming pressuring or punishing.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--amber-lt);color:var(--amber);white-space:nowrap;align-self:flex-start;margin-top:2px">Tell therapist</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--amber);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Significant weight changes</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Some hypersomnia medications affect weight.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Sleep affected by anxiety</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Worry about next day's speaking demands.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--amber-lt);color:var(--amber);white-space:nowrap;align-self:flex-start;margin-top:2px">Tell doctor</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Suicidal thoughts</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Hypersomnia + depression elevates risk.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">In adults — job loss, social isolation</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Severe functional impact.</div></div>
+  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--amber-lt);color:var(--amber);white-space:nowrap;align-self:flex-start;margin-top:2px">Tell therapist</span>
+</div>
+<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
+  <div style="width:18px;height:18px;flex-shrink:0"></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Suicidal thoughts</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Severe selective mutism can lead to hopelessness.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--amber-lt);color:var(--amber);white-space:nowrap;align-self:flex-start;margin-top:2px">CALL 988</span>
 </div>
   </div>
@@ -224,7 +451,7 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
     <div style="width:44px;height:44px;border-radius:10px;background:var(--red-lt);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">🚨</div>
     <div style="flex:1">
       <div style="font-size:1rem;font-weight:700;color:var(--red);font-family:var(--font-body)">Crisis Signs</div>
-      <div style="font-size:.78rem;color:var(--ink3);margin-top:2px">When hypersomnia needs urgent care</div>
+      <div style="font-size:.78rem;color:var(--ink3);margin-top:2px">When selective mutism needs urgent care</div>
     </div>
     <span id="arrzone2" style="font-size:.8rem;color:var(--ink3);transition:transform .3s">▼</span>
   </div>
@@ -232,28 +459,23 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
     
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Suicidal thoughts</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Hypersomnia carries suicide risk. Call 988.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Cannot communicate in medical emergency</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Have written cards prepared. Use phone apps. Have advocate when possible.</div></div>
+  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--red-lt);color:var(--red);white-space:nowrap;align-self:flex-start;margin-top:2px">Pre-plan</span>
+</div>
+<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
+  <div style="width:18px;height:18px;flex-shrink:0"></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Suicidal thoughts</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Severe SM carries suicide risk. Call 988 — texting works too.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--red-lt);color:var(--red);white-space:nowrap;align-self:flex-start;margin-top:2px">CALL 988</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Drowsy driving accident or near-accident</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Don't drive. Get help. Call doctor immediately.</div></div>
-  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--red-lt);color:var(--red);white-space:nowrap;align-self:flex-start;margin-top:2px">CALL doctor</span>
-</div>
-<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
-  <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Severe depression developing</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">May need diagnosis revision and intensive treatment.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">School/work crisis from communication issues</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Get accommodations urgently. Get specialist help.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--red-lt);color:var(--red);white-space:nowrap;align-self:flex-start;margin-top:2px">Same-day call</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Substance use crisis</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">SAMHSA: 1-800-662-4357. Stimulant misuse particularly risky.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Severe substance use</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">SAMHSA: 1-800-662-4357.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--red-lt);color:var(--red);white-space:nowrap;align-self:flex-start;margin-top:2px">CALL SAMHSA</span>
-</div>
-<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
-  <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Cataplexy episodes (sudden muscle weakness)</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">May indicate narcolepsy diagnosis. See doctor.</div></div>
-  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--red-lt);color:var(--red);white-space:nowrap;align-self:flex-start;margin-top:2px">CALL doctor</span>
 </div>
   </div>
 </div>
@@ -262,7 +484,7 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
     <div style="width:44px;height:44px;border-radius:10px;background:var(--blue-lt);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">💊</div>
     <div style="flex:1">
       <div style="font-size:1rem;font-weight:700;color:var(--blue);font-family:var(--font-body)">Treatments</div>
-      <div style="font-size:.78rem;color:var(--ink3);margin-top:2px">Hypersomnia treatment</div>
+      <div style="font-size:.78rem;color:var(--ink3);margin-top:2px">Selective mutism treatment</div>
     </div>
     <span id="arrzone3" style="font-size:.8rem;color:var(--ink3);transition:transform .3s">▼</span>
   </div>
@@ -270,53 +492,43 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
     
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Modafinil (Provigil) — first-line for many</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Wakefulness-promoting agent. Less abuse potential than traditional stimulants.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Behavioral therapy with exposure — first-line</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Specifically selective mutism behavioral therapy. Stimulus fading, shaping, contingency management.</div></div>
+  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);white-space:nowrap;align-self:flex-start;margin-top:2px">Therapy</span>
+</div>
+<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
+  <div style="width:18px;height:18px;flex-shrink:0"></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Parent-Child Interaction Therapy (PCIT-SM)</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Adapted PCIT specifically for selective mutism. Highly effective for children.</div></div>
+  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);white-space:nowrap;align-self:flex-start;margin-top:2px">Therapy</span>
+</div>
+<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
+  <div style="width:18px;height:18px;flex-shrink:0"></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">SSRIs — for moderate to severe cases</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Sertraline, fluoxetine evidence-based. Same as for social anxiety.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);white-space:nowrap;align-self:flex-start;margin-top:2px">Daily</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Armodafinil (Nuvigil) — alternative</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Longer-acting modafinil isomer.</div></div>
-  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);white-space:nowrap;align-self:flex-start;margin-top:2px">Daily</span>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Combined behavioral therapy + medication</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Often most effective for severe cases.</div></div>
+  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);white-space:nowrap;align-self:flex-start;margin-top:2px">Combined</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Methylphenidate (Ritalin, Concerta)</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Traditional stimulant. Effective. Controlled substance.</div></div>
-  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);white-space:nowrap;align-self:flex-start;margin-top:2px">Daily</span>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Cognitive Behavioral Therapy (CBT) — for older children/adults</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Targets thoughts about speaking and exposure.</div></div>
+  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);white-space:nowrap;align-self:flex-start;margin-top:2px">Therapy</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Amphetamine (Adderall)</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Traditional stimulant. Effective. Controlled substance.</div></div>
-  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);white-space:nowrap;align-self:flex-start;margin-top:2px">Daily</span>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">AAC (augmentative and alternative communication)</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Speech apps, written communication can bridge while working on speech.</div></div>
+  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);white-space:nowrap;align-self:flex-start;margin-top:2px">Adjunct</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Sodium oxybate (Xyrem, Xywav) — for refractory cases</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Particularly effective for narcolepsy and IH. Specialized monitoring required.</div></div>
-  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);white-space:nowrap;align-self:flex-start;margin-top:2px">Bedtime</span>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">School-based interventions</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">504 plans, IEPs. Accommodations essential. Specialist consult.</div></div>
+  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);white-space:nowrap;align-self:flex-start;margin-top:2px">Educational</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Pitolisant (Wakix) — newer option</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">H3 antagonist. Non-controlled. Particularly for narcolepsy.</div></div>
-  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);white-space:nowrap;align-self:flex-start;margin-top:2px">Daily</span>
-</div>
-<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
-  <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Solriamfetol (Sunosi)</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Dopamine/norepinephrine reuptake inhibitor. Newer option.</div></div>
-  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);white-space:nowrap;align-self:flex-start;margin-top:2px">Daily</span>
-</div>
-<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
-  <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Caffeine — mild stimulant</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Strategic timing. Often helpful adjunct.</div></div>
-  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);white-space:nowrap;align-self:flex-start;margin-top:2px">Daily</span>
-</div>
-<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
-  <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Address co-occurring depression carefully</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">SSRIs that don't worsen sedation. Bupropion sometimes better.</div></div>
-  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);white-space:nowrap;align-self:flex-start;margin-top:2px">As needed</span>
-</div>
-<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
-  <div style="width:18px;height:18px;flex-shrink:0"></div>
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">AVOID benzodiazepines</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Worsen sleepiness significantly.</div></div>
-  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);white-space:nowrap;align-self:flex-start;margin-top:2px">Avoid</span>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Group therapy for selective mutism</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Where available. Powerful for children.</div></div>
+  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);white-space:nowrap;align-self:flex-start;margin-top:2px">Group</span>
 </div>
   </div>
 </div>
@@ -325,7 +537,7 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
     <div style="width:44px;height:44px;border-radius:10px;background:var(--purple-lt);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">📅</div>
     <div style="flex:1">
       <div style="font-size:1rem;font-weight:700;color:var(--purple);font-family:var(--font-body)">Therapy & Care Plan</div>
-      <div style="font-size:.78rem;color:var(--ink3);margin-top:2px">Specialized sleep medicine essential</div>
+      <div style="font-size:.78rem;color:var(--ink3);margin-top:2px">Specialized therapy is essential</div>
     </div>
     <span id="arrzone4" style="font-size:.8rem;color:var(--ink3);transition:transform .3s">▼</span>
   </div>
@@ -333,38 +545,38 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
     
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--purple);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Sleep medicine specialist evaluation</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">CRITICAL. Need polysomnography + Multiple Sleep Latency Test (MSLT).</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Find selective mutism specialist</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">CRITICAL. Generic therapy ineffective. Selective Mutism Association has therapist directory.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--purple-lt);color:var(--purple);white-space:nowrap;align-self:flex-start;margin-top:2px">First step</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--purple);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Find sleep specialist with hypersomnia expertise</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Many sleep doctors focus mainly on apnea. Find IH/narcolepsy specialist.</div></div>
-  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--purple-lt);color:var(--purple);white-space:nowrap;align-self:flex-start;margin-top:2px">First step</span>
-</div>
-<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
-  <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--purple);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Annual reassessment with sleep specialist</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">For medication adjustment.</div></div>
-  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--purple-lt);color:var(--purple);white-space:nowrap;align-self:flex-start;margin-top:2px">Annual</span>
-</div>
-<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
-  <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--purple);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Address co-occurring conditions</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Depression, anxiety often co-occur.</div></div>
-  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--purple-lt);color:var(--purple);white-space:nowrap;align-self:flex-start;margin-top:2px">Ongoing</span>
-</div>
-<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
-  <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--purple);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Therapy for adjustment to chronic illness</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Hypersomnia significantly impacts life. Therapy helps adjustment.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Therapy weekly during active treatment</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Often months to year of weekly sessions.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--purple-lt);color:var(--purple);white-space:nowrap;align-self:flex-start;margin-top:2px">Weekly</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--purple);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Workplace accommodations</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">504 plan/ADA accommodations may apply. Flexible hours, naps.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Family training essential</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Parents/family must learn to support without pressuring.</div></div>
+  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--purple-lt);color:var(--purple);white-space:nowrap;align-self:flex-start;margin-top:2px">Family</span>
+</div>
+<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
+  <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--purple);flex-shrink:0;margin-top:2px;cursor:pointer">
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">School coordination critical for children</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">504 plan or IEP. Teacher training. Accommodations.</div></div>
+  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--purple-lt);color:var(--purple);white-space:nowrap;align-self:flex-start;margin-top:2px">School</span>
+</div>
+<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
+  <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--purple);flex-shrink:0;margin-top:2px;cursor:pointer">
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Psychiatrist for medication</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Pediatric or adult psychiatrist familiar with selective mutism.</div></div>
+  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--purple-lt);color:var(--purple);white-space:nowrap;align-self:flex-start;margin-top:2px">Every 3-6 mo</span>
+</div>
+<div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
+  <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--purple);flex-shrink:0;margin-top:2px;cursor:pointer">
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Speech-language pathologist if needed</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Address any underlying speech issues alongside SM.</div></div>
   <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--purple-lt);color:var(--purple);white-space:nowrap;align-self:flex-start;margin-top:2px">As needed</span>
 </div>
 <div onclick="if(this.querySelector('input')){var cb=this.querySelector('input');cb.checked=!cb.checked;this.style.opacity=cb.checked?'0.55':'1';this.style.textDecoration=cb.checked?'line-through':'none';}" style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:var(--radius-sm);margin-bottom:6px;background:var(--white);border:1px solid var(--paper3);cursor:pointer;transition:background .15s">
   <input type="checkbox" onclick="event.stopPropagation()" style="width:18px;height:18px;accent-color:var(--purple);flex-shrink:0;margin-top:2px;cursor:pointer">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Driving safety assessment</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Discuss with doctor. May need restrictions.</div></div>
-  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--purple-lt);color:var(--purple);white-space:nowrap;align-self:flex-start;margin-top:2px">As needed</span>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink);line-height:1.4">Pediatrician/PCP coordination</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Annual visits with accommodation for SM.</div></div>
+  <span style="font-size:.65rem;font-family:var(--font-mono);padding:2px 8px;border-radius:20px;background:var(--purple-lt);color:var(--purple);white-space:nowrap;align-self:flex-start;margin-top:2px">Annual</span>
 </div>
   </div>
 </div>
@@ -383,39 +595,39 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
     <div style="padding:16px">
 <div style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:var(--white);border:1px solid var(--paper3);border-left:4px solid var(--amber);border-radius:var(--radius-sm);margin-bottom:6px">
   <input type="checkbox" style="width:18px;height:18px;accent-color:var(--amber);flex-shrink:0;margin-top:2px">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Daytime sleepiness increasing</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Falling asleep more often.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Speaking situations narrowing</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Even safe people silent with.</div></div>
 </div>
 <div style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:var(--white);border:1px solid var(--paper3);border-left:4px solid var(--amber);border-radius:var(--radius-sm);margin-bottom:6px">
   <input type="checkbox" style="width:18px;height:18px;accent-color:var(--amber);flex-shrink:0;margin-top:2px">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Sleep inertia worsening</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Harder to wake.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">School/work avoidance increasing</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Major warning.</div></div>
 </div>
 <div style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:var(--white);border:1px solid var(--paper3);border-left:4px solid var(--amber);border-radius:var(--radius-sm);margin-bottom:6px">
   <input type="checkbox" style="width:18px;height:18px;accent-color:var(--amber);flex-shrink:0;margin-top:2px">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Naps becoming longer</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Hours instead of minutes.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Anxiety symptoms increasing</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Physical signs worsening.</div></div>
 </div>
 <div style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:var(--white);border:1px solid var(--paper3);border-left:4px solid var(--amber);border-radius:var(--radius-sm);margin-bottom:6px">
   <input type="checkbox" style="width:18px;height:18px;accent-color:var(--amber);flex-shrink:0;margin-top:2px">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Medication less effective</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">May need adjustment.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Comorbid social anxiety worsening</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Often parallels.</div></div>
 </div>
 <div style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:var(--white);border:1px solid var(--paper3);border-left:4px solid var(--amber);border-radius:var(--radius-sm);margin-bottom:6px">
   <input type="checkbox" style="width:18px;height:18px;accent-color:var(--amber);flex-shrink:0;margin-top:2px">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Co-occurring depression worsening</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Often parallels.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Avoiding healthcare due to communication</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Can be dangerous.</div></div>
 </div>
 <div style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:var(--white);border:1px solid var(--paper3);border-left:4px solid var(--amber);border-radius:var(--radius-sm);margin-bottom:6px">
   <input type="checkbox" style="width:18px;height:18px;accent-color:var(--amber);flex-shrink:0;margin-top:2px">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Drowsy driving incidents</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Major warning.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Skipping behavioral exercises</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Avoiding the work.</div></div>
 </div>
 <div style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:var(--white);border:1px solid var(--paper3);border-left:4px solid var(--amber);border-radius:var(--radius-sm);margin-bottom:6px">
   <input type="checkbox" style="width:18px;height:18px;accent-color:var(--amber);flex-shrink:0;margin-top:2px">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Job/school problems</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Functional impairment.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Family conflict over communication</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Pressure increasing.</div></div>
 </div>
 <div style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:var(--white);border:1px solid var(--paper3);border-left:4px solid var(--amber);border-radius:var(--radius-sm);margin-bottom:6px">
   <input type="checkbox" style="width:18px;height:18px;accent-color:var(--amber);flex-shrink:0;margin-top:2px">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Substance use to stay awake</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Dangerous.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Depression emerging</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Common with chronic SM.</div></div>
 </div>
 <div style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:var(--white);border:1px solid var(--paper3);border-left:4px solid var(--amber);border-radius:var(--radius-sm);margin-bottom:6px">
   <input type="checkbox" style="width:18px;height:18px;accent-color:var(--amber);flex-shrink:0;margin-top:2px">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Weight changes</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Side effects.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Sleep affected by speaking anxiety</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Anticipatory worry.</div></div>
 </div>
 <div style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:var(--white);border:1px solid var(--paper3);border-left:4px solid var(--amber);border-radius:var(--radius-sm);margin-bottom:6px">
   <input type="checkbox" style="width:18px;height:18px;accent-color:var(--amber);flex-shrink:0;margin-top:2px">
@@ -431,27 +643,27 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
     <div style="padding:16px">
 <div style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:var(--white);border:1px solid var(--paper3);border-left:4px solid var(--red);border-radius:var(--radius-sm);margin-bottom:6px">
   <input type="checkbox" style="width:18px;height:18px;accent-color:var(--red);flex-shrink:0;margin-top:2px">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Pills accumulating</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Count weekly — stimulants can accumulate.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Pills accumulating</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Count weekly.</div></div>
 </div>
 <div style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:var(--white);border:1px solid var(--paper3);border-left:4px solid var(--red);border-radius:var(--radius-sm);margin-bottom:6px">
   <input type="checkbox" style="width:18px;height:18px;accent-color:var(--red);flex-shrink:0;margin-top:2px">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">"I should be able to handle this without meds"</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Hypersomnia is medical. Treatment essential.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">"I'm better, I don't need them"</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">SM needs 12+ months of treatment.</div></div>
 </div>
 <div style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:var(--white);border:1px solid var(--paper3);border-left:4px solid var(--red);border-radius:var(--radius-sm);margin-bottom:6px">
   <input type="checkbox" style="width:18px;height:18px;accent-color:var(--red);flex-shrink:0;margin-top:2px">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Withdrawal symptoms</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Particularly with stimulants.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Withdrawal symptoms</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Brain zaps from SSRI discontinuation.</div></div>
 </div>
 <div style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:var(--white);border:1px solid var(--paper3);border-left:4px solid var(--red);border-radius:var(--radius-sm);margin-bottom:6px">
   <input type="checkbox" style="width:18px;height:18px;accent-color:var(--red);flex-shrink:0;margin-top:2px">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Symptoms returning quickly</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Hypersomnia underlying.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Symptoms returning 2-8 weeks after stopping</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Often delayed.</div></div>
 </div>
 <div style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:var(--white);border:1px solid var(--paper3);border-left:4px solid var(--red);border-radius:var(--radius-sm);margin-bottom:6px">
   <input type="checkbox" style="width:18px;height:18px;accent-color:var(--red);flex-shrink:0;margin-top:2px">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Side effects causing secret stopping</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Doctor can adjust.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Sexual side effects causing secret stopping</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Common with SSRIs. Doctor can adjust.</div></div>
 </div>
 <div style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:var(--white);border:1px solid var(--paper3);border-left:4px solid var(--red);border-radius:var(--radius-sm);margin-bottom:6px">
   <input type="checkbox" style="width:18px;height:18px;accent-color:var(--red);flex-shrink:0;margin-top:2px">
-  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Substance use replacing medication</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Major risk with stimulants.</div></div>
+  <div style="flex:1"><div style="font-size:.86rem;font-weight:600;color:var(--ink)">Side effects unmanaged</div><div style="font-size:.76rem;color:var(--ink3);margin-top:3px;line-height:1.5">Doctor can adjust.</div></div>
 </div>
 <div style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:var(--white);border:1px solid var(--paper3);border-left:4px solid var(--red);border-radius:var(--radius-sm);margin-bottom:6px">
   <input type="checkbox" style="width:18px;height:18px;accent-color:var(--red);flex-shrink:0;margin-top:2px">
@@ -471,7 +683,7 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
     <div style="font-size:.74rem;color:var(--ink3);margin-top:3px">Fill this out NOW — when you are well — so it is ready when you need it. Based on the Stanley-Brown Safety Planning Intervention.</div>
   </div>
   <div style="padding:18px">
-    <div style="font-size:.82rem;color:var(--ink2);margin-bottom:14px;line-height:1.6">Hypersomnia safety planning addresses suicide risk, drowsy driving prevention, and depression. Plan made with sleep specialist.</div>
+    <div style="font-size:.82rem;color:var(--ink2);margin-bottom:14px;line-height:1.6">Selective mutism safety planning addresses both crisis communication and emotional crises. Pre-prepared cards, advocate contacts, and accommodations are part of the plan.</div>
     
     <div style="margin-bottom:14px">
       <div style="font-size:.78rem;font-weight:700;color:var(--ink);margin-bottom:5px">Step 1 — My personal warning signs (thoughts, feelings, situations that come BEFORE a crisis)</div>
@@ -523,39 +735,39 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
   </div>
   
 <div style="background:var(--white);border-radius:var(--radius);margin-bottom:14px;box-shadow:var(--shadow);border:1px solid var(--paper3);overflow:hidden">
-  <div style="padding:14px 18px;background:var(--purple-lt);border-bottom:1px solid var(--paper3);border-left:4px solid var(--purple)">
-    <div style="font-size:.9rem;font-weight:700;color:var(--purple)">Daily Sleep & Wakefulness Tracker</div>
+  <div style="padding:14px 18px;background:var(--teal-lt);border-bottom:1px solid var(--paper3);border-left:4px solid var(--teal)">
+    <div style="font-size:.9rem;font-weight:700;color:var(--teal)">Daily Speaking Tracker</div>
   </div>
   <div style="padding:16px 18px;overflow-x:auto">
     <table style="width:100%;border-collapse:collapse;min-width:400px">
-      <thead><tr><th style="background:var(--purple);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Date</th><th style="background:var(--purple);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Sleep hours</th><th style="background:var(--purple);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Sleep quality (1-10)</th><th style="background:var(--purple);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Time to wake</th><th style="background:var(--purple);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Sleep inertia (0-10)</th><th style="background:var(--purple);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Daytime sleepiness (0-10)</th><th style="background:var(--purple);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Naps</th><th style="background:var(--purple);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Medications taken</th></tr></thead>
+      <thead><tr><th style="background:var(--teal);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Date</th><th style="background:var(--teal);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Where I spoke</th><th style="background:var(--teal);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">To whom</th><th style="background:var(--teal);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Volume (whisper/normal)</th><th style="background:var(--teal);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">How I felt</th><th style="background:var(--teal);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">What helped</th><th style="background:var(--teal);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Brave attempts</th></tr></thead>
       <tbody><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr></tbody>
     </table>
-    <div style="font-size:.74rem;color:var(--ink3);margin-top:8px;font-style:italic;padding:0 4px">Track patterns. Bring to sleep medicine appointments.</div>
+    <div style="font-size:.74rem;color:var(--ink3);margin-top:8px;font-style:italic;padding:0 4px">Track expanding speech over time. Any speaking is progress. Brave attempts deserve celebration.</div>
   </div>
 </div>
 <div style="background:var(--white);border-radius:var(--radius);margin-bottom:14px;box-shadow:var(--shadow);border:1px solid var(--paper3);overflow:hidden">
   <div style="padding:14px 18px;background:var(--amber-lt);border-bottom:1px solid var(--paper3);border-left:4px solid var(--amber)">
-    <div style="font-size:.9rem;font-weight:700;color:var(--amber)">Functioning & Energy Tracker</div>
+    <div style="font-size:.9rem;font-weight:700;color:var(--amber)">Stimulus Fading Hierarchy</div>
   </div>
   <div style="padding:16px 18px;overflow-x:auto">
     <table style="width:100%;border-collapse:collapse;min-width:400px">
-      <thead><tr><th style="background:var(--amber);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Date</th><th style="background:var(--amber);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Energy AM</th><th style="background:var(--amber);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Energy PM</th><th style="background:var(--amber);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Activities completed</th><th style="background:var(--amber);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Activities skipped</th><th style="background:var(--amber);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Drowsy driving?</th><th style="background:var(--amber);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Mood (0-10)</th></tr></thead>
-      <tbody><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr></tbody>
+      <thead><tr><th style="background:var(--amber);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Level</th><th style="background:var(--amber);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Setting/Person</th><th style="background:var(--amber);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Currently speaking?</th><th style="background:var(--amber);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Goal</th><th style="background:var(--amber);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Date achieved</th></tr></thead>
+      <tbody><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)">1 (easiest)</td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)">2</td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)">3</td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)">4</td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)">5</td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)">6</td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)">7</td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)">8 (hardest)</td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr></tbody>
     </table>
-    <div style="font-size:.74rem;color:var(--ink3);margin-top:8px;font-style:italic;padding:0 4px">Track functional impact. Recovery = doing more despite sleepiness.</div>
+    <div style="font-size:.74rem;color:var(--ink3);margin-top:8px;font-style:italic;padding:0 4px">Build hierarchy with therapist. Add new people gradually to settings where speaking already happens.</div>
   </div>
 </div>
 <div style="background:var(--white);border-radius:var(--radius);margin-bottom:14px;box-shadow:var(--shadow);border:1px solid var(--paper3);overflow:hidden">
-  <div style="padding:14px 18px;background:var(--blue-lt);border-bottom:1px solid var(--paper3);border-left:4px solid var(--blue)">
-    <div style="font-size:.9rem;font-weight:700;color:var(--blue)">Medication Effectiveness</div>
+  <div style="padding:14px 18px;background:var(--purple-lt);border-bottom:1px solid var(--paper3);border-left:4px solid var(--purple)">
+    <div style="font-size:.9rem;font-weight:700;color:var(--purple)">School/Work Accommodations Used</div>
   </div>
   <div style="padding:16px 18px;overflow-x:auto">
     <table style="width:100%;border-collapse:collapse;min-width:400px">
-      <thead><tr><th style="background:var(--blue);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Date</th><th style="background:var(--blue);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Medication</th><th style="background:var(--blue);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Time taken</th><th style="background:var(--blue);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Effect duration</th><th style="background:var(--blue);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Side effects</th><th style="background:var(--blue);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Adjustments needed</th></tr></thead>
-      <tbody><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr></tbody>
+      <thead><tr><th style="background:var(--purple);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Date</th><th style="background:var(--purple);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Setting</th><th style="background:var(--purple);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Accommodation used</th><th style="background:var(--purple);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">How it helped</th><th style="background:var(--purple);color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">What needs adjustment</th></tr></thead>
+      <tbody><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr></tbody>
     </table>
-    <div style="font-size:.74rem;color:var(--ink3);margin-top:8px;font-style:italic;padding:0 4px">Track what works. Bring to specialist appointments.</div>
+    <div style="font-size:.74rem;color:var(--ink3);margin-top:8px;font-style:italic;padding:0 4px">Track what accommodations work. Communicate with school/employer.</div>
   </div>
 </div>
 <div style="background:var(--white);border-radius:var(--radius);margin-bottom:14px;box-shadow:var(--shadow);border:1px solid var(--paper3);overflow:hidden">
@@ -564,10 +776,10 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
   </div>
   <div style="padding:16px 18px;overflow-x:auto">
     <table style="width:100%;border-collapse:collapse;min-width:400px">
-      <thead><tr><th style="background:#be185d;color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Date</th><th style="background:#be185d;color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Their alertness</th><th style="background:#be185d;color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Naps observed</th><th style="background:#be185d;color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Functioning level</th><th style="background:#be185d;color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Mood</th><th style="background:#be185d;color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">How I supported</th><th style="background:#be185d;color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">My own wellbeing</th></tr></thead>
-      <tbody><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr></tbody>
+      <thead><tr><th style="background:#be185d;color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Date</th><th style="background:#be185d;color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Speaking situations</th><th style="background:#be185d;color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Communication used</th><th style="background:#be185d;color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Pressure I avoided</th><th style="background:#be185d;color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">How I supported</th><th style="background:#be185d;color:white;padding:9px 12px;text-align:left;font-size:.75rem;font-family:var(--font-mono);font-weight:500;white-space:nowrap">Their anxiety level</th></tr></thead>
+      <tbody><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr><tr><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td><td style="padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem;color:var(--ink3)"></td></tr></tbody>
     </table>
-    <div style="font-size:.74rem;color:var(--ink3);margin-top:8px;font-style:italic;padding:0 4px">Hypersomnia significantly impacts loved ones. Patience and support matter.</div>
+    <div style="font-size:.74rem;color:var(--ink3);margin-top:8px;font-style:italic;padding:0 4px">Don't pressure to speak. Reward all communication attempts. Patience builds trust and safety.</div>
   </div>
 </div>
 
@@ -678,7 +890,7 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
     </div>
     <span id="arrspecsleep" style="font-size:.8rem;color:var(--ink3);transition:transform .3s">▼</span>
   </div>
-  <div id="specsleep" style="display:none;padding:18px;font-size:.82rem;color:var(--ink2);line-height:1.7"><strong>This entire care plan is sleep-focused.</strong><br><br>• Same wake time daily — even weekends<br>• 7-9 hours target (some need more)<br>• Don't sleep more than necessary — paradoxically worsens hypersomnia<br>• Morning bright light immediately upon waking<br>• Strategic short naps (15-20 min) only<br>• Cool, dark bedroom for nighttime sleep<br>• AVOID alcohol — fragments sleep<br>• Address sleep apnea if present (separate from hypersomnia)<br>• Trazodone for sleep onset if needed<br>• AVOID benzodiazepines for sleep — worsen daytime sleepiness</div>
+  <div id="specsleep" style="display:none;padding:18px;font-size:.82rem;color:var(--ink2);line-height:1.7"><strong>Sleep affects all anxiety including selective mutism.</strong><br><br>• 8-10 hours for children<br>• 7-9 hours for adults<br>• Same bedtime and wake time<br>• Avoid screens before bed<br>• Cool, dark bedroom<br>• If insomnia from anxiety: CBT-I<br>• Anxiety dreams about speaking common — process with therapist</div>
 </div>
 <div style="background:var(--white);border-radius:var(--radius);margin-bottom:14px;box-shadow:var(--shadow);border:1px solid var(--paper3);overflow:hidden">
   <div onclick="toggleZone('specgut')" style="padding:14px 18px;background:#dcfce7;border-left:4px solid #16a34a;cursor:pointer;display:flex;align-items:center;justify-content:space-between">
@@ -688,7 +900,7 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
     </div>
     <span id="arrspecgut" style="font-size:.8rem;color:var(--ink3);transition:transform .3s">▼</span>
   </div>
-  <div id="specgut" style="display:none;padding:18px;font-size:.82rem;color:var(--ink2);line-height:1.7"><strong>Diet affects energy and medication effectiveness.</strong><br><br>• Mediterranean diet supports overall mental health<br>• Eat regular meals — affects energy<br>• Don't skip meals — worsens fatigue<br>• Avoid large heavy meals — worsen sleepiness<br>• Caffeine — strategic use as adjunct<br>• Limit alcohol — major sleepiness exacerbator<br>• Omega-3 fatty acids<br>• Vitamin D — often deficient<br>• B12 — check level (deficiency causes fatigue)<br>• Iron — check ferritin (low iron causes fatigue)<br>• Stay hydrated — dehydration worsens fatigue</div>
+  <div id="specgut" style="display:none;padding:18px;font-size:.82rem;color:var(--ink2);line-height:1.7"><strong>Diet affects baseline anxiety.</strong><br><br>• Mediterranean diet supports anxiety reduction<br>• Limit caffeine — increases physical anxiety<br>• Limit alcohol (adults) — false comfort<br>• Magnesium glycinate — calming<br>• L-theanine — calming without sedation<br>• Omega-3 fatty acids — reduces baseline anxiety<br>• Vitamin D — often deficient<br>• B vitamins<br>• Eat regular meals — affects mood<br>• Stay hydrated</div>
 </div>
 <div style="background:var(--white);border-radius:var(--radius);margin-bottom:14px;box-shadow:var(--shadow);border:1px solid var(--paper3);overflow:hidden">
   <div onclick="toggleZone('specpeer')" style="padding:14px 18px;background:#fae8ff;border-left:4px solid #9333ea;cursor:pointer;display:flex;align-items:center;justify-content:space-between">
@@ -771,35 +983,27 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
   <div style="display:inline-block;background:#b91c1c;color:white;font-size:.72rem;font-family:var(--font-mono);padding:3px 12px;border-radius:20px;margin-bottom:10px;letter-spacing:.06em">USA</div>
   <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px"><div style="background:var(--paper);border:1px solid var(--paper3);border-radius:var(--radius-sm);padding:12px 14px">
   <div style="font-size:.84rem;font-weight:600;color:var(--ink)">988 Suicide & Crisis Lifeline</div>
-  <div style="font-size:.76rem;color:var(--ink3);margin-top:2px;line-height:1.4">24/7 crisis support.</div>
+  <div style="font-size:.76rem;color:var(--ink3);margin-top:2px;line-height:1.4">24/7 crisis support — texting works too.</div>
   <div style="font-size:.76rem;color:var(--ink3);margin-top:3px">📞 988</div><a href="https://988lifeline.org" target="_blank" style="font-size:.74rem;color:#b91c1c;text-decoration:none;margin-top:3px;display:block">🔗 https://988lifeline.org</a>
 </div><div style="background:var(--paper);border:1px solid var(--paper3);border-radius:var(--radius-sm);padding:12px 14px">
-  <div style="font-size:.84rem;font-weight:600;color:var(--ink)">Hypersomnia Foundation</div>
-  <div style="font-size:.76rem;color:var(--ink3);margin-top:2px;line-height:1.4">THE hypersomnia resource. Education, support, advocacy. FREE.</div>
-  <div style="font-size:.76rem;color:var(--ink3);margin-top:3px">📞 —</div><a href="https://www.hypersomniafoundation.org" target="_blank" style="font-size:.74rem;color:#b91c1c;text-decoration:none;margin-top:3px;display:block">🔗 https://www.hypersomniafoundation.org</a>
+  <div style="font-size:.84rem;font-weight:600;color:var(--ink)">Selective Mutism Association</div>
+  <div style="font-size:.76rem;color:var(--ink3);margin-top:2px;line-height:1.4">THE selective mutism resource. Therapist directory. Annual conference. FREE.</div>
+  <div style="font-size:.76rem;color:var(--ink3);margin-top:3px">📞 —</div><a href="https://www.selectivemutism.org" target="_blank" style="font-size:.74rem;color:#b91c1c;text-decoration:none;margin-top:3px;display:block">🔗 https://www.selectivemutism.org</a>
 </div><div style="background:var(--paper);border:1px solid var(--paper3);border-radius:var(--radius-sm);padding:12px 14px">
-  <div style="font-size:.84rem;font-weight:600;color:var(--ink)">Project Sleep</div>
-  <div style="font-size:.76rem;color:var(--ink3);margin-top:2px;line-height:1.4">Sleep disorder advocacy.</div>
-  <div style="font-size:.76rem;color:var(--ink3);margin-top:3px">📞 —</div><a href="https://project-sleep.com" target="_blank" style="font-size:.74rem;color:#b91c1c;text-decoration:none;margin-top:3px;display:block">🔗 https://project-sleep.com</a>
+  <div style="font-size:.84rem;font-weight:600;color:var(--ink)">Confident Kids (PCIT-SM)</div>
+  <div style="font-size:.76rem;color:var(--ink3);margin-top:2px;line-height:1.4">Specialized SM treatment program.</div>
+  <div style="font-size:.76rem;color:var(--ink3);margin-top:3px">📞 —</div><a href="https://www.confidentkidssm.com" target="_blank" style="font-size:.74rem;color:#b91c1c;text-decoration:none;margin-top:3px;display:block">🔗 https://www.confidentkidssm.com</a>
 </div><div style="background:var(--paper);border:1px solid var(--paper3);border-radius:var(--radius-sm);padding:12px 14px">
-  <div style="font-size:.84rem;font-weight:600;color:var(--ink)">American Academy of Sleep Medicine</div>
-  <div style="font-size:.76rem;color:var(--ink3);margin-top:2px;line-height:1.4">Find sleep specialists.</div>
-  <div style="font-size:.76rem;color:var(--ink3);margin-top:3px">📞 —</div><a href="https://aasm.org" target="_blank" style="font-size:.74rem;color:#b91c1c;text-decoration:none;margin-top:3px;display:block">🔗 https://aasm.org</a>
-</div><div style="background:var(--paper);border:1px solid var(--paper3);border-radius:var(--radius-sm);padding:12px 14px">
-  <div style="font-size:.84rem;font-weight:600;color:var(--ink)">Society of Behavioral Sleep Medicine</div>
-  <div style="font-size:.76rem;color:var(--ink3);margin-top:2px;line-height:1.4">Find behavioral sleep specialists.</div>
-  <div style="font-size:.76rem;color:var(--ink3);margin-top:3px">📞 —</div><a href="https://www.behavioralsleep.org" target="_blank" style="font-size:.74rem;color:#b91c1c;text-decoration:none;margin-top:3px;display:block">🔗 https://www.behavioralsleep.org</a>
-</div><div style="background:var(--paper);border:1px solid var(--paper3);border-radius:var(--radius-sm);padding:12px 14px">
-  <div style="font-size:.84rem;font-weight:600;color:var(--ink)">Narcolepsy Network</div>
-  <div style="font-size:.76rem;color:var(--ink3);margin-top:2px;line-height:1.4">Includes hypersomnia resources.</div>
-  <div style="font-size:.76rem;color:var(--ink3);margin-top:3px">📞 888-292-6522</div><a href="https://narcolepsynetwork.org" target="_blank" style="font-size:.74rem;color:#b91c1c;text-decoration:none;margin-top:3px;display:block">🔗 https://narcolepsynetwork.org</a>
+  <div style="font-size:.84rem;font-weight:600;color:var(--ink)">Anxiety & Depression Association of America (ADAA)</div>
+  <div style="font-size:.76rem;color:var(--ink3);margin-top:2px;line-height:1.4">Find SM specialists.</div>
+  <div style="font-size:.76rem;color:var(--ink3);margin-top:3px">📞 —</div><a href="https://adaa.org" target="_blank" style="font-size:.74rem;color:#b91c1c;text-decoration:none;margin-top:3px;display:block">🔗 https://adaa.org</a>
 </div><div style="background:var(--paper);border:1px solid var(--paper3);border-radius:var(--radius-sm);padding:12px 14px">
   <div style="font-size:.84rem;font-weight:600;color:var(--ink)">NAMI Helpline</div>
   <div style="font-size:.76rem;color:var(--ink3);margin-top:2px;line-height:1.4">Mental health support.</div>
   <div style="font-size:.76rem;color:var(--ink3);margin-top:3px">📞 1-800-950-6264</div><a href="https://www.nami.org" target="_blank" style="font-size:.74rem;color:#b91c1c;text-decoration:none;margin-top:3px;display:block">🔗 https://www.nami.org</a>
 </div><div style="background:var(--paper);border:1px solid var(--paper3);border-radius:var(--radius-sm);padding:12px 14px">
   <div style="font-size:.84rem;font-weight:600;color:var(--ink)">Crisis Text Line</div>
-  <div style="font-size:.76rem;color:var(--ink3);margin-top:2px;line-height:1.4">24/7 text crisis.</div>
+  <div style="font-size:.76rem;color:var(--ink3);margin-top:2px;line-height:1.4">24/7 text crisis — perfect for SM.</div>
   <div style="font-size:.76rem;color:var(--ink3);margin-top:3px">📞 Text HOME to 741741</div><a href="https://www.crisistextline.org" target="_blank" style="font-size:.74rem;color:#b91c1c;text-decoration:none;margin-top:3px;display:block">🔗 https://www.crisistextline.org</a>
 </div><div style="background:var(--paper);border:1px solid var(--paper3);border-radius:var(--radius-sm);padding:12px 14px">
   <div style="font-size:.84rem;font-weight:600;color:var(--ink)">SAMHSA Helpline</div>
@@ -810,33 +1014,37 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
 <div style="margin-bottom:20px">
   <div style="display:inline-block;background:#1e40af;color:white;font-size:.72rem;font-family:var(--font-mono);padding:3px 12px;border-radius:20px;margin-bottom:10px;letter-spacing:.06em">UK</div>
   <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px"><div style="background:var(--paper);border:1px solid var(--paper3);border-radius:var(--radius-sm);padding:12px 14px">
-  <div style="font-size:.84rem;font-weight:600;color:var(--ink)">Narcolepsy UK</div>
-  <div style="font-size:.76rem;color:var(--ink3);margin-top:2px;line-height:1.4">UK includes hypersomnia.</div>
-  <div style="font-size:.76rem;color:var(--ink3);margin-top:3px">📞 —</div><a href="https://www.narcolepsy.org.uk" target="_blank" style="font-size:.74rem;color:#1e40af;text-decoration:none;margin-top:3px;display:block">🔗 https://www.narcolepsy.org.uk</a>
+  <div style="font-size:.84rem;font-weight:600;color:var(--ink)">SMIRA — Selective Mutism Information & Research Association</div>
+  <div style="font-size:.76rem;color:var(--ink3);margin-top:2px;line-height:1.4">UK SM specific resources.</div>
+  <div style="font-size:.76rem;color:var(--ink3);margin-top:3px">📞 —</div><a href="https://www.selectivemutism.org.uk" target="_blank" style="font-size:.74rem;color:#1e40af;text-decoration:none;margin-top:3px;display:block">🔗 https://www.selectivemutism.org.uk</a>
+</div><div style="background:var(--paper);border:1px solid var(--paper3);border-radius:var(--radius-sm);padding:12px 14px">
+  <div style="font-size:.84rem;font-weight:600;color:var(--ink)">Anxiety UK</div>
+  <div style="font-size:.76rem;color:var(--ink3);margin-top:2px;line-height:1.4">UK anxiety support.</div>
+  <div style="font-size:.76rem;color:var(--ink3);margin-top:3px">📞 03444 775 774</div><a href="https://www.anxietyuk.org.uk" target="_blank" style="font-size:.74rem;color:#1e40af;text-decoration:none;margin-top:3px;display:block">🔗 https://www.anxietyuk.org.uk</a>
 </div></div>
 </div>
 <div style="margin-bottom:20px">
   <div style="display:inline-block;background:#b45309;color:white;font-size:.72rem;font-family:var(--font-mono);padding:3px 12px;border-radius:20px;margin-bottom:10px;letter-spacing:.06em">Canada</div>
   <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px"><div style="background:var(--paper);border:1px solid var(--paper3);border-radius:var(--radius-sm);padding:12px 14px">
-  <div style="font-size:.84rem;font-weight:600;color:var(--ink)">Wake Up Narcolepsy</div>
-  <div style="font-size:.76rem;color:var(--ink3);margin-top:2px;line-height:1.4">Canadian/international.</div>
-  <div style="font-size:.76rem;color:var(--ink3);margin-top:3px">📞 —</div><a href="https://www.wakeupnarcolepsy.org" target="_blank" style="font-size:.74rem;color:#b45309;text-decoration:none;margin-top:3px;display:block">🔗 https://www.wakeupnarcolepsy.org</a>
+  <div style="font-size:.84rem;font-weight:600;color:var(--ink)">Anxiety Canada</div>
+  <div style="font-size:.76rem;color:var(--ink3);margin-top:2px;line-height:1.4">Free CBT tools.</div>
+  <div style="font-size:.76rem;color:var(--ink3);margin-top:3px">📞 —</div><a href="https://www.anxietycanada.com" target="_blank" style="font-size:.74rem;color:#b45309;text-decoration:none;margin-top:3px;display:block">🔗 https://www.anxietycanada.com</a>
 </div></div>
 </div>
 <div style="margin-bottom:20px">
   <div style="display:inline-block;background:#047857;color:white;font-size:.72rem;font-family:var(--font-mono);padding:3px 12px;border-radius:20px;margin-bottom:10px;letter-spacing:.06em">Australia</div>
   <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px"><div style="background:var(--paper);border:1px solid var(--paper3);border-radius:var(--radius-sm);padding:12px 14px">
-  <div style="font-size:.84rem;font-weight:600;color:var(--ink)">Sleep Disorders Australia</div>
-  <div style="font-size:.76rem;color:var(--ink3);margin-top:2px;line-height:1.4">Australian sleep resources.</div>
-  <div style="font-size:.76rem;color:var(--ink3);margin-top:3px">📞 —</div><a href="https://www.sleepoz.org.au" target="_blank" style="font-size:.74rem;color:#047857;text-decoration:none;margin-top:3px;display:block">🔗 https://www.sleepoz.org.au</a>
+  <div style="font-size:.84rem;font-weight:600;color:var(--ink)">Selective Mutism Association of Australia</div>
+  <div style="font-size:.76rem;color:var(--ink3);margin-top:2px;line-height:1.4">Australian SM resources.</div>
+  <div style="font-size:.76rem;color:var(--ink3);margin-top:3px">📞 —</div><a href="https://www.selectivemutismaustralia.com.au" target="_blank" style="font-size:.74rem;color:#047857;text-decoration:none;margin-top:3px;display:block">🔗 https://www.selectivemutismaustralia.com.au</a>
 </div></div>
 </div>
 <div style="margin-bottom:20px">
   <div style="display:inline-block;background:#6b21a8;color:white;font-size:.72rem;font-family:var(--font-mono);padding:3px 12px;border-radius:20px;margin-bottom:10px;letter-spacing:.06em">International</div>
   <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px"><div style="background:var(--paper);border:1px solid var(--paper3);border-radius:var(--radius-sm);padding:12px 14px">
-  <div style="font-size:.84rem;font-weight:600;color:var(--ink)">World Sleep Society</div>
-  <div style="font-size:.76rem;color:var(--ink3);margin-top:2px;line-height:1.4">Global sleep resources.</div>
-  <div style="font-size:.76rem;color:var(--ink3);margin-top:3px">📞 —</div><a href="https://worldsleepsociety.org" target="_blank" style="font-size:.74rem;color:#6b21a8;text-decoration:none;margin-top:3px;display:block">🔗 https://worldsleepsociety.org</a>
+  <div style="font-size:.84rem;font-weight:600;color:var(--ink)">iSpeak</div>
+  <div style="font-size:.76rem;color:var(--ink3);margin-top:2px;line-height:1.4">International SM advocacy.</div>
+  <div style="font-size:.76rem;color:var(--ink3);margin-top:3px">📞 —</div><a href="https://www.ispeak.org.uk" target="_blank" style="font-size:.74rem;color:#6b21a8;text-decoration:none;margin-top:3px;display:block">🔗 https://www.ispeak.org.uk</a>
 </div></div>
 </div>
 
@@ -846,23 +1054,23 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
   </div>
   <div style="font-size:.78rem;color:var(--ink3);margin-bottom:12px">The following peer-reviewed studies support the guidance in this care plan. Each includes a plain-English summary.</div>
   <div style="padding:12px 14px;background:var(--paper);border:1px solid var(--paper3);border-radius:var(--radius-sm);margin-bottom:8px">
-  <div style="font-size:.78rem;color:var(--ink2);line-height:1.5"><strong>1. Trotti LM (2017).</strong> Idiopathic hypersomnia. <em>Sleep Medicine Clinics</em>.</div>
-  <div style="font-size:.74rem;color:var(--ink3);margin-top:4px;padding:6px 10px;background:var(--white);border-radius:6px;border-left:3px solid #5b21b6"><strong>What this means for you:</strong> Comprehensive review of IH. Distinct from narcolepsy. Treatment evolving.</div>
+  <div style="font-size:.78rem;color:var(--ink2);line-height:1.5"><strong>1. Cohan SL, et al. (2006).</strong> Practitioner review: psychosocial interventions for children with selective mutism. <em>Journal of Child Psychology and Psychiatry</em>.</div>
+  <div style="font-size:.74rem;color:var(--ink3);margin-top:4px;padding:6px 10px;background:var(--white);border-radius:6px;border-left:3px solid #0891b2"><strong>What this means for you:</strong> Behavioral therapy first-line. Multiple evidence-based approaches available.</div>
 </div><div style="padding:12px 14px;background:var(--paper);border:1px solid var(--paper3);border-radius:var(--radius-sm);margin-bottom:8px">
-  <div style="font-size:.78rem;color:var(--ink2);line-height:1.5"><strong>2. Bassetti C, et al. (2019).</strong> Idiopathic hypersomnia: a series of 42 patients. <em>Brain</em>.</div>
-  <div style="font-size:.74rem;color:var(--ink3);margin-top:4px;padding:6px 10px;background:var(--white);border-radius:6px;border-left:3px solid #5b21b6"><strong>What this means for you:</strong> Clinical characteristics and treatment outcomes. Multiple medications effective.</div>
+  <div style="font-size:.78rem;color:var(--ink2);line-height:1.5"><strong>2. Black B, Uhde TW (1994).</strong> Treatment of elective mutism with fluoxetine: double-blind placebo-controlled study. <em>Journal of the American Academy of Child & Adolescent Psychiatry</em>.</div>
+  <div style="font-size:.74rem;color:var(--ink3);margin-top:4px;padding:6px 10px;background:var(--white);border-radius:6px;border-left:3px solid #0891b2"><strong>What this means for you:</strong> Fluoxetine effective for selective mutism. SSRIs are evidence-based pharmacological treatment.</div>
 </div><div style="padding:12px 14px;background:var(--paper);border:1px solid var(--paper3);border-radius:var(--radius-sm);margin-bottom:8px">
-  <div style="font-size:.78rem;color:var(--ink2);line-height:1.5"><strong>3. Mayer G, et al. (2015).</strong> Modafinil in the treatment of idiopathic hypersomnia without long sleep time: randomized trial. <em>Journal of Sleep Research</em>.</div>
-  <div style="font-size:.74rem;color:var(--ink3);margin-top:4px;padding:6px 10px;background:var(--white);border-radius:6px;border-left:3px solid #5b21b6"><strong>What this means for you:</strong> Modafinil effective for IH. First-line for many patients.</div>
+  <div style="font-size:.78rem;color:var(--ink2);line-height:1.5"><strong>3. Manassis K, et al. (2016).</strong> The interaction of selective mutism with anxiety, language, and social development. <em>Pediatrics</em>.</div>
+  <div style="font-size:.74rem;color:var(--ink3);margin-top:4px;padding:6px 10px;background:var(--white);border-radius:6px;border-left:3px solid #0891b2"><strong>What this means for you:</strong> Selective mutism is anxiety disorder. Often co-occurs with social anxiety. Early intervention essential.</div>
 </div><div style="padding:12px 14px;background:var(--paper);border:1px solid var(--paper3);border-radius:var(--radius-sm);margin-bottom:8px">
-  <div style="font-size:.78rem;color:var(--ink2);line-height:1.5"><strong>4. Dauvilliers Y, et al. (2022).</strong> Long-term safety and efficacy of low-sodium oxybate in idiopathic hypersomnia. <em>Sleep</em>.</div>
-  <div style="font-size:.74rem;color:var(--ink3);margin-top:4px;padding:6px 10px;background:var(--white);border-radius:6px;border-left:3px solid #5b21b6"><strong>What this means for you:</strong> Sodium oxybate effective for refractory IH. Specialized monitoring required.</div>
+  <div style="font-size:.78rem;color:var(--ink2);line-height:1.5"><strong>4. Bergman RL, et al. (2013).</strong> An open trial of integrated behavior therapy for young children with selective mutism. <em>Behavior Therapy</em>.</div>
+  <div style="font-size:.74rem;color:var(--ink3);margin-top:4px;padding:6px 10px;background:var(--white);border-radius:6px;border-left:3px solid #0891b2"><strong>What this means for you:</strong> Integrated behavior therapy effective for children with selective mutism.</div>
 </div><div style="padding:12px 14px;background:var(--paper);border:1px solid var(--paper3);border-radius:var(--radius-sm);margin-bottom:8px">
-  <div style="font-size:.78rem;color:var(--ink2);line-height:1.5"><strong>5. Khan Z, Trotti LM (2015).</strong> Central disorders of hypersomnolence: focus on the narcolepsies and idiopathic hypersomnia. <em>Chest</em>.</div>
-  <div style="font-size:.74rem;color:var(--ink3);margin-top:4px;padding:6px 10px;background:var(--white);border-radius:6px;border-left:3px solid #5b21b6"><strong>What this means for you:</strong> Comprehensive review of central hypersomnia disorders. Diagnostic and treatment approaches.</div>
+  <div style="font-size:.78rem;color:var(--ink2);line-height:1.5"><strong>5. Steains S, et al. (2021).</strong> Treatment for selective mutism: An update. <em>Australian Psychologist</em>.</div>
+  <div style="font-size:.74rem;color:var(--ink3);margin-top:4px;padding:6px 10px;background:var(--white);border-radius:6px;border-left:3px solid #0891b2"><strong>What this means for you:</strong> Comprehensive treatment review. Behavioral therapy + medication for severe cases most effective.</div>
 </div><div style="padding:12px 14px;background:var(--paper);border:1px solid var(--paper3);border-radius:var(--radius-sm);margin-bottom:8px">
-  <div style="font-size:.78rem;color:var(--ink2);line-height:1.5"><strong>6. Vernet C, Arnulf I (2009).</strong> Idiopathic hypersomnia with and without long sleep time: controlled series of 75 patients. <em>Sleep</em>.</div>
-  <div style="font-size:.74rem;color:var(--ink3);margin-top:4px;padding:6px 10px;background:var(--white);border-radius:6px;border-left:3px solid #5b21b6"><strong>What this means for you:</strong> Two subtypes of IH described. Different presentations require different approaches.</div>
+  <div style="font-size:.78rem;color:var(--ink2);line-height:1.5"><strong>6. Schwenck C, et al. (2022).</strong> Adult selective mutism: clinical characteristics. <em>Comprehensive Psychiatry</em>.</div>
+  <div style="font-size:.74rem;color:var(--ink3);margin-top:4px;padding:6px 10px;background:var(--white);border-radius:6px;border-left:3px solid #0891b2"><strong>What this means for you:</strong> Adult SM exists and responds to treatment. Often unrecognized and undertreated.</div>
 </div>
 
   <div style="background:#fff8e6;border:2px solid #f0cc80;border-radius:var(--radius);padding:20px 22px;margin-top:32px">
@@ -872,14 +1080,14 @@ td{padding:8px 12px;border-bottom:1px solid var(--paper3);font-size:.8rem}
     <strong>If you are in crisis: Call or text 988 (USA Suicide & Crisis Lifeline) immediately.</strong> If you have an immediate safety emergency, call 911 (USA), 999 (UK), 000 (Australia), or 112 (Europe). You can also go to any hospital emergency room.<br><br>
     <strong>Mental health conditions are real medical conditions</strong> — not character flaws or weaknesses. Seeking help is a sign of strength. Recovery is possible. Most people with mental illness lead full, meaningful lives with proper treatment and support.<br><br>
     My Health Harbor Foundation is a nonprofit educational organization. We do not provide direct mental health care, prescribe medications, or replace your treatment team. <br><br>
-    <strong>Date of this care plan:</strong> <span id="cpdate_hypersomnia_mhcp"></span> &nbsp;|&nbsp; <strong>Review with your treatment team every:</strong> 3–6 months
+    <strong>Date of this care plan:</strong> <span id="cpdate_selective_mutism_mhcp"></span> &nbsp;|&nbsp; <strong>Review with your treatment team every:</strong> 3–6 months
   </div>
 </div>
 
 </div>
 
 <script>
-document.getElementById('cpdate_hypersomnia_mhcp').textContent=new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+document.getElementById('cpdate_selective_mutism_mhcp').textContent=new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
 function toggleZone(id){
   var el=document.getElementById(id);
   var arr=document.getElementById('arr'+id);
